@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageJeuComponent } from './page-jeu/page-jeu.component';
+import { PartieComponent } from './partie/partie/partie.component';
 
 @NgModule({
   declarations: [
