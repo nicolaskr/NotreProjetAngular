@@ -8,6 +8,7 @@ import { PartieComponent } from './gestion/partie/partie/partie.component';
 import { EditRessourceComponent } from './gestion/ressource/edit-ressource/edit-ressource.component';
 import { RessourceComponent } from './gestion/ressource/ressource/ressource.component';
 import { HomeComponent } from './home/home.component';
+import { PageJeuComponent } from './page-jeu/page-jeu.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
     path: 'authentification',
     component: AuthentificationComponent,
   },
+  { path: 'pagejeu', component: PageJeuComponent },
   { path: 'gestion/parties', component: PartieComponent },
   { path: 'gestion/joueurs', component: JoueurComponent },
   { path: 'gestion/ressources', component: RessourceComponent },

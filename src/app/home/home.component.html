@@ -1,9 +1,18 @@
-<div class="col-12 text-left flex align-items-center spacer layer1">
+<div class="flex align-items-center justify-content-center spacer layer1">
   <section>
     <span class="block text-6xl font-bold mb-1">Bienvenue</span>
     <div class="text-6xl text-primary font-bold mb-3">
       Prêt pour la bataille ?
     </div>
+    <a
+      [routerLink]="['/pagejeu']"
+      routerLinkActive="active"
+      pButton
+      pRipple
+      label="PLAY ! (page jeu)"
+      type="button"
+      class="mr-3 p-button-raised"
+    ></a>
   </section>
 </div>
 <div class="spacer layer1_mirror"></div>
