@@ -1,1 +1,40 @@
-<p>batiment works!</p>
+
+<button type="button" class="btn btn-link" (click)="list()">Tous les batiments</button>
+<button type="button" class="btn btn-link" (click)="listAttaque()">Batiments d'attaque </button>
+<button type="button" class="btn btn-link" (click)="listDefense()">Batiments de defense</button>
+<button type="button" class="btn btn-link" (click)="listProduction()">Batiments de production</button>
+<button type="button" class="btn btn-link" (click)="listTransformation()">Batiments de transformation</button>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <th>Id</th>
+      <th>Nom</th>
+      <th>Points de Defense</th>
+      <th>Ameliorable</th>
+      <th *ngIf="battaque">Points d'Attaque</th>
+      <th *ngIf="bproduction">Ressource produite</th>
+      <th *ngIf="bproduction">Quantite produite</th>
+      <th *ngIf="btransformation">Ressource transformée</th>
+      <th *ngIf="btransformation">Ressource Obtenue</th>
+      <th>Editer</th>
+    </tr>
+    <tr *ngFor="let b of batiments">
+      <td>{{b.id}}</td>
+      <td>{{b.nom}}</td>
+      <td>{{b.pointsDefense}}</td>
+      <td>{{b.ameliorable}}</td>
+      <td *ngIf="battaque">{{b.pointsDAttaque}}</td>
+      <td *ngIf="bproduction">{{b.ressource.nom}}</td>
+      <td *ngIf="bproduction">{{b.quantiteProduite}}</td>
+      <td *ngIf="btransformation"></td>
+      <td *ngIf="btransformation"></td>
+      <td><a [routerLink]="['/gestion/ressources/edit', b.id]" routerLinkActive="active" class="btn btn-warning">editer</a></td>
+    </tr>
+  </tbody>
+</table>
+<a
+routerLink="/gestion/ressources/edit"
+  routerLinkActive="active"
+  class="btn btn-primary"
+  >nouvelle ressource</a>

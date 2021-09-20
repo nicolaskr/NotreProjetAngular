@@ -1,18 +1,21 @@
+import { Ressource } from './ressource';
 import { CoutBatiment } from './cout-batiment';
 export class Batiment {
 
-
-
 	constructor(private _nom : string,
-    private _def : number,
+    private _pointsDefense : number,
     private _ameliorable : boolean,
     private _coutBatiment : CoutBatiment[],
-    private _id:number) {
+    private _pointsDAttaque: number,
+    private _quantiteProduite : number,
+    private _ressource : Ressource = new Ressource(),
+    private _id?:number) {
 	}
-  public get id(): number {
+
+  public get id(): number |undefined{
 		return this._id;
 	}
-  public set id(value: number) {
+  public set id(value: number|undefined) {
 		this._id = value;
 	}
 
@@ -32,8 +35,16 @@ export class Batiment {
      * Getter def
      * @return {number}
      */
-	public get def(): number {
-		return this._def;
+	public get pointsDefense(): number {
+		return this._pointsDefense;
+	}
+
+  /**
+     * Getter def
+     * @return {number}
+     */
+	public get quantiteProduite(): number {
+		return this._quantiteProduite;
 	}
 
     /**
@@ -52,6 +63,22 @@ export class Batiment {
 		return this._coutBatiment;
 	}
 
+  /**
+     * Getter ressource
+     * @return {Ressource}
+     */
+	public get ressource(): Ressource {
+		return this._ressource;
+	}
+
+   /**
+     * Getter def
+     * @return {number}
+     */
+	public get pointsDAttaque(): number {
+		return this._pointsDAttaque;
+	}
+
     /**
      * Setter nom
      * @param {string} value
@@ -64,8 +91,16 @@ export class Batiment {
      * Setter def
      * @param {number} value
      */
-	public set def(value: number) {
-		this._def = value;
+	public set pointsDefense(value: number) {
+		this._pointsDefense = value;
+	}
+
+      /**
+     * Setter def
+     * @param {number} value
+     */
+	public set pointsDAttaque(value: number) {
+		this._pointsDAttaque = value;
 	}
 
     /**
@@ -82,6 +117,22 @@ export class Batiment {
      */
 	public set coutBatiment(value: CoutBatiment[]) {
 		this._coutBatiment = value;
+	}
+
+      /**
+     * Setter ressource
+     * @param {Ressource} value
+     */
+	public set ressource(value: Ressource) {
+		this._ressource = value;
+	}
+
+       /**
+     * Setter def
+     * @param {number} value
+     */
+	public set quantiteProduite(value: number) {
+		this._quantiteProduite = value;
 	}
 
 }
