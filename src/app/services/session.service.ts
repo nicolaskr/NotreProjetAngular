@@ -8,7 +8,7 @@ import { Session } from '../model/session';
 })
 export class SessionService {
 
-  private url: string = "http://localhost:8080/notre_projet/api/session";
+  private url: string = "http://localhost:8080/np/api/session";
   private headers: HttpHeaders | any = null;
   constructor(private http: HttpClient) { }
 
@@ -27,9 +27,9 @@ export class SessionService {
     return this.http.delete(this.url + '/' + id, { headers: this.headers });
   }
 
-  public get(idCompte: number, idPartie : number): Observable<Session> {
+  public get(idPartie: number, idCompte : number): Observable<Session> {
     this.initHeaders();
-    return this.http.get<Session>(this.url + '/' + idCompte + '/' + idPartie, { headers: this.headers });
+    return this.http.get<Session>(this.url + '/' + idPartie + '/' + idCompte, { headers: this.headers });
   }
 
 

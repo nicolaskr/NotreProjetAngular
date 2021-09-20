@@ -1,0 +1,11 @@
+<form (ngSubmit)="save()" [formGroup]="formTransformation" *ngIf="sessionActive">
+  <h3>Transformation</h3>
+  <select *ngFor="let b of batimentsTransformation" [formControl]="batimentSelectionne" class="form-select"
+    aria-label="Default select example" style="width: 48%;">
+    <option>{{ b.batiment.nom }}</option>
+  </select>
+  <transformer-ressource [batiment]="batimentSelectionne.value" (transformEvent)="maximum($event)">
+  </transformer-ressource>
+  <input type="number" [formControl]="quantite" [max]="quantiteMax">
+  <button type="submit" class="btn btn-outline-success">Valider</button>
+</form>
