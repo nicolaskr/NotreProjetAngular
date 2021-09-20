@@ -1,5 +1,3 @@
-import { routes } from './routes';
-import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageJeuComponent } from './page-jeu/page-jeu.component';
 import { MenuConstructionComponent } from './game/menu-construction/menu-construction.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuAmeliorationComponent } from './game/menu-amelioration/menu-amelioration.component';
 import { MenuTransformationComponent } from './game/menu-transformation/menu-transformation.component';
@@ -22,6 +21,7 @@ import { RessourceComponent } from './gestion/ressource/ressource/ressource.comp
 import { AuthentificationComponent } from './authentification/authentification/authentification.component';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +39,7 @@ import { ButtonModule } from 'primeng/button';
     RessourceComponent,
     EditRessourceComponent,
     AuthentificationComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

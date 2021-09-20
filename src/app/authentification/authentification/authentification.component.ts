@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Compte } from 'src/app/model/compte';
 import { AuthentificationService } from 'src/app/services/authentfication/authentification.service';
 
 @Component({
@@ -56,7 +57,15 @@ export class AuthentificationComponent implements OnInit {
                 this.formControlPassword.value
             )
           );
-          localStorage.setItem('username', res.username);
+          let compte: Compte = new Compte(
+            res.id,
+            res.username,
+            res.role,
+            res.prenom,
+            res.nom
+          );
+          localStorage.setItem('compte', JSON.stringify(compte));
+          console.log(JSON.stringify(compte));
         },
         (error) => {
           console.log('error in sign in');

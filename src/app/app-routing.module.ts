@@ -7,8 +7,11 @@ import { JoueurComponent } from './gestion/joueur/joueur/joueur.component';
 import { PartieComponent } from './gestion/partie/partie/partie.component';
 import { EditRessourceComponent } from './gestion/ressource/edit-ressource/edit-ressource.component';
 import { RessourceComponent } from './gestion/ressource/ressource/ressource.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'authentification',
     component: AuthentificationComponent,
