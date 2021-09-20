@@ -1,0 +1,285 @@
+<div class="container">
+  <div class="row row-cols-2" style="-bs-gutter-y: 20px;">
+    <div class="row"
+      style="padding-top: calc(var(- -bs-gutter-x)* .5); padding-bottom: calc(var(- -bs-gutter-x)* .5); height: 50%; padding-right: 5%;">
+      <h2>${player.id.compte.surnom}</h2>
+      <%-- 					${session.compte.surname} --%>
+      <table class="table table-striped">
+        <c:forEach items="${player.sessionRessource}" var="sr">
+          <tr>
+            <th><img height="40px" width="40px" src="images/bois.jpg"
+              alt=" bois"> <c:choose>
+                <c:when test="${sr.id.ressource.nom == 'bois'}">:${sr.quantite}</c:when>
+                <c:otherwise>:0</c:otherwise>
+              </c:choose></th>
+            <th><img height="40px" width="40px"
+              src="http://produitsversailles.com/wp-content/uploads/2018/06/pierre-polie-semi-grise-_105643-red-copy-300x300.png"
+              alt="pierre"> <c:choose>
+                <c:when test="${sr.id.ressource.nom == 'pierre'}">:${sr.quantite}</c:when>
+                <c:otherwise>:0</c:otherwise>
+              </c:choose></th>
+            <th><img height="40px" width="40px"
+              src="http://www.a3m-asso.fr/wp-content/uploads/2016/07/ERAMET-Minerai-300x200.jpg"
+              alt="minerais"> <c:choose>
+                <c:when test="${sr.id.ressource.nom == 'minerais'}">:${sr.quantite}</c:when>
+                <c:otherwise>:0</c:otherwise>
+              </c:choose></th>
+            <th><img height="40px" width="40px"
+              src="https://blog.arpp.org/wp-content/uploads/sites/5/2019/09/or-.jpg"
+              alt="or"> <c:choose>
+                <c:when test="${sr.id.ressource.nom == 'gold'}">:${sr.quantite}</c:when>
+                <c:otherwise>:0</c:otherwise>
+              </c:choose></th>
+            <th><img height="40px" width="40px"
+              src="https://www.corse-epoxy.fr/wp-content/uploads/2016/09/profil-acier-720x340.jpg"
+              alt="fer"> <c:choose>
+                <c:when test="${sr.id.ressource.nom == 'fer'}">:${sr.quantite}</c:when>
+                <c:otherwise>:0</c:otherwise>
+              </c:choose></th>
+            <th><img height="40px" width="40px"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/NatCopper.jpg/220px-NatCopper.jpg"
+              alt="cuivre"> <c:choose>
+                <c:when test="${sr.id.ressource.nom == 'cuivre'}">:${sr.quantite}</c:when>
+                <c:otherwise>:0</c:otherwise>
+              </c:choose></th>
+          </tr>
+        </c:forEach>
+      </table>
+      <table class="table table-striped">
+        <tr>
+          <th>Batiment</th>
+          <th>Attaque</th>
+          <th>Défense</th>
+          <th>Niveau</th>
+        </tr>
+        <c:set var="totalAtt" value="0"></c:set>
+        <c:set var="totalDef" value="0"></c:set>
+        <c:forEach items="${player.sessionBatiment}" var="sb">
+          <tr>
+            <td>${sb.batiment.nom}</td>
+            <td>${sb.batiment.pointsDAttaque}</td>
+            <td>${sb.batiment.pointsDefense}</td>
+            <td>${sb.batiment.level}</td>
+          </tr>
+          <c:set var="totalAtt"
+            value="${totalAtt + batiment.pointsDAttaque }"></c:set>
+          <c:set var="totalDef"
+            value="${totalDef + batiment.pointsDefense }"></c:set>
+        </c:forEach>
+      </table>
+      <table class="table table-striped">
+        <tr>
+          <th>Total</th>
+          <th>Attaque: ${totalAtt}</th>
+          <th>Défense: ${totalDef}</th>
+      </table>
+
+      <div>
+        <button type="button" class="btn btn-primary"
+          onclick="clickConstruction()">Construire</button>
+        <button type="submit" class="btn btn-success"
+          onclick="clickAmelioration()">Améliorer</button>
+        <button type="button" class="btn btn-warning"
+          onclick="clickTransformation()">Transformer</button>
+        <button type="submit" class="btn btn-danger"
+          onclick="clickAttaque()">Attaquer</button>
+        <button type="button" class="btn btn-dark">
+          <a href="pagejeu/tour"></a>Fin du tour
+        </button>
+      </div>
+
+
+      <div id="fenetreConstruction">
+        <h3>Construction</h3>
+        <select class="form-select" aria-label="Default select example"
+          style="width: 48%;">
+          <option>blablablaConstru</option>
+          <%-- 							<form:options items="${batimentsConstructibles}" itemValue="id" --%>
+          <%-- 								itemLabel="${batiment.nom}"></form:options> --%>
+          <!--                   			Ajouter le cout des batiments -->
+        </select>
+        <button type="submit" class="btn btn-outline-success">Valider</button>
+      </div>
+
+
+
+      <div id="fenetreAmelioration">
+        <h3>Amélioration</h3>
+        <select class="form-select" aria-label="Default select example"
+          style="width: 48%;">
+          <option>blablablaAméliorer</option>
+          <%-- 							<form:options items="${batimentsAmeliorables}" itemValue="id" --%>
+          <%-- 								itemLabel="${batiment.nom}"></form:options> --%>
+          <!--                   			Ajouter le cout des amélioration -->
+        </select>
+        <button type="submit" class="btn btn-outline-success">Valider</button>
+      </div>
+
+
+
+      <div id="fenetreTransformation">
+        <h3>Transformation</h3>
+        <select class="form-select" aria-label="Default select example"
+          style="width: 48%;">
+          <option>blablablaTrans</option>
+          <%-- 							<form:options items="${ressourcesTransformables}" itemValue="id" --%>
+          <%-- 								itemLabel="${batiment.nom}"></form:options> --%>
+          <!--                   			Ajouter le cout des amélioration -->
+        </select> <input type="number" max="">
+        <button type="submit" class="btn btn-outline-success">Valider</button>
+      </div>
+
+
+
+      <div id="fenetreAttaque">
+        <h3>Attaque</h3>
+        <select class="form-select" aria-label="Default select example"
+          style="width: 48%;">
+          <option>Attaquer avec tous mes batiments</option>
+          <option>Batiments d'attaque</option>
+          <%-- 							<form:options items="${ressourcesTransformables}" itemValue="id" --%>
+          <%-- 								itemLabel="${batiment.nom}"></form:options> --%>
+          <!--                   			Ajouter le cout des amélioration -->
+        </select> <select class="form-select" aria-label="Default select example"
+          style="width: 48%;">
+          <option>joueurs</option>
+          <%-- 							<form:options items="${ressourcesTransformables}" itemValue="id" --%>
+          <%-- 								itemLabel="${batiment.nom}"></form:options> --%>
+          <!--                   			Ajouter le cout des amélioration -->
+        </select> <select class="form-select" aria-label="Default select example"
+          style="width: 48%;">
+          <option>Tous les batiments</option>
+          <option>Liste des batiments du joueur selectionné</option>
+          <%-- 							<form:options items="${ressourcesTransformables}" itemValue="id" --%>
+          <%-- 								itemLabel="${batiment.nom}"></form:options> --%>
+          <!--                   			Ajouter le cout des amélioration -->
+        </select>
+        <button type="submit" class="btn btn-outline-success">Attaquer!</button>
+      </div>
+    </div>
+
+    <div class="row row-cols-1">
+      <c:forEach items="${watchers}" var="p">
+        <div class="row">
+          <h2>${p.id.compte.surnom}</h2>
+          				<!-- ${session.compte.surname}  -->
+          <table class="table table-striped">
+            <c:forEach items="${p.sessionRessource}" var="sr">
+              <tr>
+                <c:choose>
+                  <c:when test="${sr.id.ressource.nom == 'bois'}">
+                    <th><img height="40px" width="40px"
+                      src="images/bois.jpg" alt=" bois"> :${sr.quantite}</th>
+                  </c:when>
+                  <c:otherwise>
+                    <th><img height="40px" width="40px"
+                      src="images/bois.jpg" alt=" bois"> :0</th>
+                  </c:otherwise>
+                </c:choose>
+                <c:choose>
+                  <c:when test="${sr.id.ressource.nom == 'pierre'}">
+                    <th><img height="40px" width="40px"
+                      src="http://produitsversailles.com/wp-content/uploads/2018/06/pierre-polie-semi-grise-_105643-red-copy-300x300.png"
+                      alt=" pierre"> :${sr.quantite}</th>
+                  </c:when>
+                  <c:otherwise>
+                    <th><img height="40px" width="40px"
+                      src="http://produitsversailles.com/wp-content/uploads/2018/06/pierre-polie-semi-grise-_105643-red-copy-300x300.png"
+                      alt=" pierre"> :0</th>
+                  </c:otherwise>
+                </c:choose>
+                <c:choose>
+                  <c:when test="${sr.id.ressource.nom == 'minerais'}">
+                    <th><img height="40px" width="40px"
+                      src="images/minerai.jpeg" alt=" minerais">
+                      :${sr.quantite}</th>
+                  </c:when>
+                  <c:otherwise>
+                    <th><img height="40px" width="40px"
+                      src="images/minerai.jpeg" alt=" minerais"> :0</th>
+                  </c:otherwise>
+                </c:choose>
+                <c:choose>
+                  <c:when test="${sr.id.ressource.nom == 'charbon'}">
+                    <th><img height="40px" width="40px"
+                      src="images/charbon.jpg" alt=" charbon">
+                      :${sr.quantite}</th>
+                  </c:when>
+                  <c:otherwise>
+                    <th><img height="40px" width="40px"
+                      src="images/charbon.jpg" alt=" charbon"> :0</th>
+                  </c:otherwise>
+                </c:choose>
+                <c:choose>
+                  <c:when test="${sr.id.ressource.nom == 'gold'}">
+                    <th><img height="40px" width="40px"
+                      src="https://blog.arpp.org/wp-content/uploads/sites/5/2019/09/or-.jpg"
+                      alt=" gold"> :${sr.quantite}</th>
+                  </c:when>
+                  <c:otherwise>
+                    <th><img height="40px" width="40px"
+                      src="https://blog.arpp.org/wp-content/uploads/sites/5/2019/09/or-.jpg"
+                      alt=" gold"> :0</th>
+                  </c:otherwise>
+                </c:choose>
+                <c:choose>
+                  <c:when test="${sr.id.ressource.nom == 'fer'}">
+                    <th><img height="40px" width="40px"
+                      src="https://www.corse-epoxy.fr/wp-content/uploads/2016/09/profil-acier-720x340.jpg"
+                      alt=" fer"> :${sr.quantite}</th>
+                  </c:when>
+                  <c:otherwise>
+                    <th><img height="40px" width="40px"
+                      src="https://www.corse-epoxy.fr/wp-content/uploads/2016/09/profil-acier-720x340.jpg"
+                      alt=" fer"> :0</th>
+                  </c:otherwise>
+                </c:choose>
+                <c:choose>
+                  <c:when test="${sr.id.ressource.nom == 'cuivre'}">
+                    <th><img height="40px" width="40px"
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/NatCopper.jpg/220px-NatCopper.jpg"
+                      alt=" cuivre"> :${sr.quantite}</th>
+                  </c:when>
+                  <c:otherwise>
+                    <th><img height="40px" width="40px"
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/NatCopper.jpg/220px-NatCopper.jpg"
+                      alt=" cuivre"> :0</th>
+                  </c:otherwise>
+                </c:choose>
+              </tr>
+            </c:forEach>
+          </table>
+          <table class="table table-striped">
+            <tr>
+              <th>Batiment</th>
+              <th>Attaque</th>
+              <th>Défense</th>
+              <th>Niveau</th>
+            </tr>
+            <c:set var="totalAtt" value="0"></c:set>
+            <c:set var="totalDef" value="0"></c:set>
+            <c:forEach items="${p.sessionBatiment}" var="sb">
+              <tr>
+                <td>${sb.batiment.nom}</td>
+                <td>${sb.batiment.pointsDAttaque}</td>
+                <td>${sb.batiment.pointsDefense}</td>
+                <td>${sb.batiment.level}</td>
+              </tr>
+              <c:set var="totalAtt"
+                value="${totalAtt + batiment.pointsDAttaque }"></c:set>
+              <c:set var="totalDef"
+                value="${totalDef + batiment.pointsDefense }"></c:set>
+            </c:forEach>
+          </table>
+          <table class="table table-striped">
+            <tr>
+              <th>Total</th>
+              <th>Attaque: ${totalAtt}</th>
+              <th>Défense: ${totalDef}</th>
+          </table>
+        </div>
+      </c:forEach>
+    </div>
+
+  </div>
+</div>
