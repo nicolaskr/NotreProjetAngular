@@ -1,4 +1,4 @@
-<form (ngSubmit)="save()" [formGroup]="formTransformation">
+<form (ngSubmit)="save()" [formGroup]="formTransformation" *ngIf="sessionActive">
   <h3>Transformation</h3>
   <select *ngFor="let b of batimentsTransformation" [formControl]="batimentSelectionne" class="form-select"
     aria-label="Default select example" style="width: 48%;">

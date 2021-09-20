@@ -1,3 +1,5 @@
+import { Compte } from './../../model/compte';
+import { Partie } from './../../model/partie';
 import { SessionRessourceService } from './../../services/session-ressource.service';
 import { TransformationRessource } from './../../model/transformation-ressource';
 import { SessionRessource } from './../../model/session-ressource';
@@ -54,7 +56,7 @@ export class MenuTransformationComponent implements OnInit {
   }
 
   listSessionRessources() {
-    this.sessionRessourceService.getRessourcesBySession(this.sessionActive!).subscribe((res) => {
+    this.sessionRessourceService.getBySession(this.sessionActive!).subscribe((res) => {
       this.sessionRessources = res;
     })
   }

@@ -1,3 +1,5 @@
+import { Compte } from './../model/compte';
+import { Partie } from './../model/partie';
 import { TransformationRessource } from './../model/transformation-ressource';
 import { SessionBatiment } from './../model/session-batiment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -11,7 +13,7 @@ import { Batiment } from '../model/batiment';
 })
 export class SessionBatimentService {
 
-  private url: string = "http://localhost:8080/notre_projet/api/sessionbatiment";
+  private url: string = "http://localhost:8080/np/api/sessionbatiment";
   private headers: HttpHeaders | any = null;
 
   constructor(private http: HttpClient) { }
@@ -37,16 +39,9 @@ export class SessionBatimentService {
     return this.http.get<SessionBatiment>(this.url + '/' + id, { headers: this.headers });
   }
 
-  public create(sessionBatiment: SessionBatiment): Observable<SessionBatiment> {
+  public construire(session: Session, bat: Batiment): Observable<SessionBatiment> {
     this.initHeaders();
-    const obj = {
-      session: sessionBatiment.session,
-      batiment: sessionBatiment.batiment,
-      pointsDeVie: sessionBatiment.pv,
-      pointsDAttaque: sessionBatiment.ptAttaque,
-      level: sessionBatiment.level
-    }
-    return this.http.post<SessionBatiment>(this.url, obj, { headers: this.headers });
+    return this.http.post<SessionBatiment>(this.url + '/' + session.partie!.id + '/' + session.compte!.id + '/' + bat.id, { headers: this.headers });
   }
 
   public update(sessionBatiment: SessionBatiment): Observable<SessionBatiment> {
@@ -61,22 +56,22 @@ export class SessionBatimentService {
 
   public ameliorer(sessionBatiment: SessionBatiment): Observable<SessionBatiment> {
     this.initHeaders();
-    return this.http.put<SessionBatiment>(this.url + '/' + sessionBatiment.id, { headers: this.headers });
+    return this.http.put<SessionBatiment>(this.url + '/amelioration/' + sessionBatiment.id, { headers: this.headers });
   }
 
-  public getBatimentsConstructibles(session: Session) {
+  public getBatimentsConstructibles(session : Session) {
     this.initHeaders();
-    return this.http.get<Batiment[]>(this.url + '/construction/' + session, { headers: this.headers });
+    return this.http.get<Batiment[]>(this.url + '/construction/' + session.partie!.id + '/' + session.compte!.id, { headers: this.headers });
   }
 
-  public getBatimentsAmeliorables(session: Session) {
+  public getBatimentsAmeliorables(session : Session) {
     this.initHeaders();
-    return this.http.get<SessionBatiment[]>(this.url + '/amelioration/' + session, { headers: this.headers });
+    return this.http.get<SessionBatiment[]>(this.url + '/amelioration/' + session.partie!.id + '/' + session.compte!.id, { headers: this.headers });
   }
 
-  public getBatimentsTransformation(session: Session) {
+  public getBatimentsTransformation(session : Session) {
     this.initHeaders();
-    return this.http.get<SessionBatiment[]>(this.url + '/transformation/' + session, { headers: this.headers });
+    return this.http.get<SessionBatiment[]>(this.url + '/transformation/' + session.partie!.id + '/' + session.compte!.id, { headers: this.headers });
   }
 
   public getListTransformationRessource(transformation: Batiment) {

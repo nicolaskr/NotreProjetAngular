@@ -2,31 +2,28 @@
   <div class="row row-cols-2" style="-bs-gutter-y: 20px;">
     <div class="row"
       style="padding-top: calc(var(- -bs-gutter-x)* .5); padding-bottom: calc(var(- -bs-gutter-x)* .5); height: 50%; padding-right: 5%;">
-      <h2>{{player.compte?.nom}}</h2>
+      <h2>{{player!.compte!.nom}}</h2>
       <table class="table table-striped">
-          <tr *ngFor="let sr of player.listRessources">
-            <th><img height="40px" width="40px" src="images/bois.jpg"
-              alt=" bois">
-                :{{sr.quantite}}
-             </th>
-            <th><img height="40px" width="40px"
+        <tr *ngFor="let sr of player!.listRessources">
+          <th><img height="40px" width="40px" src="images/bois.jpg" alt=" bois">
+            :{{sr.quantite}}
+          </th>
+          <th><img height="40px" width="40px"
               src="http://produitsversailles.com/wp-content/uploads/2018/06/pierre-polie-semi-grise-_105643-red-copy-300x300.png"
               alt="pierre"> :{{sr.quantite}}
-              </th>
-            <th><img height="40px" width="40px"
-              src="http://www.a3m-asso.fr/wp-content/uploads/2016/07/ERAMET-Minerai-300x200.jpg"
-              alt="minerais">
-                :{{sr.quantite}}</th>
-            <th><img height="40px" width="40px"
-              src="https://blog.arpp.org/wp-content/uploads/sites/5/2019/09/or-.jpg"
+          </th>
+          <th><img height="40px" width="40px"
+              src="http://www.a3m-asso.fr/wp-content/uploads/2016/07/ERAMET-Minerai-300x200.jpg" alt="minerais">
+            :{{sr.quantite}}</th>
+          <th><img height="40px" width="40px" src="https://blog.arpp.org/wp-content/uploads/sites/5/2019/09/or-.jpg"
               alt="or"> :{{sr.quantite}}</th>
-            <th><img height="40px" width="40px"
-              src="https://www.corse-epoxy.fr/wp-content/uploads/2016/09/profil-acier-720x340.jpg"
-              alt="fer"> :{{sr.quantite}}</th>
-            <th><img height="40px" width="40px"
+          <th><img height="40px" width="40px"
+              src="https://www.corse-epoxy.fr/wp-content/uploads/2016/09/profil-acier-720x340.jpg" alt="fer">
+            :{{sr.quantite}}</th>
+          <th><img height="40px" width="40px"
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/NatCopper.jpg/220px-NatCopper.jpg"
               alt="cuivre"> :{{sr.quantite}}</th>
-          </tr>
+        </tr>
       </table>
       <table class="table table-striped">
         <tr>
@@ -35,60 +32,58 @@
           <th>Défense</th>
           <th>Niveau</th>
         </tr>
-          <tr *ngFor="let sb of player.listBatiments">
-            <td>{{sb.batiment.nom}}</td>
-            <td>{{sb.ptAttaque}}</td>
-            <td>{{sb.pv}}</td>
-            <td>{{sb.level}}</td>
-          </tr>
+        <tr *ngFor="let sb of player!.listBatiments">
+          <td>{{sb.batiment.nom}}</td>
+          <td>{{sb.ptAttaque}}</td>
+          <td>{{sb.pv}}</td>
+          <td>{{sb.level}}</td>
+        </tr>
       </table>
       <table class="table table-striped">
         <tr>
           <th>Total</th>
-          <th>Attaque: {{player.att}}</th>
-          <th>Défense: {{player.def}}</th>
+          <th>Attaque: {{player!.att}}</th>
+          <th>Défense: {{player!.def}}</th>
       </table>
 
       <div>
-        <button type="button" class="btn btn-primary"
-          click="clickConstruction()">Construire</button>
-        <button type="submit" class="btn btn-success"
-          click="clickAmelioration()">Améliorer</button>
-        <button type="button" class="btn btn-warning"
-          click="clickTransformation()">Transformer</button>
-        <button type="submit" class="btn btn-danger"
-          click="clickAttaque()">Attaquer</button>
-        <button type="button" class="btn btn-dark" click ="">Fin du tour
+        <button type="button" class="btn btn-primary" (click)="clickConstruction()">Construire</button>
+        <button type="submit" class="btn btn-success" (click)="clickAmelioration()">Améliorer</button>
+        <button type="button" class="btn btn-warning" (click)="clickTransformation()">Transformer</button>
+        <button type="submit" class="btn btn-danger" (click)="clickAttaque()">Attaquer</button>
+        <button type="button" class="btn btn-dark" click="">Fin du tour
         </button>
       </div>
 
-    <div class="row row-cols-1">
+      <app-menu-construction *ngIf="afficherMenuConstruction" [session]="j3"></app-menu-construction>
+      <app-menu-amelioration *ngIf="afficherMenuAmelioration" [session]="j3"></app-menu-amelioration>
+      <app-menu-transformation *ngIf="afficherMenuTransformation" [session]="j3"></app-menu-transformation>
+      <app-menu-attaque *ngIf="afficherMenuAttaque"></app-menu-attaque>
+
+      <div class="row row-cols-1">
         <div class="row" *ngFor="let p of waiters">
           <h2>{{p.compte?.nom}}</h2>
           <table class="table table-striped">
-              <tr *ngFor="let sr of p.listRessources">
-                <th><img height="40px" width="40px" src="images/bois.jpg"
-                  alt=" bois">
-                    :{{sr.quantite}}
-                 </th>
-                <th><img height="40px" width="40px"
+            <tr *ngFor="let sr of p.listRessources">
+              <th><img height="40px" width="40px" src="images/bois.jpg" alt=" bois">
+                :{{sr.quantite}}
+              </th>
+              <th><img height="40px" width="40px"
                   src="http://produitsversailles.com/wp-content/uploads/2018/06/pierre-polie-semi-grise-_105643-red-copy-300x300.png"
                   alt="pierre"> :{{sr.quantite}}
-                  </th>
-                <th><img height="40px" width="40px"
-                  src="http://www.a3m-asso.fr/wp-content/uploads/2016/07/ERAMET-Minerai-300x200.jpg"
-                  alt="minerais">
-                    :{{sr.quantite}}</th>
-                <th><img height="40px" width="40px"
-                  src="https://blog.arpp.org/wp-content/uploads/sites/5/2019/09/or-.jpg"
+              </th>
+              <th><img height="40px" width="40px"
+                  src="http://www.a3m-asso.fr/wp-content/uploads/2016/07/ERAMET-Minerai-300x200.jpg" alt="minerais">
+                :{{sr.quantite}}</th>
+              <th><img height="40px" width="40px" src="https://blog.arpp.org/wp-content/uploads/sites/5/2019/09/or-.jpg"
                   alt="or"> :{{sr.quantite}}</th>
-                <th><img height="40px" width="40px"
-                  src="https://www.corse-epoxy.fr/wp-content/uploads/2016/09/profil-acier-720x340.jpg"
-                  alt="fer"> :{{sr.quantite}}</th>
-                <th><img height="40px" width="40px"
+              <th><img height="40px" width="40px"
+                  src="https://www.corse-epoxy.fr/wp-content/uploads/2016/09/profil-acier-720x340.jpg" alt="fer">
+                :{{sr.quantite}}</th>
+              <th><img height="40px" width="40px"
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/NatCopper.jpg/220px-NatCopper.jpg"
                   alt="cuivre"> :{{sr.quantite}}</th>
-              </tr>
+            </tr>
           </table>
           <table class="table table-striped">
             <tr>
@@ -97,21 +92,21 @@
               <th>Défense</th>
               <th>Niveau</th>
             </tr>
-              <tr *ngFor="let sb of player.listBatiments">
-                <td>{{sb.batiment.nom}}</td>
-                <td>{{sb.ptAttaque}}</td>
-                <td>{{sb.pv}}</td>
-                <td>{{sb.level}}</td>
-              </tr>
+            <tr *ngFor="let sb of player!.listBatiments">
+              <td>{{sb.batiment.nom}}</td>
+              <td>{{sb.ptAttaque}}</td>
+              <td>{{sb.pv}}</td>
+              <td>{{sb.level}}</td>
+            </tr>
           </table>
           <table class="table table-striped">
             <tr>
               <th>Total</th>
-              <th>Attaque: {{player.att}}</th>
-              <th>Défense: {{player.def}}</th>
+              <th>Attaque: {{player!.att}}</th>
+              <th>Défense: {{player!.def}}</th>
           </table>
         </div>
-    </div>
+      </div>
 
+    </div>
   </div>
-</div>
