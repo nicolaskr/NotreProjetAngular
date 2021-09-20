@@ -1,57 +1,55 @@
 export class Ressource {
 
-
-  constructor(private _nom? : string,
+  constructor(private _nom?: string,
     private _independant?: boolean,
-    private _id?:number) {
-	}
-    /**
-     * Getter id
-     * @return {number}
-     */
-	public get id(): number|undefined {
-		return this._id;
-	}
+    private _id?: number) {
+  }
+  /**
+   * Getter id
+   * @return {number}
+   */
+  public get id(): number | undefined {
+    return this._id;
+  }
 
-    /**
-     * Setter id
-     * @param {number} value
-     */
-	public set id(value: number|undefined) {
-		this._id = value;
-	}
+  /**
+   * Setter id
+   * @param {number} value
+   */
+  public set id(value: number | undefined) {
+    this._id = value;
+  }
 
-      /**
-     * Getter nom
-     * @return {string}
-     */
-	public get nom(): string|undefined {
-		return this._nom;
-	}
+  /**
+ * Getter nom
+ * @return {string}
+ */
+  public get nom(): string | undefined {
+    return this._nom;
+  }
 
-    /**
-     * Setter nom
-     * @param {string} value
-     */
-	public set nom(value: string|undefined) {
-		this._nom = value;
-	}
+  /**
+   * Setter nom
+   * @param {string} value
+   */
+  public set nom(value: string | undefined) {
+    this._nom = value;
+  }
 
-      /**
-     * Getter independant
-     * @return {boolean}
-     */
-	public get independant(): boolean|undefined {
-		return this._independant;
-	}
+  /**
+ * Getter independant
+ * @return {boolean}
+ */
+  public get independant(): boolean | undefined {
+    return this._independant;
+  }
 
-    /**
-     * Setter independant
-     * @param {boolean} value
-     */
-	public set independant(value: boolean|undefined) {
-		this._independant = value;
-	}
-
+  /**
+   * Setter independant
+   * @param {boolean} value
+   */
+  public set independant(value: boolean | undefined) {
+    this._independant = value;
+  }
 
 }

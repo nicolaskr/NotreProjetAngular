@@ -20,15 +20,21 @@ export class Batiment {
 	}
 
 
+  public get att(): number {
+    return this._att;
+  }
+  public set att(value: number) {
+    this._att = value;
+  }
 
-    /**
-     * Getter nom
-     * @return {string}
-     */
-	public get nom(): string {
-		return this._nom;
-	}
 
+  /**
+   * Getter nom
+   * @return {string}
+   */
+  public get nom(): string {
+    return this._nom;
+  }
 
 
     /**
@@ -55,13 +61,13 @@ export class Batiment {
 		return this._ameliorable;
 	}
 
-    /**
-     * Getter coutBatiment
-     * @return {CoutBatiment[]}
-     */
-	public get coutBatiment(): CoutBatiment[] {
-		return this._coutBatiment;
-	}
+  /**
+   * Getter ameliorable
+   * @return {boolean}
+   */
+  public get ameliorable(): boolean {
+    return this._ameliorable;
+  }
 
   /**
      * Getter ressource
@@ -111,13 +117,13 @@ export class Batiment {
 		this._ameliorable = value;
 	}
 
-    /**
-     * Setter coutBatiment
-     * @param {CoutBatiment[]} value
-     */
-	public set coutBatiment(value: CoutBatiment[]) {
-		this._coutBatiment = value;
-	}
+  /**
+   * Setter ameliorable
+   * @param {boolean} value
+   */
+  public set ameliorable(value: boolean) {
+    this._ameliorable = value;
+  }
 
       /**
      * Setter ressource
