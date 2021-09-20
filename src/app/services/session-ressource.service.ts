@@ -1,14 +1,16 @@
+import { TransformationRessource } from './../model/transformation-ressource';
 import { Observable } from 'rxjs';
 import { SessionRessource } from './../model/session-ressource';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Session } from '../model/session';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionRessourceService {
 
-  private url: string = "http://localhost:8080/eshop/api/sessionbatiment";
+  private url: string = "http://localhost:8080/notre_projet/api/sessionressource";
   private headers: HttpHeaders | any = null;
 
   constructor(private http: HttpClient) { }
@@ -39,8 +41,18 @@ export class SessionRessourceService {
     return this.http.post<SessionRessource>(this.url, sessionRessource, { headers: this.headers });
   }
 
-  public update(sessionRessource: SessionRessource): Observable<SessionRessource> {
+  // public update(sessionRessource: SessionRessource): Observable<SessionRessource> {
+  //   this.initHeaders();
+  //   return this.http.put<SessionRessource>(this.url + '/' + sessionRessource.id, sessionRessource, { headers: this.headers });
+  // }
+
+  public getRessourcesBySession(session: Session): Observable<SessionRessource[]> {
     this.initHeaders();
-    return this.http.put<SessionRessource>(this.url + '/' + sessionRessource.id, sessionRessource, { headers: this.headers });
+    return this.http.get<SessionRessource[]>(this.url + '/' + session, { headers: this.headers });
+  }
+
+  public transformer(session: Session, tr: TransformationRessource, qte: number) {
+    this.initHeaders();
+    return this.http.put(this.url + '/' + session + '/' + tr + '/' + qte, { headers: this.headers });
   }
 }

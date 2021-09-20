@@ -1,0 +1,8 @@
+<form (ngSubmit)="save()" [formGroup]="formConstruction">
+  <h3>Construction</h3>
+  <select *ngFor="let b of batimentsConstructibles" class="form-select" aria-label="Default select example"
+    style="width: 48%;">
+    <option [formControl]="batimentConstruit"> {{b.id}} - {{ b.nom }} </option>
+  </select>
+  <button type="submit" class="btn btn-outline-success">Valider</button>
+</form>
