@@ -9,7 +9,7 @@ import { Session } from '../model/session';
 })
 export class SessionRessourceService {
 
-  private url: string = "http://localhost:8080/notre_projet/api/sessionbatiment";
+  private url: string = "http://localhost:8080/np/api/sessionressource";
   private headers: HttpHeaders | any = null;
 
   constructor(private http: HttpClient) { }
@@ -22,8 +22,10 @@ export class SessionRessourceService {
   }
 
   public getAll(): Observable<SessionRessource[]> {
+
     return this.http.get<SessionRessource[]>(this.url, { headers: this.headers });
   }
+
   public getBySession(session: Session): Observable<SessionRessource[]>{
     this.initHeaders();
     return this.http.get<SessionRessource[]>(this.url + '/' + session.partie?.id + '&' + session.compte?.id, { headers: this.headers });
