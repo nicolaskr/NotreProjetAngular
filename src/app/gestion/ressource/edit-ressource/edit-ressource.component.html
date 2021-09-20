@@ -1,0 +1,26 @@
+<div>
+  <div class="form-group">
+    <label>id:</label>
+    <input
+      class="form-control"
+      [(ngModel)]="ressource.id"
+      readonly
+      placeholder="genereation auto"
+    />
+  </div>
+  <div class="form-group">
+    <label>nom:</label>
+    <input class="form-control" [(ngModel)]="ressource.nom" />
+  </div>
+  <div>
+    <button (click)="save()" class="btn btn-success">enregistrer</button>
+    <a
+      [routerLink]="['/gestion/ressources']"
+      routerLinkActive="active"
+      class="btn btn-warning"
+      >annuler</a
+    >
+    <button *ngIf="indep" (click)="delete(ressource.id)" class="btn btn-danger">supprimer</button>
+    <span *ngIf="!indep"><i>La ressource ne peut être supprimée. Elle est utilisée comme coût pour la construction d'un batiment ou comme une ressource transformable.</i></span>
+  </div>
+</div>

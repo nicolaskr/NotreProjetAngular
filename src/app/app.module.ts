@@ -13,6 +13,11 @@ import { MenuAmeliorationComponent } from './game/menu-amelioration/menu-amelior
 import { MenuTransformationComponent } from './game/menu-transformation/menu-transformation.component';
 import { MenuAttaqueComponent } from './game/menu-attaque/menu-attaque.component';
 import { TransformerRessourceComponent } from './game/transformer-ressource/transformer-ressource.component';
+import { EditRessourceComponent } from './gestion/ressource/edit-ressource/edit-ressource.component';
+import { BatimentComponent } from './gestion/batiment/batiment/batiment.component';
+import { JoueurComponent } from './gestion/joueur/joueur/joueur.component';
+import { PartieComponent } from './gestion/partie/partie/partie.component';
+import { RessourceComponent } from './gestion/ressource/ressource/ressource.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,13 @@ import { TransformerRessourceComponent } from './game/transformer-ressource/tran
     MenuAmeliorationComponent,
     MenuTransformationComponent,
     MenuAttaqueComponent,
-    TransformerRessourceComponent
+    TransformerRessourceComponent,
+    EditRessourceComponent,
+    BatimentComponent,
+    JoueurComponent,
+    PartieComponent,
+    RessourceComponent,
+    EditRessourceComponent
   ],
   imports: [
     BrowserModule,
