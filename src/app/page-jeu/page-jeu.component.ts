@@ -1,4 +1,6 @@
+import { SessionRessource } from './../model/session-ressource';
 import { Component, OnInit } from '@angular/core';
+import { Session } from '../model/session';
 
 @Component({
   selector: 'app-page-jeu',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageJeuComponent implements OnInit {
 
+  sessions : Session [] = [];
+  SessionRessource : SessionRessource [] =[];
+
+
+
   constructor() { }
 
   ngOnInit(): void {
+
+
   }
+
 
 }
