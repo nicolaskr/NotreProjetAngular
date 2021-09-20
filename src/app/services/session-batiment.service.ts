@@ -2,13 +2,14 @@ import { SessionBatiment } from './../model/session-batiment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Session } from '../model/session';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionBatimentService {
 
-  private url: string = "http://localhost:8080/eshop/api/sessionbatiment";
+  private url: string = "http://localhost:8080/notre_projet/api/sessionbatiment";
   private headers: HttpHeaders | any = null;
 
   constructor(private http: HttpClient) { }
@@ -39,8 +40,8 @@ export class SessionBatimentService {
     const obj = {
       session: sessionBatiment.session,
       batiment: sessionBatiment.batiment,
-      pointsDeVie: sessionBatiment.pointsDeVie,
-      pointsDAttaque: sessionBatiment.pointsDAttaque,
+      pointsDeVie: sessionBatiment.pv,
+      pointsDAttaque: sessionBatiment.ptAttaque,
       level: sessionBatiment.level
     }
     return this.http.post<SessionBatiment>(this.url, obj, { headers: this.headers });
@@ -49,5 +50,10 @@ export class SessionBatimentService {
   public update(sessionBatiment: SessionBatiment): Observable<SessionBatiment> {
     this.initHeaders();
     return this.http.put<SessionBatiment>(this.url + '/' + sessionBatiment.id, sessionBatiment, { headers: this.headers });
+  }
+
+  public getBySession(session: Session): Observable<SessionBatiment[]>{
+    this.initHeaders();
+    return this.http.get<SessionBatiment[]>(this.url + '/' + session.partie?.id + '/' + session.compte?.id, { headers: this.headers });
   }
 }

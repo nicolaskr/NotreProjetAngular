@@ -11,7 +11,14 @@ export class SessionBatiment {
     private _session : Session,
     private _batiment : Batiment,
     private _level : number,
-    private _used : boolean) {
+    private _used : boolean,
+    private _id:number) {
+	}
+  public get id(): number {
+		return this._id;
+	}
+  public set id(value: number) {
+		this._id = value;
 	}
 
 
