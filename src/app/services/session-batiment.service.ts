@@ -9,7 +9,7 @@ import { Session } from '../model/session';
 })
 export class SessionBatimentService {
 
-  private url: string = "http://localhost:8080/notre_projet/api/sessionbatiment";
+  private url: string = "http://localhost:8080/np/api/sessionbatiment";
   private headers: HttpHeaders | any = null;
 
   constructor(private http: HttpClient) { }

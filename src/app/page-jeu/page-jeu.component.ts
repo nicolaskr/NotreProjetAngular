@@ -37,22 +37,44 @@ export class PageJeuComponent implements OnInit {
     this.tour();
   }
 
-  tour(){
-    this.actuAttDefPlayers();
-    for(var s of this.sessions){
-      if (s.tourEnCours){
+  clickConstruction(){
+    for(var s of this.sessions)
+    {
+      console.log("1");
+      if (s.tourEnCours)
+      {
         this.player=s;
       } else {
         this.waiters.push(s);
       }
     }
+    console.log(this.player.sessionBatiment)
+  }
+
+  tour(){
+    this.actuAttDefPlayers();
+    for (let i=0;i<this.sessions.length;i++){
+      console.log(this.sessions[i]);
+    }
+    for(var s of this.sessions)
+    {
+      console.log("1");
+      if (s.tourEnCours)
+      {
+        this.player=s;
+      } else {
+        this.waiters.push(s);
+      }
+    }
+    console.log(this.waiters);
+    console.log(this.player);
 
   }
 
   importBatiments(){
     for (var s of this.sessions){
       this.sessionBatService.getBySession(s).subscribe((res)=>{
-        s.listBatiments = res;
+        s.sessionBatiment = res;
       })
     }
   }
@@ -60,9 +82,14 @@ export class PageJeuComponent implements OnInit {
   importRessources(){
     for (var s of this.sessions){
       this.sessionResService.getBySession(s).subscribe((res)=>{
-        s.listRessources = res;
+        s.sessionRessource = res;
       })
     }
+  }
+
+  clickFinDeTour(){
+    console.log(this.waiters);
+    console.log(this.player);
   }
 
   finDeTour(){
@@ -88,7 +115,7 @@ export class PageJeuComponent implements OnInit {
     for(var s of this.sessions){
      let att : number =0;
      let pv : number =0;
-     for (var sb of s.listBatiments!)
+     for (var sb of s.sessionBatiment!)
      {
         pv = pv + sb.pv;
         att = att + sb.ptAttaque;
