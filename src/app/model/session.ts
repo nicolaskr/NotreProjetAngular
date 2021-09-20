@@ -1,3 +1,4 @@
+import { Partie } from './partie';
 import { SessionRessource } from './session-ressource';
 import { SessionBatiment } from './session-batiment';
 import { Compte } from './compte';
@@ -9,9 +10,13 @@ export class Session {
     private _att? : number,
     private _listBatiments ?: SessionBatiment[],
     private _listRessources ?: SessionRessource [],
+    private _partie ? : Partie,
     private _tourEnCours ?: boolean) {
 	}
 
+  public get partie(): Partie|undefined {
+		return this._partie ;
+	}
     /**
      * Getter compte
      * @return {Compte}
@@ -73,6 +78,9 @@ export class Session {
      */
 	public set def(value: number|undefined) {
 		this._def = value;
+	}
+  public set partie(value: Partie|undefined) {
+		this._partie = value;
 	}
 
     /**
