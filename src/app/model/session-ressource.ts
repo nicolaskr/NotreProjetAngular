@@ -4,7 +4,8 @@ import { Session } from "./session";
 export class SessionRessource {
 
 
-	constructor( private _quantite :number,
+	constructor(
+    private _quantite :number,
     private _ressource : Ressource,
     private _session : Session) {
 	}

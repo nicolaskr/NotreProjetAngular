@@ -1,8 +1,8 @@
-export class Compte {
+export class Partie {
 
 
 
-constructor(private _id : number, private _nom : string) {
+constructor(private _id : number) {
 }
     /**
      * Getter id
@@ -10,9 +10,6 @@ constructor(private _id : number, private _nom : string) {
      */
 	public get id(): number {
 		return this._id;
-	}
-  public get nom(): string {
-		return this._nom;
 	}
 
     /**
@@ -22,8 +19,7 @@ constructor(private _id : number, private _nom : string) {
 	public set id(value: number) {
 		this._id = value;
 	}
-  public set nom(value: string) {
-		this._nom = value;
-	}
+
+
 
 }
