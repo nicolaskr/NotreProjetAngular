@@ -1,3 +1,5 @@
+import { Compte } from './../../model/compte';
+import { Partie } from './../../model/partie';
 import { SessionBatimentService } from './../../services/session-batiment.service';
 import { Batiment } from './../../model/batiment';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
@@ -41,8 +43,7 @@ export class MenuAmeliorationComponent implements OnInit {
 
   save() {
     let sessionBatAAmeliorer: SessionBatiment = this.batimentAmeliore.value;
-    let sessionBatimentAAmeliorer: SessionBatiment = new SessionBatiment(sessionBatAAmeliorer.pv, sessionBatAAmeliorer.ptAttaque, this.sessionActive!, sessionBatAAmeliorer.batiment, sessionBatAAmeliorer.level + 1);
-    this.sessionBatimentService.update(sessionBatimentAAmeliorer);
+    this.sessionBatimentService.ameliorer(sessionBatAAmeliorer);
   }
 
 }

@@ -1,3 +1,5 @@
+import { Compte } from './../../model/compte';
+import { Partie } from './../../model/partie';
 import { Batiment } from './../../model/batiment';
 import { SessionBatimentService } from './../../services/session-batiment.service';
 import { SessionBatiment } from './../../model/session-batiment';
@@ -36,13 +38,13 @@ export class MenuConstructionComponent implements OnInit {
   listBatimentsConstructibles() {
     this.sessionBatimentService.getBatimentsConstructibles(this.sessionActive!).subscribe((res) => {
       this.batimentsConstructibles = res;
+      console.log(res);
     });
   }
 
   save() {
     let batAConstruire: Batiment = this.batimentConstruit.value;
-    let sessionBatimentAConstruire: SessionBatiment = new SessionBatiment(batAConstruire.def, batAConstruire.att, this.sessionActive!, batAConstruire, 1);
-    this.sessionBatimentService.create(sessionBatimentAConstruire);
+    this.sessionBatimentService.construire(this.sessionActive!, batAConstruire);
   }
 
 }
