@@ -1,48 +1,30 @@
-import { Ressource } from "./ressource";
-import { Session } from "./session";
+import { SessionRessourceKey } from './session-ressource-key';
+import { Ressource } from './ressource';
+import { Session } from './session';
 
 export class SessionRessource {
+  constructor(private _quantite: number, private _id: SessionRessourceKey) {}
 
+  /**
+   * Getter quantite
+   * @return {number}
+   */
+  public get quantite(): number {
+    return this._quantite;
+  }
 
-	constructor(
-    private _quantite :number,
-    private _ressource : Ressource,
-    private _session : Session) {
-	}
+  public get id(): SessionRessourceKey {
+    return this._id;
+  }
 
-
-
-    /**
-     * Getter quantite
-     * @return {number}
-     */
-	public get quantite(): number {
-		return this._quantite;
-	}
-
-    /**
-     * Getter ressource
-     * @return {Ressource}
-     */
-	public get ressource(): Ressource {
-		return this._ressource;
-	}
-
-    /**
-     * Setter quantite
-     * @param {number} value
-     */
-	public set quantite(value: number) {
-		this._quantite = value;
-	}
-
-    /**
-     * Setter ressource
-     * @param {Ressource} value
-     */
-	public set ressource(value: Ressource) {
-		this._ressource = value;
-	}
-
-
+  /**
+   * Setter quantite
+   * @param {number} value
+   */
+  public set quantite(value: number) {
+    this._quantite = value;
+  }
+  public set id(value: SessionRessourceKey) {
+    this._id = value;
+  }
 }

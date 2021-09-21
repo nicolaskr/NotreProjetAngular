@@ -1,11 +1,11 @@
-<form (ngSubmit)="save()" [formGroup]="formTransformation" *ngIf="sessionActive">
+<form (ngSubmit)="save()" *ngIf="sessionActive">
   <h3>Transformation</h3>
-  <select *ngFor="let b of batimentsTransformation" [formControl]="batimentSelectionne" class="form-select"
-    aria-label="Default select example" style="width: 48%;">
-    <option>{{ b.batiment.nom }}</option>
+  <select class="form-select"
+    aria-label="Default select example" style="width: 48%;" [(ngModel)]="choixBatiment" name="choixBatiment">
+    <option *ngFor="let b of batimentsTransformation" [value]="b. batiment.id" required>{{ b.batiment.nom }}</option>
   </select>
-  <transformer-ressource [batiment]="batimentSelectionne.value" (transformEvent)="maximum($event)">
+  <transformer-ressource *ngIf="choixBatiment!=0" [idBatiment]="choixBatiment" (transformEvent)="maximum($event)">
   </transformer-ressource>
-  <input type="number" [formControl]="quantite" [max]="quantiteMax">
-  <button type="submit" class="btn btn-outline-success">Valider</button>
+  <input *ngIf="choixTransformation!=0" type="number" [(ngModel)]="quantite" name="quantite" [max]="quantiteMax" required>
+  <button type="submit" class="btn btn-outline-success" [disabled]="choixBatiment==0&&quantite==0&&quantite!=null">Valider</button>
 </form>

@@ -1,5 +1,7 @@
-<select *ngFor="let t of transformationRessources" class="form-select" aria-label="Default select example"
-  style="width: 48%;">
-  <option (click)="transformationSelectionne()" [formControl]="choix"> {{ t.ressourceLost }} -> {{t.ressourceWin}}
+<select  class="form-select" aria-label="Default select example"
+  style="width: 48%;" [(ngModel)]="choix">
+  <option *ngFor="let t of transformationRessources"  [value]="t.id"> {{ t.ressourceLost.nom }} -> {{t.ressourceWin.nom}}
   </option>
 </select>
+<a (click)="transformationSelectionne()" class="btn btn-outline-success">Valider transformation</a>
+<br>

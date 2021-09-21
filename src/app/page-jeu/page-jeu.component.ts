@@ -1,126 +1,117 @@
+import { PageSpectateurComponent } from './../page-spectateur/page-spectateur.component';
 import { Compte } from './../model/compte';
 import { Partie } from './../model/partie';
 
 import { SessionService } from './../services/session.service';
 import { SessionBatiment } from './../model/session-batiment';
 import { SessionRessource } from './../model/session-ressource';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Session } from '../model/session';
 import { SessionBatimentService } from '../services/session-batiment.service';
 import { SessionRessourceService } from '../services/session-ressource.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'page-jeu',
   templateUrl: './page-jeu.component.html',
-  styleUrls: ['./page-jeu.component.css']
+  styleUrls: ['./page-jeu.component.css'],
 })
 export class PageJeuComponent implements OnInit {
-
-  player: Session | undefined;
-  sessions: Session[] = [];
+  sessions: Observable<Session[]>;
   waiters: Session[] = [];
+
+  finDeTourEvent: EventEmitter<string> = new EventEmitter();
+
+  changementJoueur: boolean = false;
 
   afficherMenuConstruction: boolean = false;
   afficherMenuAmelioration: boolean = false;
   afficherMenuTransformation: boolean = false;
   afficherMenuAttaque: boolean = false;
 
-  j1 : Session | undefined;
-  j2 : Session | undefined;
-  j3 : Session | undefined;
-  j4 : Session | undefined;
+  j1: Session | undefined;
+  j2: Session | undefined;
+  j3: Session | undefined;
+  j4: Session | undefined;
 
-  constructor(private sessionService: SessionService, private sessionBatService: SessionBatimentService, private sessionResService: SessionRessourceService) { }
+  constructor(
+    private sessionService: SessionService,
+    private sessionBatService: SessionBatimentService,
+    private sessionResService: SessionRessourceService
+  ) {
+    this.sessions = this.sessionService.getAll();
+  }
 
   ngOnInit(): void {
-    this.list();
     this.joueurs();
   }
 
-  joueurs() {
-    this.sessionService.get(1,2).subscribe((res) => {
-      this.j1 = res;
-    })
-    this.sessionService.get(1,3).subscribe((res) => {
-      this.j2 = res;
-    })
-    this.sessionService.get(1,4).subscribe((res) => {
-      this.j3 = res;
-    })
-    this.sessionService.get(1,5).subscribe((res) => {
-      this.j4 = res;
-    })
-  }
-
   list() {
-    this.sessionService.getAll().subscribe((res) => {
-      console.log(res);
-      this.sessions = res;
+    this.sessions = this.sessionService.getAll();
+  }
 
+  joueurs() {
+    this.sessionService.get(1, 2).subscribe((res) => {
+      this.j1 = res;
+      console.log(this.j1);
     });
-    this.importBatiments;
-    this.importRessources();
-    this.tour();
+    this.sessionService.get(1, 3).subscribe((res) => {
+      this.j2 = res;
+    });
+    this.sessionService.get(1, 4).subscribe((res) => {
+      this.j3 = res;
+    });
+    this.sessionService.get(1, 5).subscribe((res) => {
+      this.j4 = res;
+    });
   }
 
-  tour() {
-    this.actuAttDefPlayers();
-    for (var s of this.sessions) {
-      if (s.tourEnCours) {
-        this.player = s;
-      } else {
-        this.waiters.push(s);
-      }
-    }
+  clickFinDeTour(session: Session) {
+    this.finDeTour();
+    this.tirageRessource();
+    this.list();
 
+    this.finDeTourEvent.emit();
   }
 
-  importBatiments() {
-    for (var s of this.sessions) {
-      this.sessionBatService.getBySession(s).subscribe((res) => {
-        s.listBatiments = res;
-      })
-    }
-  }
-
-  importRessources() {
-    for (var s of this.sessions) {
-      this.sessionResService.getBySession(s).subscribe((res) => {
-        s.listRessources = res;
-      })
+  ressourceBool(nom: string, sr: SessionRessource): boolean {
+    if (sr.id.ressource.nom === nom) {
+      return true;
+    } else {
+      return false;
     }
   }
 
   finDeTour() {
-    for (let i = 0; i < (this.sessions.length); i++) {
-      console.log(i + 'fin de tour');
-      if (this.sessions[i].tourEnCours) {
-        this.sessions[i].tourEnCours = false;
-        if (i == (this.sessions.length - 1)) {
-          this.sessions[0].tourEnCours = true;
-        } else {
-          this.sessions[i + 1].tourEnCours = true;
+    console.log(this.sessions);
+    this.sessions.subscribe((res) => {
+      for (let i = 0; i < res.length; i++) {
+        if (res[i].tourEnCours) {
+          console.log(i + 'fin de tour');
+          this.sessionService.rotation(res[i]).subscribe();
+          if (i == res.length - 1) {
+            this.sessionService.rotation(res[0]).subscribe();
+          } else {
+            this.sessionService.rotation(res[i + 1]).subscribe();
+          }
+          this.sessionService.get;
+          return;
         }
       }
-    }
-    this.actuAttDefPlayers();
-    this.importBatiments();
-    this.importRessources;
+    });
   }
 
-
-
-  actuAttDefPlayers() {
-    for (var s of this.sessions) {
-      let att: number = 0;
-      let pv: number = 0;
-      for (var sb of s.listBatiments!) {
-        pv = pv + sb.pv;
-        att = att + sb.ptAttaque;
+  tirageRessource() {
+    this.sessions.subscribe((res) => {
+      for (var s of res) {
+        if (s.tourEnCours) {
+          this.sessionResService.piocher(s).subscribe((obs) => {
+            console.log('pioche' + obs);
+            this.changementJoueur = true;
+          });
+        }
       }
-      s.att = att;
-      s.def = pv;
-    }
+    });
   }
 
   clickConstruction() {
@@ -150,5 +141,4 @@ export class PageJeuComponent implements OnInit {
     this.afficherMenuTransformation = false;
     this.afficherMenuAttaque = true;
   }
-
 }

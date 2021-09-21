@@ -1,28 +1,24 @@
+import { SessionKey } from './session-key';
 import { Partie } from './partie';
 import { SessionRessource } from './session-ressource';
 import { SessionBatiment } from './session-batiment';
 import { Compte } from './compte';
 export class Session {
-
-
-  constructor(private _compte: Compte,
+  constructor(
+    private _id: SessionKey,
     private _def: number,
     private _att: number,
-    private _listBatiments: SessionBatiment[],
-    private _listRessources: SessionRessource[],
-    private _partie: Partie,
-    private _tourEnCours: boolean) {
-  }
+    private _sessionBatiment: SessionBatiment[],
+    private _sessionRessource: SessionRessource[],
+    private _tourEnCours: boolean
+  ) {}
 
-  public get partie(): Partie{
-    return this._partie;
-  }
   /**
    * Getter compte
    * @return {Compte}
    */
-  public get compte(): Compte{
-    return this._compte;
+  public get id(): SessionKey {
+    return this._id;
   }
 
   public get tourEnCours(): boolean {
@@ -33,10 +29,17 @@ export class Session {
    * Getter def
    * @return {number}
    */
-  public get def(): number{
+  public get def(): number {
     return this._def;
   }
 
+  /**
+   * Getter listBatiments
+   * @return {SessionBatiment[]}
+   */
+  public get sessionBatiment(): SessionBatiment[] {
+    return this._sessionBatiment;
+  }
   /**
    * Getter att
    * @return {number}
@@ -46,30 +49,22 @@ export class Session {
   }
 
   /**
-   * Getter listBatiments
-   * @return {SessionBatiment[]}
-   */
-  public get listBatiments(): SessionBatiment[] {
-    return this._listBatiments;
-  }
-
-  /**
    * Getter listRessources
    * @return {SessionRessource []}
    */
-  public get listRessources(): SessionRessource[] {
-    return this._listRessources;
+  public get sessionRessource(): SessionRessource[] {
+    return this._sessionRessource;
   }
 
   /**
    * Setter compte
    * @param {Compte} value
    */
-  public set compte(value: Compte ) {
-    this._compte = value;
+  public set id(value: SessionKey) {
+    this._id = value;
   }
 
-  public set tourEnCours(value: boolean ) {
+  public set tourEnCours(value: boolean) {
     this._tourEnCours = value;
   }
 
@@ -77,37 +72,30 @@ export class Session {
    * Setter def
    * @param {number} value
    */
-  public set def(value: number ) {
+  public set def(value: number) {
     this._def = value;
-  }
-  public set partie(value: Partie) {
-    this._partie = value;
-  }
-
-  /**
-   * Setter att
-   * @param {number} value
-   */
-  public set att(value: number ) {
-    this._att = value;
   }
 
   /**
    * Setter listBatiments
    * @param {SessionBatiment[]} value
    */
-  public set listBatiments(value: SessionBatiment[] ) {
-    this._listBatiments = value;
+  public set sessionBatiment(value: SessionBatiment[]) {
+    this._sessionBatiment = value;
+  }
+  /**
+   * Setter att
+   * @param {number} value
+   */
+  public set att(value: number) {
+    this._att = value;
   }
 
   /**
    * Setter listRessources
    * @param {SessionRessource []} value
    */
-  public set listRessources(value: SessionRessource[]) {
-    this._listRessources = value;
+  public set sessionRessource(value: SessionRessource[]) {
+    this._sessionRessource = value;
   }
-
-
-
 }

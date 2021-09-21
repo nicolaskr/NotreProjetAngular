@@ -5,6 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Message } from 'primeng/api';
 import { Compte } from 'src/app/model/compte';
 import { AuthentificationService } from 'src/app/services/authentfication/authentification.service';
 
@@ -19,10 +21,22 @@ export class AuthentificationComponent implements OnInit {
   formControlPassword: FormControl;
   formControlRememberMe: FormControl;
 
+  msgsCredentialIncorrect: Message[] = [];
+
+  urlParameters: string = '';
+
   constructor(
     private formBuilder: FormBuilder,
-    private authentificatService: AuthentificationService
+    private authentificatService: AuthentificationService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
+    this.activatedRoute.queryParams.subscribe((parameters) => {
+      if (parameters.source) {
+        this.urlParameters = parameters.source;
+      }
+    });
+
     this.formControlUsername = this.formBuilder.control(
       '',
       Validators.required
@@ -42,7 +56,15 @@ export class AuthentificationComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.msgsCredentialIncorrect = [
+      {
+        severity: 'info',
+        summary: 'Credentials',
+        detail: "Mot de passe ou nom d'utilisateur incorrect",
+      },
+    ];
+  }
 
   submit() {
     this.authentificatService
@@ -66,9 +88,15 @@ export class AuthentificationComponent implements OnInit {
           );
           localStorage.setItem('compte', JSON.stringify(compte));
           console.log(JSON.stringify(compte));
+          if (this.urlParameters) {
+            this.router.navigate(['/' + this.urlParameters]);
+          } else {
+            this.router.navigate(['/home']);
+          }
         },
         (error) => {
           console.log('error in sign in');
+          this.formGroupAuth.setErrors({ credentialIncorrect: true });
         }
       );
   }

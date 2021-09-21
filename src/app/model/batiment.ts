@@ -15,6 +15,14 @@ export class Batiment {
     private _id?: number | undefined
   ) {}
 
+  public get coutBatiment(): CoutBatiment[] | undefined {
+    return this._coutBatiment;
+  }
+
+  public set coutBatiment(value : CoutBatiment[] | undefined) {
+    this._coutBatiment=value;
+  }
+
   public get id(): number | undefined {
     return this._id;
   }
@@ -97,7 +105,7 @@ export class Batiment {
    * Setter nom
    * @param {string} value
    */
-  public set nom(value: string) {
+  public set nom(value: string | undefined) {
     this._nom = value;
   }
 
