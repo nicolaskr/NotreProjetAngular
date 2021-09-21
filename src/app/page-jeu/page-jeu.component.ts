@@ -99,8 +99,8 @@ export class PageJeuComponent implements OnInit {
   }
 
   clickFinDeTour() {
-    console.log(this.waiters);
-    console.log(this.player);
+    this.finDeTour();
+    this.tirageRessource();
   }
 
   finDeTour() {
@@ -115,9 +115,14 @@ export class PageJeuComponent implements OnInit {
         }
       }
     }
-    this.actuAttDefPlayers();
-    this.importBatiments();
-    this.importRessources;
+  }
+
+  tirageRessource() {
+    for (var s of this.sessions) {
+      if (s.tourEnCours) {
+        this.sessionResService.piocher(s);
+      }
+    }
   }
 
   actuAttDefPlayers() {
