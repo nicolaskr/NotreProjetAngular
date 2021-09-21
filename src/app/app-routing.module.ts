@@ -9,6 +9,7 @@ import { EditRessourceComponent } from './gestion/ressource/edit-ressource/edit-
 import { RessourceComponent } from './gestion/ressource/ressource/ressource.component';
 import { HomeComponent } from './home/home.component';
 import { PageJeuComponent } from './page-jeu/page-jeu.component';
+import { InscriptionComponent } from './authentification/inscription/inscription.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'authentification',
     component: AuthentificationComponent,
+  },
+  {
+    path: 'inscription',
+    component: InscriptionComponent,
   },
   { path: 'pagejeu', component: PageJeuComponent },
   { path: 'gestion/parties', component: PartieComponent },
