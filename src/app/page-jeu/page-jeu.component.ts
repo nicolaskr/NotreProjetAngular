@@ -1,3 +1,5 @@
+import { Compte } from './../model/compte';
+import { Partie } from './../model/partie';
 
 import { SessionService } from './../services/session.service';
 import { SessionBatiment } from './../model/session-batiment';
@@ -8,26 +10,50 @@ import { SessionBatimentService } from '../services/session-batiment.service';
 import { SessionRessourceService } from '../services/session-ressource.service';
 
 @Component({
-  selector: 'app-page-jeu',
+  selector: 'page-jeu',
   templateUrl: './page-jeu.component.html',
   styleUrls: ['./page-jeu.component.css']
 })
 export class PageJeuComponent implements OnInit {
 
-  player : Session = new Session();
-  sessions : Session [] = [];
-  waiters : Session [] = [];
+  player: Session | undefined;
+  sessions: Session[] = [];
+  waiters: Session[] = [];
 
+  afficherMenuConstruction: boolean = false;
+  afficherMenuAmelioration: boolean = false;
+  afficherMenuTransformation: boolean = false;
+  afficherMenuAttaque: boolean = false;
 
+  j1 : Session | undefined;
+  j2 : Session | undefined;
+  j3 : Session | undefined;
+  j4 : Session | undefined;
 
-  constructor(private sessionService : SessionService, private sessionBatService : SessionBatimentService, private sessionResService: SessionRessourceService) { }
+  constructor(private sessionService: SessionService, private sessionBatService: SessionBatimentService, private sessionResService: SessionRessourceService) { }
 
   ngOnInit(): void {
     this.list();
+    this.joueurs();
   }
 
-  list(){
-    this.sessionService.getAll().subscribe((res) =>{
+  joueurs() {
+    this.sessionService.get(1,2).subscribe((res) => {
+      this.j1 = res;
+    })
+    this.sessionService.get(1,3).subscribe((res) => {
+      this.j2 = res;
+    })
+    this.sessionService.get(1,4).subscribe((res) => {
+      this.j3 = res;
+    })
+    this.sessionService.get(1,5).subscribe((res) => {
+      this.j4 = res;
+    })
+  }
+
+  list() {
+    this.sessionService.getAll().subscribe((res) => {
       console.log(res);
       this.sessions = res;
 
@@ -97,10 +123,10 @@ export class PageJeuComponent implements OnInit {
       console.log(i+'fin de tour');
       if(this.sessions[i].tourEnCours){
         this.sessions[i].tourEnCours = false;
-        if(i == (this.sessions.length -1)){
-          this.sessions[0].tourEnCours=true;
-        }else{
-          this.sessions[i+1].tourEnCours=true;
+        if (i == (this.sessions.length - 1)) {
+          this.sessions[0].tourEnCours = true;
+        } else {
+          this.sessions[i + 1].tourEnCours = true;
         }
       }
     }
@@ -119,10 +145,38 @@ export class PageJeuComponent implements OnInit {
      {
         pv = pv + sb.pv;
         att = att + sb.ptAttaque;
-     }
-     s.att=att;
-     s.def = pv;
+      }
+      s.att = att;
+      s.def = pv;
     }
+  }
+
+  clickConstruction() {
+    this.afficherMenuConstruction = true;
+    this.afficherMenuAmelioration = false;
+    this.afficherMenuTransformation = false;
+    this.afficherMenuAttaque = false;
+  }
+
+  clickAmelioration() {
+    this.afficherMenuConstruction = false;
+    this.afficherMenuAmelioration = true;
+    this.afficherMenuTransformation = false;
+    this.afficherMenuAttaque = false;
+  }
+
+  clickTransformation() {
+    this.afficherMenuConstruction = false;
+    this.afficherMenuAmelioration = false;
+    this.afficherMenuTransformation = true;
+    this.afficherMenuAttaque = false;
+  }
+
+  clickAttaque() {
+    this.afficherMenuConstruction = false;
+    this.afficherMenuAmelioration = false;
+    this.afficherMenuTransformation = false;
+    this.afficherMenuAttaque = true;
   }
 
 }

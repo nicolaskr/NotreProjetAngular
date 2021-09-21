@@ -1,87 +1,125 @@
+import { Ressource } from './ressource';
 import { CoutBatiment } from './cout-batiment';
 export class Batiment {
+  constructor(
+    private _nom: string,
+    private _pointsDefense: number,
+    private _ameliorable: boolean,
+    private _att: number,
+    private _coutBatiment: CoutBatiment[],
+    private _pointsDAttaque: number,
+    private _quantiteProduite: number,
+    private _ressource: Ressource = new Ressource(),
+    private _id?: number
+  ) {}
 
+  public get id(): number | undefined {
+    return this._id;
+  }
+  public set id(value: number | undefined) {
+    this._id = value;
+  }
 
+  public get att(): number {
+    return this._att;
+  }
+  public set att(value: number) {
+    this._att = value;
+  }
 
-	constructor(private _nom : string,
-    private _def : number,
-    private _ameliorable : boolean,
-    private _coutBatiment : CoutBatiment[],
-    private _id:number) {
-	}
-  public get id(): number {
-		return this._id;
-	}
-  public set id(value: number) {
-		this._id = value;
-	}
+  /**
+   * Getter nom
+   * @return {string}
+   */
+  public get nom(): string {
+    return this._nom;
+  }
 
+  /**
+   * Getter def
+   * @return {number}
+   */
+  public get pointsDefense(): number {
+    return this._pointsDefense;
+  }
 
+  /**
+   * Getter def
+   * @return {number}
+   */
+  public get quantiteProduite(): number {
+    return this._quantiteProduite;
+  }
 
-    /**
-     * Getter nom
-     * @return {string}
-     */
-	public get nom(): string {
-		return this._nom;
-	}
+  /**
+   * Getter ameliorable
+   * @return {boolean}
+   */
+  public get ameliorable(): boolean {
+    return this._ameliorable;
+  }
 
+  /**
+   * Getter ressource
+   * @return {Ressource}
+   */
+  public get ressource(): Ressource {
+    return this._ressource;
+  }
 
+  /**
+   * Getter def
+   * @return {number}
+   */
+  public get pointsDAttaque(): number {
+    return this._pointsDAttaque;
+  }
 
-    /**
-     * Getter def
-     * @return {number}
-     */
-	public get def(): number {
-		return this._def;
-	}
+  /**
+   * Setter nom
+   * @param {string} value
+   */
+  public set nom(value: string) {
+    this._nom = value;
+  }
 
-    /**
-     * Getter ameliorable
-     * @return {boolean}
-     */
-	public get ameliorable(): boolean {
-		return this._ameliorable;
-	}
+  /**
+   * Setter def
+   * @param {number} value
+   */
+  public set pointsDefense(value: number) {
+    this._pointsDefense = value;
+  }
 
-    /**
-     * Getter coutBatiment
-     * @return {CoutBatiment[]}
-     */
-	public get coutBatiment(): CoutBatiment[] {
-		return this._coutBatiment;
-	}
+  /**
+   * Setter def
+   * @param {number} value
+   */
+  public set pointsDAttaque(value: number) {
+    this._pointsDAttaque = value;
+  }
 
-    /**
-     * Setter nom
-     * @param {string} value
-     */
-	public set nom(value: string) {
-		this._nom = value;
-	}
+  /**
+   * Setter ameliorable
+   * @param {boolean} value
+   */
+  public set ameliorable(value: boolean) {
+    this._ameliorable = value;
+  }
 
-    /**
-     * Setter def
-     * @param {number} value
-     */
-	public set def(value: number) {
-		this._def = value;
-	}
+  /**
+   * Setter ressource
+   * @param {Ressource} value
+   */
+  public set ressource(value: Ressource) {
+    this._ressource = value;
+  }
 
-    /**
-     * Setter ameliorable
-     * @param {boolean} value
-     */
-	public set ameliorable(value: boolean) {
-		this._ameliorable = value;
-	}
-
-    /**
-     * Setter coutBatiment
-     * @param {CoutBatiment[]} value
-     */
-	public set coutBatiment(value: CoutBatiment[]) {
-		this._coutBatiment = value;
-	}
-
+  /**
+   * Setter def
+   * @param {number} value
+   */
+  public set quantiteProduite(value: number) {
+    this._quantiteProduite = value;
+  }
 }
