@@ -1,0 +1,160 @@
+<form
+  class="flex align-items-center justify-content-center"
+  (ngSubmit)="submit()"
+  [formGroup]="formGroupInscription"
+>
+  <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+    <div class="text-center mb-5">
+      <img
+        src="assets/images/logos/logo.png"
+        alt="Image"
+        height="50"
+        class="mb-3"
+      />
+      <div class="text-900 text-3xl font-medium mb-3">Bienvenue</div>
+      <span class="text-600 font-medium line-height-3"
+        >Allons créer un compte</span
+      >
+    </div>
+
+    <div>
+      <label for="prenom" class="block text-900 font-medium mb-2">Prenom</label>
+      <input
+        id="prenom"
+        type="text"
+        pInputText
+        class="w-full mb-3"
+        [formControl]="formControlPrenom"
+      />
+
+      <p-messages
+        *ngIf="
+          formControlPrenom.dirty && formControlPrenom.hasError('required')
+        "
+        [(value)]="msgsInputRequiered"
+        [enableService]="false"
+      ></p-messages>
+
+      <p-messages
+        *ngIf="
+          formControlPrenom.dirty && formControlPrenom.hasError('minlength')
+        "
+        [(value)]="msgsMinLength"
+        [enableService]="false"
+      ></p-messages>
+
+      <label for="nom" class="block text-900 font-medium mb-2">Nom</label>
+      <input
+        id="nom"
+        type="text"
+        pInputText
+        class="w-full mb-3"
+        [formControl]="formControlNom"
+      />
+      <p-messages
+        *ngIf="formControlNom.dirty && formControlNom.hasError('required')"
+        [(value)]="msgsInputRequiered"
+        [enableService]="false"
+      ></p-messages>
+
+      <p-messages
+        *ngIf="formControlNom.dirty && formControlNom.hasError('minlength')"
+        [(value)]="msgsMinLength"
+        [enableService]="false"
+      ></p-messages>
+
+      <label for="username" class="block text-900 font-medium mb-2"
+        >Nom d'utilisateur</label
+      >
+      <input
+        id="username"
+        type="text"
+        pInputText
+        class="w-full mb-3"
+        [formControl]="formControlUsername"
+      />
+      <p-messages
+        *ngIf="
+          formControlUsername.dirty && formControlUsername.hasError('required')
+        "
+        [(value)]="msgsInputRequiered"
+        [enableService]="false"
+      ></p-messages>
+
+      <p-messages
+        *ngIf="
+          formControlUsername.dirty && formControlUsername.hasError('isPresent')
+        "
+        [(value)]="msgsUsernameAlreadyPresent"
+        [enableService]="false"
+      ></p-messages>
+
+      <label for="password" class="block text-900 font-medium mb-2"
+        >Mot de passe</label
+      >
+      <input
+        id="password"
+        type="password"
+        pInputText
+        class="w-full mb-3"
+        [formControl]="formControlPassword"
+      />
+
+      <p-messages
+        *ngIf="
+          formControlPassword.dirty && formControlPassword.hasError('required')
+        "
+        [(value)]="msgsInputRequiered"
+        [enableService]="false"
+      ></p-messages>
+
+      <p-messages
+        *ngIf="
+          formControlPassword.dirty && formControlPassword.hasError('pattern')
+        "
+        [(value)]="msgsPasswordPattern"
+        [enableService]="false"
+      ></p-messages>
+
+      <label for="passwordConfirmation" class="block text-900 font-medium mb-2"
+        >Confirmation du mot de passe</label
+      >
+      <input
+        id="passwordConfirmation"
+        type="password"
+        pInputText
+        class="w-full mb-3"
+        [formControl]="formControlPasswordConfirmation"
+      />
+      <p-messages
+        *ngIf="
+          formControlPasswordConfirmation.dirty &&
+          formControlPasswordConfirmation.hasError('required')
+        "
+        [(value)]="msgsInputRequiered"
+        [enableService]="false"
+      ></p-messages>
+      <p-messages
+        *ngIf="
+          formControlPassword.valid &&
+          formControlPasswordConfirmation.dirty &&
+          formControlPasswordConfirmation.value != formControlPassword.value
+        "
+        [(value)]="msgsPasswordNotEquals"
+        [enableService]="false"
+      ></p-messages>
+
+      <button
+        pButton
+        pRipple
+        type="submit"
+        label="C'est parti"
+        icon="pi pi-user"
+        class="w-full"
+        [disabled]="formGroupInscription.invalid"
+      ></button>
+    </div>
+  </div>
+</form>
+
+<!-- *ngIf="formControlPasswordConfirmation.hasError('passwordConfirmationNotEquals')" -->

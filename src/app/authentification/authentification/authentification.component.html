@@ -15,7 +15,10 @@
       <span class="text-600 font-medium line-height-3"
         >Vous n'avez pas de compte ? Vous pouvez en créer un</span
       >
-      <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer"
+      <a
+        [routerLink]="['/inscription']"
+        routerLinkActive="active"
+        class="font-medium no-underline ml-2 text-blue-500 cursor-pointer"
         >ici !</a
       >
     </div>
@@ -74,5 +77,10 @@
         class="w-full"
       ></button>
     </div>
+    <p-messages
+      *ngIf="formGroupAuth.hasError('credentialIncorrect')"
+      [(value)]="msgsCredentialIncorrect"
+      [enableService]="false"
+    ></p-messages>
   </div>
 </form>
