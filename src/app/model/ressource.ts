@@ -1,6 +1,6 @@
 export class Ressource {
 
-  constructor(private _nom?: string,
+  constructor(private _nom: string,
     private _independant?: boolean,
     private _id?: number) {
   }
@@ -24,7 +24,7 @@ export class Ressource {
  * Getter nom
  * @return {string}
  */
-  public get nom(): string | undefined {
+  public get nom(): string {
     return this._nom;
   }
 
@@ -32,7 +32,7 @@ export class Ressource {
    * Setter nom
    * @param {string} value
    */
-  public set nom(value: string | undefined) {
+  public set nom(value: string) {
     this._nom = value;
   }
 

@@ -3,30 +3,44 @@
     <label>id:</label>
     <input
       class="form-control"
-      [(ngModel)]="ressource.id"
+      [(ngModel)]="batiment.id"
       readonly
       placeholder="genereation auto"
     />
   </div>
   <div class="form-group">
     <label>nom:</label>
-    <input class="form-control" [(ngModel)]="ressource.nom" />
+    <input class="form-control" [(ngModel)]="batiment.nom" />
   </div>
+  <div class="form-group">
+    <label>points de defense:</label>
+    <input class="form-control" [(ngModel)]="batiment.pointsDefense" />
+  </div>
+  <div class="form-group">
+    <label>ameliorable:</label>
+    <select class="form-control" [(ngModel)]="batiment.ameliorable">
+      <option>true</option>
+      <option>false</option>
+    </select>
+  </div>
+  <app-cout-batiment (outputEvent)="receptionListCout($event)"></app-cout-batiment>
+
+
   <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group me-2" role="group" aria-label="First group">
       <button (click)="save()" class="btn btn-success">enregistrer</button>
     </div>
     <div class="btn-group me-2" role="group" aria-label="Second group">
       <a
-        [routerLink]="['/gestion/ressources']"
+        [routerLink]="['/gestion/batiments']"
         routerLinkActive="active"
         class="btn btn-secondary"
         >annuler</a
       >
     </div>
     <div class="btn-group me-2" role="group" aria-label="Third group">
-      <button *ngIf="indep" (click)="delete(ressource.id)" class="btn btn-danger">supprimer</button>
-      <span *ngIf="!indep"><i>La ressource ne peut être supprimée. Elle est utilisée comme coût pour la construction d'un batiment ou comme une ressource transformable.</i></span>
+      <button (click)="delete(batiment.id)" class="btn btn-danger">supprimer</button>
     </div>
     </div>
 </div>
+

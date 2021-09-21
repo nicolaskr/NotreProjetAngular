@@ -6,6 +6,6 @@
   </select>
   <transformer-ressource *ngIf="choixBatiment!=0" [idBatiment]="choixBatiment" (transformEvent)="maximum($event)">
   </transformer-ressource>
-  <input type="number" [(ngModel)]="quantite" name="quantite" [max]="quantiteMax" required>
-  <button type="submit" class="btn btn-outline-success" [disabled]="choixBatiment==0">Valider</button>
+  <input *ngIf="choixTransformation!=0" type="number" [(ngModel)]="quantite" name="quantite" [max]="quantiteMax" required>
+  <button type="submit" class="btn btn-outline-success" [disabled]="choixBatiment==0&&quantite==0&&quantite!=null">Valider</button>
 </form>

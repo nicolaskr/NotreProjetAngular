@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,15 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { HomeComponent } from './home/home.component';
 import { PageSpectateurComponent } from './page-spectateur/page-spectateur.component';
+import { InscriptionComponent } from './authentification/inscription/inscription.component';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { PasswordModule } from 'primeng/password';
+import { EditAttaqueComponent } from './gestion/batiment/edit-attaque/edit-attaque.component';
+import { EditDefenseComponent } from './gestion/batiment/edit-defense/edit-defense.component';
+import { EditProductionComponent } from './gestion/batiment/edit-production/edit-production.component';
+import { EditTransformationComponent } from './gestion/batiment/edit-transformation/edit-transformation.component';
+import { CoutBatimentComponent } from './gestion/batiment/cout-batiment/cout-batiment.component';
 
 @NgModule({
   declarations: [
@@ -42,15 +52,25 @@ import { PageSpectateurComponent } from './page-spectateur/page-spectateur.compo
     AuthentificationComponent,
     HomeComponent,
     PageSpectateurComponent,
+    InscriptionComponent,
+    EditAttaqueComponent,
+    EditDefenseComponent,
+    EditProductionComponent,
+    EditTransformationComponent,
+    CoutBatimentComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     CheckboxModule,
     ButtonModule,
+    MessagesModule,
+    MessageModule,
+    PasswordModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
