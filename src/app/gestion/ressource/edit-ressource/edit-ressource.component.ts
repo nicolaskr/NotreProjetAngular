@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class EditRessourceComponent implements OnInit {
 
-  ressource:Ressource=new Ressource();
+  ressource:Ressource=new Ressource("");
   indep:Boolean | undefined;
 
   constructor(private ar: ActivatedRoute, private ressourceService:RessourceService, private router:Router) {

@@ -68,7 +68,6 @@ export class BatimentService {
       nom:batiment.nom,
       pointsDefense:batiment.pointsDefense,
       ameliorable: batiment.ameliorable
-
     };
     // return this.httpClient.post<Batiment>(this.URL, obj,{headers:this.headers});
     return this.httpClient.post<Batiment>(this.URL, obj);
