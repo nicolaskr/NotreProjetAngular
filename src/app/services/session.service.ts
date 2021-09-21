@@ -15,7 +15,7 @@ export class SessionService {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
       // Authorization: 'Basic ' + localStorage.getItem('token'),
-      Authorization: 'Basic ' + btoa("joueur1:joueur1")
+      Authorization: 'Basic ' + btoa('joueur1:joueur1'),
     });
   }
   public getAll(): Observable<Session[]> {
@@ -27,9 +27,23 @@ export class SessionService {
     return this.http.delete(this.url + '/' + id, { headers: this.headers });
   }
 
-  public update(sessions: Observable<Session[]>) {
+  public rotation(session: Session) {
     this.initHeaders();
-    sessions.subscribe((res) => {});
+    console.log(
+      this.url +
+        '/roulement/' +
+        session.id.partie.id +
+        '/' +
+        session.id.compte.id
+    );
+    return this.http.put(
+      this.url +
+        '/roulement/' +
+        session.id.partie.id +
+        '/' +
+        session.id.compte.id,
+      { headers: this.headers }
+    );
   }
 
   public get(idPartie: number, idCompte: number): Observable<Session> {
