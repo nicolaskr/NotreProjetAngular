@@ -80,16 +80,14 @@ export class PageJeuComponent implements OnInit {
   finDeTour() {
     console.log(this.sessions);
     this.sessions.subscribe((res) => {
-      console.log(res);
       for (let i = 0; i < res.length; i++) {
         if (res[i].tourEnCours) {
           console.log(i + 'fin de tour');
-          console.log(res[i]);
-          res[i].tourEnCours = false;
+          this.sessionService.rotation(res[i]);
           if (i == res.length - 1) {
-            res[0].tourEnCours = true;
+            this.sessionService.rotation(res[0]).subscribe;
           } else {
-            res[i + 1].tourEnCours = true;
+            this.sessionService.rotation(res[i + 1]).subscribe;
           }
           this.sessionService.get;
           return;
@@ -107,21 +105,6 @@ export class PageJeuComponent implements OnInit {
             this.changementJoueur = true;
           });
         }
-      }
-    });
-  }
-
-  actuAttDefPlayers() {
-    this.sessions.subscribe((res) => {
-      for (var s of res) {
-        let att: number = 0;
-        let pv: number = 0;
-        for (var sb of s.sessionBatiment!) {
-          pv = pv + sb.pv;
-          att = att + sb.ptAttaque;
-        }
-        s.att = att;
-        s.def = pv;
       }
     });
   }
