@@ -14,21 +14,13 @@ import { SessionBatiment } from 'src/app/model/session-batiment';
 })
 export class MenuAmeliorationComponent implements OnInit {
 
-  formAmelioration: FormGroup;
-  batimentAmeliore: FormControl;
-
   @Input('session')
   sessionActive: Session | undefined;
 
   batimentsAmeliorables: SessionBatiment[] = [];
+  choixAmelioration: number = 0;
 
-  constructor(private fb: FormBuilder, private sessionBatimentService: SessionBatimentService) {
-    this.batimentAmeliore = this.fb.control('', [
-      Validators.required
-    ]);
-    this.formAmelioration = this.fb.group({
-      batimentAmeliore: this.batimentAmeliore
-    });
+  constructor(private sessionBatimentService: SessionBatimentService) {
   }
 
   ngOnInit(): void {
@@ -42,8 +34,7 @@ export class MenuAmeliorationComponent implements OnInit {
   }
 
   save() {
-    let sessionBatAAmeliorer: SessionBatiment = this.batimentAmeliore.value;
-    this.sessionBatimentService.ameliorer(sessionBatAAmeliorer);
+    this.sessionBatimentService.ameliorer(this.choixAmelioration).subscribe();
   }
 
 }

@@ -1,3 +1,4 @@
+import { TransformationRessourceService } from './../../services/transformation-ressource.service';
 import { Compte } from './../../model/compte';
 import { Partie } from './../../model/partie';
 import { SessionRessourceService } from './../../services/session-ressource.service';
@@ -20,10 +21,6 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./menu-transformation.component.css'],
 })
 export class MenuTransformationComponent implements OnInit {
-  formTransformation: FormGroup;
-  batimentSelectionne: FormControl;
-  quantite: FormControl;
-
   @Input('session')
   sessionActive: Session | undefined;
 
@@ -33,20 +30,16 @@ export class MenuTransformationComponent implements OnInit {
   selectionTransformation: TransformationRessource | undefined;
   quantiteMax: number = 0;
 
-  transformationRessourceSelectionne: TransformationRessource | undefined;
+  quantite: number = 0;
+  choixTransformation: number = 0;
+  choixBatiment: number = 0;
 
   constructor(
     private fb: FormBuilder,
     private sessionBatimentService: SessionBatimentService,
-    private sessionRessourceService: SessionRessourceService
-  ) {
-    this.batimentSelectionne = this.fb.control('', [Validators.required]);
-    this.quantite = this.fb.control('', [Validators.required]);
-    this.formTransformation = this.fb.group({
-      batimentSelectionne: this.batimentSelectionne,
-      quantite: this.quantite,
-    });
-  }
+    private sessionRessourceService: SessionRessourceService,
+    private transformationRessourceService: TransformationRessourceService
+  ) {}
 
   ngOnInit(): void {
     this.listBatimentsTransformation();
@@ -68,20 +61,23 @@ export class MenuTransformationComponent implements OnInit {
       });
   }
 
-  maximum(tr: TransformationRessource) {
-    this.transformationRessourceSelectionne = tr;
-    for (var sr of this.sessionRessources) {
-      if (sr.id.ressource.nom === tr.ressourceLost.nom) {
-        this.quantiteMax = sr.quantite;
+  maximum(id: number) {
+    this.transformationRessourceService.get(id).subscribe((res) => {
+      this.choixTransformation = res.id;
+      let tr = res;
+      for (var sr of this.sessionRessources) {
+        if (sr.id.ressource.nom === tr.ressourceLost.nom) {
+          this.quantiteMax = sr.quantite;
+        }
       }
-    }
+    });
   }
 
   save() {
     this.sessionRessourceService.transformer(
       this.sessionActive!,
-      this.transformationRessourceSelectionne!,
-      this.quantite.value
-    );
+      this.choixTransformation,
+      this.quantite
+    ).subscribe;
   }
 }

@@ -2,16 +2,24 @@ import { Ressource } from './ressource';
 import { CoutBatiment } from './cout-batiment';
 export class Batiment {
   constructor(
-    private _nom: string,
-    private _pointsDefense: number,
-    private _ameliorable: boolean,
-    private _att: number,
-    private _coutBatiment: CoutBatiment[],
-    private _pointsDAttaque: number,
-    private _quantiteProduite: number,
+    private _nom?: string,
+    private _pointsDefense?: number,
+    private _ameliorable?: boolean,
+    private _att?: number,
+    private _coutBatiment?: CoutBatiment[],
+    private _pointsDAttaque?: number,
+    private _quantiteProduite?: number,
     private _ressource: Ressource = new Ressource(),
     private _id?: number
   ) {}
+
+  public get coutBatiment(): CoutBatiment[] | undefined {
+    return this._coutBatiment;
+  }
+
+  public set coutBatiment(value : CoutBatiment[] | undefined) {
+    this._coutBatiment=value;
+  }
 
   public get id(): number | undefined {
     return this._id;
@@ -20,10 +28,10 @@ export class Batiment {
     this._id = value;
   }
 
-  public get att(): number {
+  public get att(): number | undefined {
     return this._att;
   }
-  public set att(value: number) {
+  public set att(value: number | undefined) {
     this._att = value;
   }
 
@@ -31,7 +39,7 @@ export class Batiment {
    * Getter nom
    * @return {string}
    */
-  public get nom(): string {
+  public get nom(): string | undefined {
     return this._nom;
   }
 
@@ -39,7 +47,7 @@ export class Batiment {
    * Getter def
    * @return {number}
    */
-  public get pointsDefense(): number {
+  public get pointsDefense(): number | undefined {
     return this._pointsDefense;
   }
 
@@ -47,7 +55,7 @@ export class Batiment {
    * Getter def
    * @return {number}
    */
-  public get quantiteProduite(): number {
+  public get quantiteProduite(): number | undefined {
     return this._quantiteProduite;
   }
 
@@ -55,7 +63,7 @@ export class Batiment {
    * Getter ameliorable
    * @return {boolean}
    */
-  public get ameliorable(): boolean {
+  public get ameliorable(): boolean | undefined {
     return this._ameliorable;
   }
 
@@ -71,7 +79,7 @@ export class Batiment {
    * Getter def
    * @return {number}
    */
-  public get pointsDAttaque(): number {
+  public get pointsDAttaque(): number | undefined {
     return this._pointsDAttaque;
   }
 
@@ -79,7 +87,7 @@ export class Batiment {
    * Setter nom
    * @param {string} value
    */
-  public set nom(value: string) {
+  public set nom(value: string | undefined) {
     this._nom = value;
   }
 
@@ -87,7 +95,7 @@ export class Batiment {
    * Setter def
    * @param {number} value
    */
-  public set pointsDefense(value: number) {
+  public set pointsDefense(value: number | undefined) {
     this._pointsDefense = value;
   }
 
@@ -95,7 +103,7 @@ export class Batiment {
    * Setter def
    * @param {number} value
    */
-  public set pointsDAttaque(value: number) {
+  public set pointsDAttaque(value: number | undefined) {
     this._pointsDAttaque = value;
   }
 
@@ -103,7 +111,7 @@ export class Batiment {
    * Setter ameliorable
    * @param {boolean} value
    */
-  public set ameliorable(value: boolean) {
+  public set ameliorable(value: boolean | undefined) {
     this._ameliorable = value;
   }
 
@@ -119,7 +127,7 @@ export class Batiment {
    * Setter def
    * @param {number} value
    */
-  public set quantiteProduite(value: number) {
+  public set quantiteProduite(value: number | undefined) {
     this._quantiteProduite = value;
   }
 }
