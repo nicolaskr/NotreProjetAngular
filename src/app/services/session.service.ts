@@ -27,15 +27,15 @@ export class SessionService {
     return this.http.delete(this.url + '/' + id, { headers: this.headers });
   }
 
-  public get(idPartie: number, idCompte : number): Observable<Session> {
+  public get(idPartie : number, idCompte: number): Observable<Session> {
     this.initHeaders();
     return this.http.get<Session>(this.url + '/' + idPartie + '/' + idCompte, { headers: this.headers });
   }
 
 
-  public update(session: Session): Observable<Session> {
-    this.initHeaders();
-    return this.http.put<Session>(this.url + '/' + session.compte?.id +'/' + session.partie?.id, { headers: this.headers });
-  }
+  // public update(session: Session): Observable<Session> {
+  //   this.initHeaders();
+  //   return this.http.put<Session>(this.url + '/' + session.compte?.id +'/' + session.partie?.id, { headers: this.headers });
+  // }
 
 }
