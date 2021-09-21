@@ -63,6 +63,7 @@ export class MenuTransformationComponent implements OnInit {
 
   maximum(id: number) {
     this.transformationRessourceService.get(id).subscribe((res) => {
+      console.log(res);
       this.choixTransformation = res.id;
       let tr = res;
       for (var sr of this.sessionRessources) {
@@ -78,6 +79,6 @@ export class MenuTransformationComponent implements OnInit {
       this.sessionActive!,
       this.choixTransformation,
       this.quantite
-    ).subscribe;
+    ).subscribe();
   }
 }
