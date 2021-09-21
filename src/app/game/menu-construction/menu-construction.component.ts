@@ -18,7 +18,7 @@ export class MenuConstructionComponent implements OnInit {
   batimentConstruit: FormControl;
 
   @Input('session')
-  sessionActive: Session | undefined;
+  sessionActive: Session = new Session();
 
   batimentsConstructibles: Batiment[] = [];
 

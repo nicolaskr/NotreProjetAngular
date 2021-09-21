@@ -39,6 +39,7 @@ export class SessionRessourceService {
 
   public piocher(session: Session): Observable<SessionRessource[]> {
     this.initHeaders();
+    return this.http.get<SessionRessource[]>(this.url + '/' + session.id?.partie?.id + '/' + session.id?.compte?.id, { headers: this.headers });
     return this.http.get<SessionRessource[]>(
       this.url + '/piocher/' + session.partie!.id! + '&' + session.compte!.id!,
       { headers: this.headers }
@@ -77,17 +78,6 @@ export class SessionRessourceService {
     qte: number
   ) {
     this.initHeaders();
-    return this.http.put(
-      this.url +
-        '/' +
-        session.partie!.id +
-        '/' +
-        session.compte!.id +
-        '/' +
-        tr.id +
-        '/' +
-        qte,
-      { headers: this.headers }
-    );
+    return this.http.put(this.url + '/' + session.id?.partie?.id + '/' + session.id?.compte?.id + '/' + tr.id + '/' + qte, { headers: this.headers });
   }
 }

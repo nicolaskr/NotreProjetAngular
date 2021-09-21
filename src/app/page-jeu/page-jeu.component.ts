@@ -15,7 +15,7 @@ import { SessionRessourceService } from '../services/session-ressource.service';
   styleUrls: ['./page-jeu.component.css'],
 })
 export class PageJeuComponent implements OnInit {
-  player: Session | undefined;
+  player: Session = new Session();
   sessions: Session[] = [];
   waiters: Session[] = [];
 
@@ -24,10 +24,10 @@ export class PageJeuComponent implements OnInit {
   afficherMenuTransformation: boolean = false;
   afficherMenuAttaque: boolean = false;
 
-  j1: Session | undefined;
-  j2: Session | undefined;
-  j3: Session | undefined;
-  j4: Session | undefined;
+  j1: Session = new Session();
+  j2: Session = new Session();
+  j3: Session = new Session();
+  j4: Session = new Session();
 
   constructor(
     private sessionService: SessionService,
@@ -43,6 +43,7 @@ export class PageJeuComponent implements OnInit {
   joueurs() {
     this.sessionService.get(1, 2).subscribe((res) => {
       this.j1 = res;
+      console.log(this.j1);
     });
     this.sessionService.get(1, 3).subscribe((res) => {
       this.j2 = res;
