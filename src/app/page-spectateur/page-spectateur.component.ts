@@ -23,7 +23,13 @@ export class PageSpectateurComponent implements OnInit {
     this.sessions = this.SessionService.getAll();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.list();
+  }
+
+  list() {
+    this.sessions = this.SessionService.getAll();
+  }
 
   ressourceBool(nom: string, sr: SessionRessource) {
     if (sr.id.ressource.nom === nom) {
