@@ -7,27 +7,27 @@ import { Session } from '../model/session';
 @Component({
   selector: 'app-page-spectateur',
   templateUrl: './page-spectateur.component.html',
-  styleUrls: ['./page-spectateur.component.css']
+  styleUrls: ['./page-spectateur.component.css'],
 })
 export class PageSpectateurComponent implements OnInit {
+  player: Session = new Session();
+  sessions: Session[] = [];
+  waiters: Session[] = [];
 
-  player : Session = new Session();
-  sessions : Session [] = [];
-  waiters : Session [] = [];
-
-
-
-  constructor(private SessionService : SessionService, private sessionBatService : SessionBatimentService, private sessionResService: SessionRessourceService) { }
+  constructor(
+    private SessionService: SessionService,
+    private sessionBatService: SessionBatimentService,
+    private sessionResService: SessionRessourceService
+  ) {}
 
   ngOnInit(): void {
     this.list();
   }
 
-  list(){
-    this.SessionService.getAll().subscribe((res) =>{
+  list() {
+    this.SessionService.getAll().subscribe((res) => {
       console.log(res);
       this.sessions = res;
-
     });
   }
 }

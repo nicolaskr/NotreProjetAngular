@@ -14,7 +14,7 @@
         padding-right: 5%;
       "
     >
-      <h2>{{ player!.compte!.nom }}</h2>
+      <h2>{{ player.compte?.nom }}</h2>
       <table class="table table-striped">
         <tr *ngFor="let sr of player.sessionRessource">
           <th>
@@ -131,92 +131,7 @@
         [session]="j3"
       ></app-menu-transformation>
       <app-menu-attaque *ngIf="afficherMenuAttaque"></app-menu-attaque>
-
-      <div class="row row-cols-1">
-        <div class="row" *ngFor="let p of waiters">
-          <h2>{{ p.compte?.nom }}</h2>
-          <table class="table table-striped">
-            <tr *ngFor="let sr of p.sessionRessource">
-              <th>
-                <img
-                  height="40px"
-                  width="40px"
-                  src="images/bois.jpg"
-                  alt=" bois"
-                />
-                :{{ sr.quantite }}
-              </th>
-              <th>
-                <img
-                  height="40px"
-                  width="40px"
-                  src="http://produitsversailles.com/wp-content/uploads/2018/06/pierre-polie-semi-grise-_105643-red-copy-300x300.png"
-                  alt="pierre"
-                />
-                :{{ sr.quantite }}
-              </th>
-              <th>
-                <img
-                  height="40px"
-                  width="40px"
-                  src="http://www.a3m-asso.fr/wp-content/uploads/2016/07/ERAMET-Minerai-300x200.jpg"
-                  alt="minerais"
-                />
-                :{{ sr.quantite }}
-              </th>
-              <th>
-                <img
-                  height="40px"
-                  width="40px"
-                  src="https://blog.arpp.org/wp-content/uploads/sites/5/2019/09/or-.jpg"
-                  alt="or"
-                />
-                :{{ sr.quantite }}
-              </th>
-              <th>
-                <img
-                  height="40px"
-                  width="40px"
-                  src="https://www.corse-epoxy.fr/wp-content/uploads/2016/09/profil-acier-720x340.jpg"
-                  alt="fer"
-                />
-                :{{ sr.quantite }}
-              </th>
-              <th>
-                <img
-                  height="40px"
-                  width="40px"
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/NatCopper.jpg/220px-NatCopper.jpg"
-                  alt="cuivre"
-                />
-                :{{ sr.quantite }}
-              </th>
-            </tr>
-          </table>
-          <table class="table table-striped">
-            <tr>
-              <th>Batiment</th>
-              <th>Attaque</th>
-              <th>Défense</th>
-              <th>Niveau</th>
-            </tr>
-            <tr *ngFor="let sb of player!.sessionBatiment">
-              <td>{{ sb.batiment.nom }}</td>
-              <td>{{ sb.ptAttaque }}</td>
-              <td>{{ sb.pv }}</td>
-              <td>{{ sb.level }}</td>
-            </tr>
-          </table>
-          <table class="table table-striped">
-            <tr>
-              <th>Total</th>
-              <th>Attaque: {{ player!.att }}</th>
-              <th>Défense: {{ player!.def }}</th>
-            </tr>
-          </table>
-        </div>
-      </div>
     </div>
-    <app-page-spectateur></app-page-spectateur>
   </div>
+  <app-page-spectateur></app-page-spectateur>
 </div>
