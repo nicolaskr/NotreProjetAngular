@@ -12,15 +12,21 @@
     <label>nom:</label>
     <input class="form-control" [(ngModel)]="ressource.nom" />
   </div>
-  <div>
-    <button (click)="save()" class="btn btn-success">enregistrer</button>
-    <a
-      [routerLink]="['/gestion/ressources']"
-      routerLinkActive="active"
-      class="btn btn-warning"
-      >annuler</a
-    >
-    <button *ngIf="indep" (click)="delete(ressource.id)" class="btn btn-danger">supprimer</button>
-    <span *ngIf="!indep"><i>La ressource ne peut être supprimée. Elle est utilisée comme coût pour la construction d'un batiment ou comme une ressource transformable.</i></span>
-  </div>
+  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group me-2" role="group" aria-label="First group">
+      <button (click)="save()" class="btn btn-success">enregistrer</button>
+    </div>
+    <div class="btn-group me-2" role="group" aria-label="Second group">
+      <a
+        [routerLink]="['/gestion/ressources']"
+        routerLinkActive="active"
+        class="btn btn-secondary"
+        >annuler</a
+      >
+    </div>
+    <div class="btn-group me-2" role="group" aria-label="Third group">
+      <button *ngIf="indep" (click)="delete(ressource.id)" class="btn btn-danger">supprimer</button>
+      <span *ngIf="!indep"><i>La ressource ne peut être supprimée. Elle est utilisée comme coût pour la construction d'un batiment ou comme une ressource transformable.</i></span>
+    </div>
+    </div>
 </div>
