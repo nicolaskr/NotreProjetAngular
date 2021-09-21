@@ -5,29 +5,34 @@ import { SessionBatimentService } from './../../services/session-batiment.servic
 import { SessionBatiment } from './../../model/session-batiment';
 import { Component, Input, OnInit } from '@angular/core';
 import { Session } from 'src/app/model/session';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-menu-construction',
   templateUrl: './menu-construction.component.html',
-  styleUrls: ['./menu-construction.component.css']
+  styleUrls: ['./menu-construction.component.css'],
 })
 export class MenuConstructionComponent implements OnInit {
-
   formConstruction: FormGroup;
   batimentConstruit: FormControl;
 
   @Input('session')
-  sessionActive: Session = new Session();
+  sessionActive: Session | undefined;
 
   batimentsConstructibles: Batiment[] = [];
 
-  constructor(private fb: FormBuilder, private sessionBatimentService: SessionBatimentService) {
-    this.batimentConstruit = this.fb.control('', [
-      Validators.required
-    ]);
+  constructor(
+    private fb: FormBuilder,
+    private sessionBatimentService: SessionBatimentService
+  ) {
+    this.batimentConstruit = this.fb.control('', [Validators.required]);
     this.formConstruction = this.fb.group({
-      batimentConstruit: this.batimentConstruit
+      batimentConstruit: this.batimentConstruit,
     });
   }
 
@@ -36,15 +41,16 @@ export class MenuConstructionComponent implements OnInit {
   }
 
   listBatimentsConstructibles() {
-    this.sessionBatimentService.getBatimentsConstructibles(this.sessionActive!).subscribe((res) => {
-      this.batimentsConstructibles = res;
-      console.log(res);
-    });
+    this.sessionBatimentService
+      .getBatimentsConstructibles(this.sessionActive!)
+      .subscribe((res) => {
+        this.batimentsConstructibles = res;
+        console.log(res);
+      });
   }
 
   save() {
     let batAConstruire: Batiment = this.batimentConstruit.value;
     this.sessionBatimentService.construire(this.sessionActive!, batAConstruire);
   }
-
 }

@@ -1,22 +1,21 @@
 import { Compte } from './compte';
 import { Partie } from './partie';
 export class SessionKey {
+  constructor(private _partie: Partie, private _compte: Compte) {}
 
-  constructor(private _partie ?: Partie, private _compte ?: Compte){}
-
-  public get partie(): Partie | undefined {
+  public get partie(): Partie {
     return this._partie;
   }
 
-  public set partie(value: Partie | undefined) {
+  public set partie(value: Partie) {
     this._partie = value;
   }
 
-  public get compte(): Compte | undefined {
+  public get compte(): Compte {
     return this._compte;
   }
 
-  public set compte(value: Compte | undefined) {
+  public set compte(value: Compte) {
     this._compte = value;
   }
 }

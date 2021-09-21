@@ -5,23 +5,23 @@ import { SessionBatiment } from './session-batiment';
 import { Compte } from './compte';
 export class Session {
   constructor(
-    private _id?: SessionKey,
-    private _def?: number,
-    private _att?: number,
-    private _sessionBatiment?: SessionBatiment[],
-    private _sessionRessource?: SessionRessource[],
-    private _tourEnCours?: boolean
+    private _id: SessionKey,
+    private _def: number,
+    private _att: number,
+    private _sessionBatiment: SessionBatiment[],
+    private _sessionRessource: SessionRessource[],
+    private _tourEnCours: boolean
   ) {}
 
   /**
    * Getter compte
    * @return {Compte}
    */
-  public get id(): SessionKey | undefined {
+  public get id(): SessionKey {
     return this._id;
   }
 
-  public get tourEnCours(): boolean | undefined {
+  public get tourEnCours(): boolean {
     return this._tourEnCours;
   }
 
@@ -29,7 +29,7 @@ export class Session {
    * Getter def
    * @return {number}
    */
-  public get def(): number | undefined {
+  public get def(): number {
     return this._def;
   }
 
@@ -37,14 +37,14 @@ export class Session {
    * Getter listBatiments
    * @return {SessionBatiment[]}
    */
-  public get sessionBatiment(): SessionBatiment[] | undefined {
+  public get sessionBatiment(): SessionBatiment[] {
     return this._sessionBatiment;
   }
   /**
    * Getter att
    * @return {number}
    */
-  public get att(): number | undefined {
+  public get att(): number {
     return this._att;
   }
 
@@ -52,7 +52,7 @@ export class Session {
    * Getter listRessources
    * @return {SessionRessource []}
    */
-  public get sessionRessource(): SessionRessource[] | undefined {
+  public get sessionRessource(): SessionRessource[] {
     return this._sessionRessource;
   }
 
@@ -60,11 +60,11 @@ export class Session {
    * Setter compte
    * @param {Compte} value
    */
-  public set id(value: SessionKey | undefined) {
+  public set id(value: SessionKey) {
     this._id = value;
   }
 
-  public set tourEnCours(value: boolean | undefined) {
+  public set tourEnCours(value: boolean) {
     this._tourEnCours = value;
   }
 
@@ -72,7 +72,7 @@ export class Session {
    * Setter def
    * @param {number} value
    */
-  public set def(value: number | undefined) {
+  public set def(value: number) {
     this._def = value;
   }
 
@@ -80,14 +80,14 @@ export class Session {
    * Setter listBatiments
    * @param {SessionBatiment[]} value
    */
-  public set sessionBatiment(value: SessionBatiment[] | undefined) {
+  public set sessionBatiment(value: SessionBatiment[]) {
     this._sessionBatiment = value;
   }
   /**
    * Setter att
    * @param {number} value
    */
-  public set att(value: number | undefined) {
+  public set att(value: number) {
     this._att = value;
   }
 
@@ -95,7 +95,7 @@ export class Session {
    * Setter listRessources
    * @param {SessionRessource []} value
    */
-  public set sessionRessource(value: SessionRessource[] | undefined) {
+  public set sessionRessource(value: SessionRessource[]) {
     this._sessionRessource = value;
   }
 }

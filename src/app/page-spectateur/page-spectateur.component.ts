@@ -1,8 +1,10 @@
+import { SessionRessource } from './../model/session-ressource';
 import { SessionService } from './../services/session.service';
 import { Component, OnInit } from '@angular/core';
 import { SessionRessourceService } from '../services/session-ressource.service';
 import { SessionBatimentService } from '../services/session-batiment.service';
 import { Session } from '../model/session';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-page-spectateur',
@@ -10,24 +12,24 @@ import { Session } from '../model/session';
   styleUrls: ['./page-spectateur.component.css'],
 })
 export class PageSpectateurComponent implements OnInit {
-  player: Session = new Session();
-  sessions: Session[] = [];
+  sessions: Observable<Session[]>;
   waiters: Session[] = [];
 
   constructor(
     private SessionService: SessionService,
     private sessionBatService: SessionBatimentService,
     private sessionResService: SessionRessourceService
-  ) {}
-
-  ngOnInit(): void {
-    this.list();
+  ) {
+    this.sessions = this.SessionService.getAll();
   }
 
-  list() {
-    this.SessionService.getAll().subscribe((res) => {
-      console.log(res);
-      this.sessions = res;
-    });
+  ngOnInit(): void {}
+
+  ressourceBool(nom: string, sr: SessionRessource) {
+    if (sr.id.ressource.nom === nom) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
