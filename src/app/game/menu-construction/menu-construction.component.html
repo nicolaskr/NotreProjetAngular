@@ -1,7 +1,8 @@
-<form (ngSubmit)="save()" [formGroup]="formConstruction" *ngIf="sessionActive">
+<form (ngSubmit)="save()" *ngIf="sessionActive">
   <h3>Construction</h3>
-  <select *ngFor="let b of batimentsConstructibles" class="form-select">
-    <option [formControl]="batimentConstruit"> {{b.id}} - {{ b.nom }} </option>
+  <select class="form-select" [(ngModel)]="choixBatiment" name="id" aria-label="Default select example"
+  style="width: 48%;">
+    <option *ngFor="let b of batimentsConstructibles" required [value]="b.id"> {{b.id}} - {{ b.nom }} </option>
   </select>
-  <button type="submit" class="btn btn-outline-success">Valider</button>
+  <button type="submit" class="btn btn-outline-success" [disabled]="choixBatiment==0">Valider</button>
 </form>

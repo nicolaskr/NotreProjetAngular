@@ -1,3 +1,4 @@
+import { BatimentService } from './../../services/batiment.service';
 import { Compte } from './../../model/compte';
 import { Partie } from './../../model/partie';
 import { Batiment } from './../../model/batiment';
@@ -14,21 +15,13 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class MenuConstructionComponent implements OnInit {
 
-  formConstruction: FormGroup;
-  batimentConstruit: FormControl;
-
   @Input('session')
-  sessionActive: Session = new Session();
+  sessionActive: Session = new Session;
 
   batimentsConstructibles: Batiment[] = [];
+  choixBatiment: number = 0 ;
 
-  constructor(private fb: FormBuilder, private sessionBatimentService: SessionBatimentService) {
-    this.batimentConstruit = this.fb.control('', [
-      Validators.required
-    ]);
-    this.formConstruction = this.fb.group({
-      batimentConstruit: this.batimentConstruit
-    });
+  constructor(private sessionBatimentService: SessionBatimentService, private batimentService: BatimentService) {
   }
 
   ngOnInit(): void {
@@ -43,8 +36,7 @@ export class MenuConstructionComponent implements OnInit {
   }
 
   save() {
-    let batAConstruire: Batiment = this.batimentConstruit.value;
-    this.sessionBatimentService.construire(this.sessionActive!, batAConstruire);
+    this.sessionBatimentService.construire(this.sessionActive,this.choixBatiment).subscribe();
   }
 
 }

@@ -20,7 +20,8 @@ export class SessionRessourceService {
   public initHeaders() {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Basic ' + localStorage.getItem('token'),
+      // Authorization: 'Basic ' + localStorage.getItem('token'),
+      Authorization: 'Basic ' + btoa("joueur1:joueur1")
     });
   }
 
@@ -54,9 +55,9 @@ export class SessionRessourceService {
   //   return this.http.put<SessionRessource>(this.url + '/' + sessionRessource.id, sessionRessource, { headers: this.headers });
   // }
 
-  public transformer(session : Session, tr: TransformationRessource, qte: number) {
+  public transformer(session : Session, idTr:number, qte: number) {
     this.initHeaders();
-    return this.http.put(this.url + '/' + session.id?.partie?.id + '/' + session.id?.compte?.id + '/' + tr.id + '/' + qte, { headers: this.headers });
+    return this.http.put(this.url + '/' + session.id?.partie?.id + '/' + session.id?.compte?.id + '/' + idTr + '/' + qte, { headers: this.headers });
   }
 
 }
