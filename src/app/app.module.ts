@@ -22,11 +22,11 @@ import { AuthentificationComponent } from './authentification/authentification/a
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { HomeComponent } from './home/home.component';
+import { PageSpectateurComponent } from './page-spectateur/page-spectateur.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageSpectateurComponent
     PageJeuComponent,
     MenuConstructionComponent,
     MenuAmeliorationComponent,
@@ -41,6 +41,7 @@ import { HomeComponent } from './home/home.component';
     EditRessourceComponent,
     AuthentificationComponent,
     HomeComponent,
+    PageSpectateurComponent,
   ],
   imports: [
     BrowserModule,
