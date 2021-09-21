@@ -111,21 +111,6 @@ export class PageJeuComponent implements OnInit {
     });
   }
 
-  actuAttDefPlayers() {
-    this.sessions.subscribe((res) => {
-      for (var s of res) {
-        let att: number = 0;
-        let pv: number = 0;
-        for (var sb of s.sessionBatiment!) {
-          pv = pv + sb.pv;
-          att = att + sb.ptAttaque;
-        }
-        s.att = att;
-        s.def = pv;
-      }
-    });
-  }
-
   clickConstruction() {
     this.afficherMenuConstruction = true;
     this.afficherMenuAmelioration = false;
