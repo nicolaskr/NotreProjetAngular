@@ -3,120 +3,120 @@ import { Session } from "./session";
 
 export class SessionBatiment {
 
-
-
-
-	constructor(private _pv: number,
+  constructor(
+    private _pv: number,
     private _ptAttaque: number,
-    private _session : Session,
-    private _batiment : Batiment,
-    private _level : number,
-    private _used : boolean,
-    private _id:number) {
-	}
-  public get id(): number {
-		return this._id;
-	}
-  public set id(value: number) {
-		this._id = value;
-	}
+    private _session: Session,
+    private _batiment: Batiment,
+    private _level: number,
+    private _used?: boolean,
+    private _id?: number) {
+  }
 
 
-    /**
-     * Getter pv
-     * @return {number}
-     */
-	public get pv(): number {
-		return this._pv;
-	}
+  public get id(): number | undefined {
+    return this._id;
+  }
 
-    /**
-     * Getter ptAttaque
-     * @return {number}
-     */
-	public get ptAttaque(): number {
-		return this._ptAttaque;
-	}
+  public set id(value: number | undefined) {
+    this._id = value;
+  }
 
-    /**
-     * Getter session
-     * @return {Session}
-     */
-	public get session(): Session {
-		return this._session;
-	}
+  /**
+   * Getter pv
+   * @return {number}
+   */
+  public get pv(): number {
+    return this._pv;
+  }
 
-    /**
-     * Getter batiment
-     * @return {Batiment}
-     */
-	public get batiment(): Batiment {
-		return this._batiment;
-	}
+  /**
+   * Getter ptAttaque
+   * @return {number}
+   */
+  public get ptAttaque(): number {
+    return this._ptAttaque;
+  }
 
-    /**
-     * Getter level
-     * @return {number}
-     */
-	public get level(): number {
-		return this._level;
-	}
+  /**
+   * Getter session
+   * @return {Session}
+   */
+  public get session(): Session {
+    return this._session;
+  }
 
-    /**
-     * Getter used
-     * @return {boolean}
-     */
-	public get used(): boolean {
-		return this._used;
-	}
+  /**
+   * Getter batiment
+   * @return {Batiment}
+   */
+  public get batiment(): Batiment {
+    return this._batiment;
+  }
 
-    /**
-     * Setter pv
-     * @param {number} value
-     */
-	public set pv(value: number) {
-		this._pv = value;
-	}
+  /**
+   * Getter level
+   * @return {number}
+   */
+  public get level(): number {
+    return this._level;
+  }
 
-    /**
-     * Setter ptAttaque
-     * @param {number} value
-     */
-	public set ptAttaque(value: number) {
-		this._ptAttaque = value;
-	}
+  /**
+   * Getter used
+   * @return {boolean}
+   */
+  public get used(): boolean | undefined {
+    return this._used;
+  }
 
-    /**
-     * Setter session
-     * @param {Session} value
-     */
-	public set session(value: Session) {
-		this._session = value;
-	}
+  /**
+   * Setter pv
+   * @param {number} value
+   */
+  public set pv(value: number) {
+    this._pv = value;
+  }
 
-    /**
-     * Setter batiment
-     * @param {Batiment} value
-     */
-	public set batiment(value: Batiment) {
-		this._batiment = value;
-	}
+  /**
+   * Setter ptAttaque
+   * @param {number} value
+   */
+  public set ptAttaque(value: number) {
+    this._ptAttaque = value;
+  }
 
-    /**
-     * Setter level
-     * @param {number} value
-     */
-	public set level(value: number) {
-		this._level = value;
-	}
+  /**
+   * Setter session
+   * @param {Session} value
+   */
+  public set session(value: Session) {
+    this._session = value;
+  }
 
-    /**
-     * Setter used
-     * @param {boolean} value
-     */
-	public set used(value: boolean) {
-		this._used = value;
-	}
+  /**
+   * Setter batiment
+   * @param {Batiment} value
+   */
+  public set batiment(value: Batiment) {
+    this._batiment = value;
+  }
+
+  /**
+   * Setter level
+   * @param {number} value
+   */
+  public set level(value: number) {
+    this._level = value;
+  }
+
+  /**
+   * Setter used
+   * @param {boolean} value
+   */
+  public set used(value: boolean | undefined) {
+    this._used = value;
+  }
 
 
 }

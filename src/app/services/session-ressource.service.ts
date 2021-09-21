@@ -1,3 +1,6 @@
+import { Compte } from './../model/compte';
+import { Partie } from './../model/partie';
+import { TransformationRessource } from './../model/transformation-ressource';
 import { Observable } from 'rxjs';
 import { SessionRessource } from './../model/session-ressource';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -28,7 +31,7 @@ export class SessionRessourceService {
 
   public getBySession(session: Session): Observable<SessionRessource[]>{
     this.initHeaders();
-    return this.http.get<SessionRessource[]>(this.url + '/' + session.partie?.id + '&' + session.compte?.id, { headers: this.headers });
+    return this.http.get<SessionRessource[]>(this.url + '/' + session.partie!.id + '/' + session.compte!.id, { headers: this.headers });
   }
 
   public delete(id: number | undefined) {
@@ -50,4 +53,10 @@ export class SessionRessourceService {
   //   this.initHeaders();
   //   return this.http.put<SessionRessource>(this.url + '/' + sessionRessource.id, sessionRessource, { headers: this.headers });
   // }
+
+  public transformer(session : Session, tr: TransformationRessource, qte: number) {
+    this.initHeaders();
+    return this.http.put(this.url + '/' + session.partie!.id + '/' + session.compte!.id + '/' + tr.id + '/' + qte, { headers: this.headers });
+  }
+
 }

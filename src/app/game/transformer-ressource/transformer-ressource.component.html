@@ -1,0 +1,5 @@
+<select *ngFor="let t of transformationRessources" class="form-select" aria-label="Default select example"
+  style="width: 48%;">
+  <option (click)="transformationSelectionne()" [formControl]="choix"> {{ t.ressourceLost }} -> {{t.ressourceWin}}
+  </option>
+</select>
