@@ -22,6 +22,11 @@ import { AuthentificationComponent } from './authentification/authentification/a
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { HomeComponent } from './home/home.component';
+import { EditAttaqueComponent } from './gestion/batiment/edit-attaque/edit-attaque.component';
+import { EditDefenseComponent } from './gestion/batiment/edit-defense/edit-defense.component';
+import { EditProductionComponent } from './gestion/batiment/edit-production/edit-production.component';
+import { EditTransformationComponent } from './gestion/batiment/edit-transformation/edit-transformation.component';
+import { CoutBatimentComponent } from './gestion/batiment/cout-batiment/cout-batiment.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +45,11 @@ import { HomeComponent } from './home/home.component';
     EditRessourceComponent,
     AuthentificationComponent,
     HomeComponent,
+    EditAttaqueComponent,
+    EditDefenseComponent,
+    EditProductionComponent,
+    EditTransformationComponent,
+    CoutBatimentComponent
   ],
   imports: [
     BrowserModule,

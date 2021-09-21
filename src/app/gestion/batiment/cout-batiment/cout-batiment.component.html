@@ -1,0 +1,26 @@
+<div class="form-group">
+  <label>Couts d'achat:</label>
+  <table class="table">
+    <tr>
+      <th>Ressource</th>
+      <th>Quantité</th>
+    </tr>
+    <tr *ngFor="let cb of coutBatiments">
+      <td>{{cb.$ressource.$ressource.nom}}</td>
+      <td>{{cb.$quantite}}</td>
+    </tr>
+    <tr>
+      <td>
+        <select class="form-control" [(ngModel)]="coutBatiment.$ressource.$ressource">
+          <option *ngFor="let r of ressources" [ngValue]="r">{{r.nom}}</option>
+        </select>
+      </td>
+      <td>
+        <input type="number" [(ngModel)]="coutBatiment.$quantite"/>
+      </td>
+    </tr>
+    <button type="button" class="btn btn-link" (click)="ajoutCout()">ajouter</button>
+    <button type="button" class="btn btn-link" (click)="restartListCout()">recommencer la liste des couts</button>
+  </table>
+  <div class="alert alert-danger" *ngIf="!validation">une ressource doit être selectionné et la quantité doit être supérieure à 0</div>
+</div>
