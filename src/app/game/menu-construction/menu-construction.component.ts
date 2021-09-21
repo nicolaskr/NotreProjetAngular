@@ -4,7 +4,7 @@ import { Partie } from './../../model/partie';
 import { Batiment } from './../../model/batiment';
 import { SessionBatimentService } from './../../services/session-batiment.service';
 import { SessionBatiment } from './../../model/session-batiment';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Session } from 'src/app/model/session';
 import {
   FormBuilder,
@@ -24,6 +24,8 @@ export class MenuConstructionComponent implements OnInit {
 
   batimentsConstructibles: Batiment[] = [];
   choixBatiment: number = 0;
+  @Output()
+  constructionEvent: EventEmitter<string> = new EventEmitter();
 
   constructor(
     private sessionBatimentService: SessionBatimentService,
@@ -47,5 +49,6 @@ export class MenuConstructionComponent implements OnInit {
     this.sessionBatimentService
       .construire(this.sessionActive!, this.choixBatiment)
       .subscribe();
+    this.constructionEvent.emit();
   }
 }

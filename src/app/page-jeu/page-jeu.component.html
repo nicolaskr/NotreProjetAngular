@@ -133,16 +133,22 @@
       <app-menu-construction
         *ngIf="afficherMenuConstruction"
         [session]="player"
+        (constructionEvent)="list()"
       ></app-menu-construction>
       <app-menu-amelioration
         *ngIf="afficherMenuAmelioration"
         [session]="j1"
+        (ameliorationEvent)="list()"
       ></app-menu-amelioration>
       <app-menu-transformation
         *ngIf="afficherMenuTransformation"
         [session]="j1"
+        (transformationEvent)="list()"
       ></app-menu-transformation>
-      <app-menu-attaque *ngIf="afficherMenuAttaque"></app-menu-attaque>
+      <app-menu-attaque
+        *ngIf="afficherMenuAttaque"
+        (attaqueEvent)="list()"
+      ></app-menu-attaque>
     </div>
   </div>
 

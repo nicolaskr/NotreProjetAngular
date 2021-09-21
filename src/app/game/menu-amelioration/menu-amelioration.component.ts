@@ -2,39 +2,47 @@ import { Compte } from './../../model/compte';
 import { Partie } from './../../model/partie';
 import { SessionBatimentService } from './../../services/session-batiment.service';
 import { Batiment } from './../../model/batiment';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { Session } from './../../model/session';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SessionBatiment } from 'src/app/model/session-batiment';
 
 @Component({
   selector: 'app-menu-amelioration',
   templateUrl: './menu-amelioration.component.html',
-  styleUrls: ['./menu-amelioration.component.css']
+  styleUrls: ['./menu-amelioration.component.css'],
 })
 export class MenuAmeliorationComponent implements OnInit {
-
   @Input('session')
   sessionActive: Session | undefined;
+
+  @Output()
+  ameliorationEvent: EventEmitter<string> = new EventEmitter();
 
   batimentsAmeliorables: SessionBatiment[] = [];
   choixAmelioration: number = 0;
 
-  constructor(private sessionBatimentService: SessionBatimentService) {
-  }
+  constructor(private sessionBatimentService: SessionBatimentService) {}
 
   ngOnInit(): void {
     this.listBatimentsAmeliorables();
   }
 
   listBatimentsAmeliorables() {
-    this.sessionBatimentService.getBatimentsAmeliorables(this.sessionActive!).subscribe((res) => {
-      this.batimentsAmeliorables = res;
-    });
+    this.sessionBatimentService
+      .getBatimentsAmeliorables(this.sessionActive!)
+      .subscribe((res) => {
+        this.batimentsAmeliorables = res;
+      });
   }
 
   save() {
     this.sessionBatimentService.ameliorer(this.choixAmelioration).subscribe();
+    this.ameliorationEvent.emit();
   }
-
 }
