@@ -1,57 +1,61 @@
-<div class="row" *ngFor="let p of sessions">
-  <div>haha</div>
+<div class="row" *ngFor="let p of sessions | async">
   <h2 *ngIf="p.tourEnCours == false">{{ p.id?.compte?.nom }}</h2>
   <table *ngIf="p.tourEnCours == false" class="table table-striped">
-    <tr *ngFor="let sr of p.sessionRessource">
-      <th>
-        <img height="40px" width="40px" src="images/bois.jpg" alt=" bois" /> :{{
-          sr.quantite
-        }}
-      </th>
-      <th>
+    <tr>
+      <th *ngFor="let sr of p.sessionRessource">
         <img
+          *ngIf="ressourceBool('bois', sr)"
+          height="40px"
+          width="40px"
+          src="images/bois.jpg"
+          alt=" bois"
+        />
+        <div *ngIf="ressourceBool('bois', sr)">: {{ sr.quantite }}</div>
+
+        <img
+          *ngIf="ressourceBool('pierre', sr)"
           height="40px"
           width="40px"
           src="http://produitsversailles.com/wp-content/uploads/2018/06/pierre-polie-semi-grise-_105643-red-copy-300x300.png"
           alt="pierre"
         />
-        :{{ sr.quantite }}
-      </th>
-      <th>
+        <div *ngIf="ressourceBool('pierre', sr)">: {{ sr.quantite }}</div>
+
         <img
+          *ngIf="ressourceBool('minerais', sr)"
           height="40px"
           width="40px"
           src="http://www.a3m-asso.fr/wp-content/uploads/2016/07/ERAMET-Minerai-300x200.jpg"
           alt="minerais"
         />
-        :{{ sr.quantite }}
-      </th>
-      <th>
+        <div *ngIf="ressourceBool('minerais', sr)">: {{ sr.quantite }}</div>
+
         <img
-          height="40px"
-          width="40px"
-          src="https://blog.arpp.org/wp-content/uploads/sites/5/2019/09/or-.jpg"
-          alt="or"
-        />
-        :{{ sr.quantite }}
-      </th>
-      <th>
-        <img
+          *ngIf="ressourceBool('fer', sr)"
           height="40px"
           width="40px"
           src="https://www.corse-epoxy.fr/wp-content/uploads/2016/09/profil-acier-720x340.jpg"
           alt="fer"
         />
-        :{{ sr.quantite }}
-      </th>
-      <th>
+        <div *ngIf="ressourceBool('fer', sr)">: {{ sr.quantite }}</div>
+
         <img
+          *ngIf="ressourceBool('cuivre', sr)"
           height="40px"
           width="40px"
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/NatCopper.jpg/220px-NatCopper.jpg"
           alt="cuivre"
         />
-        :{{ sr.quantite }}
+        <div *ngIf="ressourceBool('cuivre', sr)">: {{ sr.quantite }}</div>
+
+        <img
+          *ngIf="ressourceBool('or', sr)"
+          height="40px"
+          width="40px"
+          src="https://blog.arpp.org/wp-content/uploads/sites/5/2019/09/or-.jpg"
+          alt="or"
+        />
+        <div *ngIf="ressourceBool('or', sr)">: {{ sr.quantite }}</div>
       </th>
     </tr>
   </table>
