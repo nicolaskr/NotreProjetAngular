@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-menu-attaque',
   templateUrl: './menu-attaque.component.html',
-  styleUrls: ['./menu-attaque.component.css']
+  styleUrls: ['./menu-attaque.component.css'],
 })
 export class MenuAttaqueComponent implements OnInit {
+  @Output()
+  attaqueEvent: EventEmitter<string> = new EventEmitter();
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  save() {
+    this.attaqueEvent.emit();
   }
-
 }

@@ -13,7 +13,7 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-menu-transformation',
@@ -33,6 +33,9 @@ export class MenuTransformationComponent implements OnInit {
   quantite: number = 0;
   choixTransformation: number = 0;
   choixBatiment: number = 0;
+
+  @Output()
+  transformationEvent: EventEmitter<string> = new EventEmitter();
 
   constructor(
     private fb: FormBuilder,
@@ -75,10 +78,9 @@ export class MenuTransformationComponent implements OnInit {
   }
 
   save() {
-    this.sessionRessourceService.transformer(
-      this.sessionActive!,
-      this.choixTransformation,
-      this.quantite
-    ).subscribe();
+    this.sessionRessourceService
+      .transformer(this.sessionActive!, this.choixTransformation, this.quantite)
+      .subscribe();
+    this.transformationEvent.emit();
   }
 }

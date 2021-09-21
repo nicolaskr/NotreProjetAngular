@@ -47,6 +47,7 @@ export class PageJeuComponent implements OnInit {
   }
 
   list() {
+    console.log('list');
     this.sessions = this.sessionService.getAll();
   }
 
