@@ -1,8 +1,8 @@
- <form (ngSubmit)="save()" [formGroup]="formAmelioration" *ngIf="sessionActive">
+ <form (ngSubmit)="save()" *ngIf="sessionActive">
   <h3>Amélioration</h3>
-  <select *ngFor="let b of batimentsAmeliorables" class="form-select" aria-label="Default select example"
+  <select class="form-select"  [(ngModel)]="choixAmelioration" name="id" aria-label="Default select example"
     style="width: 48%;">
-    <option [formControl]="batimentAmeliore">{{ b.batiment.nom }}</option>
+    <option *ngFor="let b of batimentsAmeliorables" [value]="b.id" required >{{ b.batiment.nom }}</option>
   </select>
-  <button type="submit" class="btn btn-outline-success">Valider</button>
+  <button type="submit" class="btn btn-outline-success" [disabled]="choixAmelioration==0">Valider</button>
 </form>

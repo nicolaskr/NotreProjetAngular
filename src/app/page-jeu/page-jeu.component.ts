@@ -126,8 +126,8 @@ export class PageJeuComponent implements OnInit {
       let att: number = 0;
       let pv: number = 0;
       for (var sb of s.sessionBatiment!) {
-        pv = pv + sb.pv;
-        att = att + sb.ptAttaque;
+        pv = pv + sb.pointsDeVie;
+        att = att + sb.pointsDAttaque;
       }
       s.att = att;
       s.def = pv;

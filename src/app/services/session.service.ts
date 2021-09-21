@@ -15,7 +15,8 @@ export class SessionService {
   public initHeaders() {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Basic ' + localStorage.getItem('token'),
+      // Authorization: 'Basic ' + localStorage.getItem('token'),
+      Authorization: 'Basic ' + btoa("joueur1:joueur1")
     });
   }
   public getAll(): Observable <Session[]> {
