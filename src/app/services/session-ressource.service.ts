@@ -85,9 +85,9 @@ export class SessionRessourceService {
 
   public transformer(session: Session, id: number, qte: number) {
     this.initHeaders();
-    return this.http.put(
+    return this.http.post(
       this.url +
-        '/' +
+        '/transformationRessource/' +
         session.id?.partie?.id +
         '/' +
         session.id?.compte?.id +
