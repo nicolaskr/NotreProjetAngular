@@ -43,6 +43,7 @@ export class PageJeuComponent implements OnInit {
   joueurs() {
     this.sessionService.get(1, 2).subscribe((res) => {
       this.j1 = res;
+      console.log(this.j1);
     });
     this.sessionService.get(1, 3).subscribe((res) => {
       this.j2 = res;

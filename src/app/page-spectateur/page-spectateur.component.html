@@ -1,6 +1,6 @@
 <div class="row" *ngFor="let p of sessions">
   <div>haha</div>
-  <h2 *ngIf="p.tourEnCours == false">{{ p.compte?.nom }}</h2>
+  <h2 *ngIf="p.tourEnCours == false">{{ p.id?.compte?.nom }}</h2>
   <table *ngIf="p.tourEnCours == false" class="table table-striped">
     <tr *ngFor="let sr of p.sessionRessource">
       <th>
