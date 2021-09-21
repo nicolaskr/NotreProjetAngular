@@ -12,10 +12,9 @@ import { SessionRessourceService } from '../services/session-ressource.service';
 @Component({
   selector: 'page-jeu',
   templateUrl: './page-jeu.component.html',
-  styleUrls: ['./page-jeu.component.css']
+  styleUrls: ['./page-jeu.component.css'],
 })
 export class PageJeuComponent implements OnInit {
-
   player: Session | undefined;
   sessions: Session[] = [];
   waiters: Session[] = [];
@@ -25,12 +24,16 @@ export class PageJeuComponent implements OnInit {
   afficherMenuTransformation: boolean = false;
   afficherMenuAttaque: boolean = false;
 
-  j1 : Session | undefined;
-  j2 : Session | undefined;
-  j3 : Session | undefined;
-  j4 : Session | undefined;
+  j1: Session | undefined;
+  j2: Session | undefined;
+  j3: Session | undefined;
+  j4: Session | undefined;
 
-  constructor(private sessionService: SessionService, private sessionBatService: SessionBatimentService, private sessionResService: SessionRessourceService) { }
+  constructor(
+    private sessionService: SessionService,
+    private sessionBatService: SessionBatimentService,
+    private sessionResService: SessionRessourceService
+  ) {}
 
   ngOnInit(): void {
     this.list();
@@ -38,92 +41,74 @@ export class PageJeuComponent implements OnInit {
   }
 
   joueurs() {
-    this.sessionService.get(1,2).subscribe((res) => {
+    this.sessionService.get(1, 2).subscribe((res) => {
       this.j1 = res;
-    })
-    this.sessionService.get(1,3).subscribe((res) => {
+    });
+    this.sessionService.get(1, 3).subscribe((res) => {
       this.j2 = res;
-    })
-    this.sessionService.get(1,4).subscribe((res) => {
+    });
+    this.sessionService.get(1, 4).subscribe((res) => {
       this.j3 = res;
-    })
-    this.sessionService.get(1,5).subscribe((res) => {
+    });
+    this.sessionService.get(1, 5).subscribe((res) => {
       this.j4 = res;
-    })
+    });
   }
 
   list() {
     this.sessionService.getAll().subscribe((res) => {
       console.log(res);
       this.sessions = res;
-
     });
     this.importBatiments;
     this.importRessources();
     this.tour();
   }
 
-  clickConstruction(){
-    for(var s of this.sessions)
-    {
-      console.log("1");
-      if (s.tourEnCours)
-      {
-        this.player=s;
-      } else {
-        this.waiters.push(s);
-      }
-    }
-    console.log(this.player.sessionBatiment)
-  }
-
-  tour(){
+  tour() {
     this.actuAttDefPlayers();
-    for (let i=0;i<this.sessions.length;i++){
+    for (let i = 0; i < this.sessions.length; i++) {
       console.log(this.sessions[i]);
     }
-    for(var s of this.sessions)
-    {
-      console.log("1");
-      if (s.tourEnCours)
-      {
-        this.player=s;
+    for (var s of this.sessions) {
+      console.log('1');
+      if (s.tourEnCours) {
+        this.player = s;
       } else {
         this.waiters.push(s);
       }
     }
     console.log(this.waiters);
     console.log(this.player);
-
   }
 
-  importBatiments(){
-    for (var s of this.sessions){
-      this.sessionBatService.getBySession(s).subscribe((res)=>{
+  importBatiments() {
+    for (var s of this.sessions) {
+      this.sessionBatService.getBySession(s).subscribe((res) => {
         s.sessionBatiment = res;
-      })
+      });
     }
   }
 
-  importRessources(){
-    for (var s of this.sessions){
-      this.sessionResService.getBySession(s).subscribe((res)=>{
+  importRessources() {
+    for (var s of this.sessions) {
+      this.sessionResService.getBySession(s).subscribe((res) => {
         s.sessionRessource = res;
-      })
+      });
     }
   }
 
-  clickFinDeTour(){
+  clickFinDeTour() {
     console.log(this.waiters);
     console.log(this.player);
   }
 
-  finDeTour(){
-    for(let i=0;i<(this.sessions.length);i++){
-      console.log(i+'fin de tour');
-      if(this.sessions[i].tourEnCours){
+  finDeTour() {
+    for (let i = 0; i < this.sessions.length; i++) {
+      console.log(i + 'fin de tour');
+      if (this.sessions[i].tourEnCours) {
         this.sessions[i].tourEnCours = false;
-        if (i == (this.sessions.length - 1)) {
+        if (i == this.sessions.length - 1) {
           this.sessions[0].tourEnCours = true;
         } else {
           this.sessions[i + 1].tourEnCours = true;
@@ -135,14 +120,11 @@ export class PageJeuComponent implements OnInit {
     this.importRessources;
   }
 
-
-
-  actuAttDefPlayers(){
-    for(var s of this.sessions){
-     let att : number =0;
-     let pv : number =0;
-     for (var sb of s.sessionBatiment!)
-     {
+  actuAttDefPlayers() {
+    for (var s of this.sessions) {
+      let att: number = 0;
+      let pv: number = 0;
+      for (var sb of s.sessionBatiment!) {
         pv = pv + sb.pv;
         att = att + sb.ptAttaque;
       }
@@ -178,5 +160,4 @@ export class PageJeuComponent implements OnInit {
     this.afficherMenuTransformation = false;
     this.afficherMenuAttaque = true;
   }
-
 }
