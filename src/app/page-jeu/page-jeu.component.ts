@@ -1,3 +1,4 @@
+import { PageSpectateurComponent } from './../page-spectateur/page-spectateur.component';
 import { Compte } from './../model/compte';
 import { Partie } from './../model/partie';
 
@@ -18,6 +19,8 @@ import { Observable } from 'rxjs';
 export class PageJeuComponent implements OnInit {
   sessions: Observable<Session[]>;
   waiters: Session[] = [];
+
+  finDeTourEvent: EventEmitter<string> = new EventEmitter();
 
   changementJoueur: boolean = false;
 
@@ -67,6 +70,8 @@ export class PageJeuComponent implements OnInit {
     this.finDeTour();
     this.tirageRessource();
     this.list();
+
+    this.finDeTourEvent.emit();
   }
 
   ressourceBool(nom: string, sr: SessionRessource): boolean {
@@ -83,11 +88,11 @@ export class PageJeuComponent implements OnInit {
       for (let i = 0; i < res.length; i++) {
         if (res[i].tourEnCours) {
           console.log(i + 'fin de tour');
-          this.sessionService.rotation(res[i]);
+          this.sessionService.rotation(res[i]).subscribe();
           if (i == res.length - 1) {
-            this.sessionService.rotation(res[0]).subscribe;
+            this.sessionService.rotation(res[0]).subscribe();
           } else {
-            this.sessionService.rotation(res[i + 1]).subscribe;
+            this.sessionService.rotation(res[i + 1]).subscribe();
           }
           this.sessionService.get;
           return;
