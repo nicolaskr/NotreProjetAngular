@@ -1,3 +1,6 @@
+import { TransformationRessourceService } from './../../services/transformation-ressource.service';
+import { SessionRessourceService } from './../../services/session-ressource.service';
+import { BatimentService } from './../../services/batiment.service';
 import { Ressource } from './../../model/ressource';
 import { TransformationRessource } from './../../model/transformation-ressource';
 import { SessionBatimentService } from './../../services/session-batiment.service';
@@ -12,20 +15,17 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class TransformerRessourceComponent implements OnInit {
 
-  @Input('batiment')
-  batiment: Batiment | undefined;
+  @Input('idBatiment')
+  idBatiment: number = 0;
 
   @Output()
-  transformEvent: EventEmitter<TransformationRessource> = new EventEmitter();
+  transformEvent: EventEmitter<number> = new EventEmitter();
 
-  choix: FormControl;
   transformationRessources: TransformationRessource[] = [];
-  tr: TransformationRessource | undefined;
+  choix: number = 0;
 
-  constructor(private fb: FormBuilder, private sessionBatimentService: SessionBatimentService) {
-    this.choix = this.fb.control('', [
-      Validators.required
-    ])
+  constructor(private transformationRessourceService: TransformationRessourceService, private batimentService: BatimentService) {
+
   }
 
   ngOnInit(): void {
@@ -33,17 +33,15 @@ export class TransformerRessourceComponent implements OnInit {
   }
 
   listTransformationRessources() {
-    this.sessionBatimentService.getListTransformationRessource(this.batiment!).subscribe((res) => {
-      this.transformationRessources = res;
+    this.batimentService.get(this.idBatiment).subscribe((res) => {
+      this.transformationRessourceService.getAll(this.idBatiment).subscribe((res2) => {
+        this.transformationRessources = res2;
+      });
     });
   }
 
   public transformationSelectionne() {
-    let numero: number = this.choix.value.id;
-    this.sessionBatimentService.getTransformationRessourceById(numero).subscribe((res) => {
-      this.tr = res;
-    })
-    this.transformEvent.emit(this.tr);
+    this.transformEvent.emit(this.choix);
   }
 
 }

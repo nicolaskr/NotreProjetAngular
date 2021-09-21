@@ -1,3 +1,4 @@
+import { BatimentService } from './../../services/batiment.service';
 import { Compte } from './../../model/compte';
 import { Partie } from './../../model/partie';
 import { Batiment } from './../../model/batiment';
@@ -18,23 +19,16 @@ import {
   styleUrls: ['./menu-construction.component.css'],
 })
 export class MenuConstructionComponent implements OnInit {
-  formConstruction: FormGroup;
-  batimentConstruit: FormControl;
-
   @Input('session')
   sessionActive: Session | undefined;
 
   batimentsConstructibles: Batiment[] = [];
+  choixBatiment: number = 0;
 
   constructor(
-    private fb: FormBuilder,
-    private sessionBatimentService: SessionBatimentService
-  ) {
-    this.batimentConstruit = this.fb.control('', [Validators.required]);
-    this.formConstruction = this.fb.group({
-      batimentConstruit: this.batimentConstruit,
-    });
-  }
+    private sessionBatimentService: SessionBatimentService,
+    private batimentService: BatimentService
+  ) {}
 
   ngOnInit(): void {
     this.listBatimentsConstructibles();
@@ -50,7 +44,8 @@ export class MenuConstructionComponent implements OnInit {
   }
 
   save() {
-    let batAConstruire: Batiment = this.batimentConstruit.value;
-    this.sessionBatimentService.construire(this.sessionActive!, batAConstruire);
+    this.sessionBatimentService
+      .construire(this.sessionActive!, this.choixBatiment)
+      .subscribe();
   }
 }
