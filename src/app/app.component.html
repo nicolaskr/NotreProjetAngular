@@ -69,28 +69,44 @@
     id="navbarDropdown"
     role="button"
     data-bs-toggle="dropdown"
-    aria-expanded="false">
-  Gestion
+    aria-expanded="false"
+  >
+    Gestion
   </a>
   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
     <li>
-      <a [routerLink]="['/gestion/parties']" routerLinkActive="active" class="btn btn-link">Gestion Parties</a>
+      <a
+        [routerLink]="['/gestion/parties']"
+        routerLinkActive="active"
+        class="btn btn-link"
+        >Gestion Parties</a
+      >
     </li>
     <li>
-      <a [routerLink]="['/gestion/joueurs']" routerLinkActive="active"class="btn btn-link">Gestion Joueurs</a>
+      <a
+        [routerLink]="['/gestion/joueurs']"
+        routerLinkActive="active"
+        class="btn btn-link"
+        >Gestion Joueurs</a
+      >
     </li>
     <li>
-       <a
-    [routerLink]="['/gestion/ressources']" routerLinkActive="active" class="btn btn-link">Gestion Ressources</a>
+      <a
+        [routerLink]="['/gestion/ressources']"
+        routerLinkActive="active"
+        class="btn btn-link"
+        >Gestion Ressources</a
+      >
     </li>
     <li>
-      <a [routerLink]="['/gestion/batiments']" routerLinkActive="active" class="btn btn-link">Gestion Batiments</a>
+      <a
+        [routerLink]="['/gestion/batiments']"
+        routerLinkActive="active"
+        class="btn btn-link"
+        >Gestion Batiments</a
+      >
     </li>
   </ul>
-
-
-
-
 
   <a [routerLink]="['/toCreate']" routerLinkActive="active" class="btn btn-link"
     >toCreate</a
