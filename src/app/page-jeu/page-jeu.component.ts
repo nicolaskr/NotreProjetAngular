@@ -46,6 +46,7 @@ export class PageJeuComponent implements OnInit {
   ngOnInit(): void {
     this.joueurs();
     this.list();
+    this.tirageRessource();
   }
 
   list() {
