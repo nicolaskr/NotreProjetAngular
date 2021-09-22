@@ -27,6 +27,11 @@ export class SessionService {
       headers: this.headers,
     });
   }
+  public getByIdCompte(idCompte: number): Observable<Session[]> {
+    // this.initHeaders();
+    // return this.httpClient.get<Batiment[]>(this.URL,{headers:this.headers});
+    return this.http.get<Session[]>(this.url + '/compte/' + idCompte);
+  }
 
   public delete(id: number | undefined) {
     this.initHeaders();

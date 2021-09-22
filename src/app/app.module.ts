@@ -31,6 +31,7 @@ import { EditDefenseComponent } from './gestion/batiment/edit-defense/edit-defen
 import { EditProductionComponent } from './gestion/batiment/edit-production/edit-production.component';
 import { EditTransformationComponent } from './gestion/batiment/edit-transformation/edit-transformation.component';
 import { CoutBatimentComponent } from './gestion/batiment/cout-batiment/cout-batiment.component';
+import { ChargerPartieComponent } from './gestion/charger-partie/charger-partie.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { CoutBatimentComponent } from './gestion/batiment/cout-batiment/cout-bat
     EditProductionComponent,
     EditTransformationComponent,
     CoutBatimentComponent,
+    ChargerPartieComponent,
   ],
   imports: [
     BrowserModule,
