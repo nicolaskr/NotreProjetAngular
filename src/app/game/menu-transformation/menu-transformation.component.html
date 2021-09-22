@@ -1,11 +1,23 @@
 <form (ngSubmit)="save()" *ngIf="sessionActive">
   <h3>Transformation</h3>
-  <select class="form-select"
+  <div *ngIf="batimentsTransformation.length==0">
+    <div class="alert alert-danger" >Vous n'avez pas de batiments de transformation</div>
+  </div>
+  <h5 *ngIf="batimentsTransformation.length>0">Choisissez un batiment de transformation :</h5>
+  <select *ngIf="batimentsTransformation.length>0" class="form-select"(click)="listTransformationRessources()"
     aria-label="Default select example" style="width: 48%;" [(ngModel)]="choixBatiment" name="choixBatiment">
     <option *ngFor="let b of batimentsTransformation" [value]="b. batiment.id" required>{{ b.batiment.nom }}</option>
   </select>
-  <transformer-ressource *ngIf="choixBatiment!=0" [idBatiment]="choixBatiment" (transformEvent)="maximum($event)">
-  </transformer-ressource>
+  <h5 *ngIf="choixBatiment!=0">Quelle ressource souhaitez-vous transformer ?</h5>
+  <select *ngIf="choixBatiment!=0" class="form-select" aria-label="Default select example"
+  style="width: 48%;" [(ngModel)]="choixTr" name="choixTr" (click)="maximum()">
+  <option *ngFor="let t of transformationRessources"  [value]="t.id"> {{ t.ressourceLost.nom }} -> {{t.ressourceWin.nom}}
+  </option>
+</select>
+  <h5 *ngIf="choixTransformation!=0">Veuillez indiquer la quantité souhaitée :</h5>
   <input *ngIf="choixTransformation!=0" type="number" [(ngModel)]="quantite" name="quantite" [max]="quantiteMax" required>
-  <button type="submit" class="btn btn-outline-success" [disabled]="choixBatiment==0&&quantite==0&&quantite!=null">Valider</button>
+  <button *ngIf="choixTransformation!=0&&quantite>0&&quantite<=quantiteMax" type="submit" class="btn btn-success" [disabled]="choixBatiment==0&&quantite==0&&quantite!=null">Valider action</button>
+  <div *ngIf="choixTransformation!=0&&quantite>0&&quantite>quantiteMax">
+    <div class="alert alert-danger">Vous n'avez pas suffisamment de ressources</div>
+  </div>
 </form>

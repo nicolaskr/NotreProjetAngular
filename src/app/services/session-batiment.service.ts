@@ -118,4 +118,74 @@ export class SessionBatimentService {
       { headers: this.headers }
     );
   }
+
+  public getBatimentsAttaque(session: Session) {
+    this.initHeaders();
+    return this.http.get<SessionBatiment[]>(
+        this.url +
+        '/attaque/' +
+        session.id?.partie?.id +
+        '/' +
+        session.id?.compte?.id,
+      { headers: this.headers }
+    );
+  }
+
+  public attaqueAllWithAll(session: Session, idTarget:number){
+    this.initHeaders();
+    return this.http.put(this.url +
+      '/attaque/' +
+      session.id?.partie?.id +
+      '/' +
+      session.id?.compte?.id +
+      '/all/' +
+      idTarget +
+      '/all',
+    { headers: this.headers });
+  }
+
+  public attaqueOneWithAll(session: Session, idTarget:number, idBatTar:number){
+    this.initHeaders();
+    return this.http.put(this.url +
+      '/attaque/' +
+      session.id?.partie?.id +
+      '/' +
+      session.id?.compte?.id +
+      '/all/' +
+      idTarget +
+      '/' +
+      idBatTar,
+    { headers: this.headers });
+  }
+
+  public attaqueAllWithOne(session: Session, idBatAtt:number, idTarget:number){
+    this.initHeaders();
+    return this.http.put(this.url +
+      '/attaque/' +
+      session.id?.partie?.id +
+      '/' +
+      session.id?.compte?.id +
+      '/' +
+      idBatAtt +
+      '/' +
+      idTarget +
+      '/all',
+    { headers: this.headers });
+  }
+
+  public attaqueOneWithOne(session: Session, idBatAtt:number, idTarget:number, idBatTar:number){
+    this.initHeaders();
+    return this.http.put(this.url +
+      '/attaque/' +
+      session.id?.partie?.id +
+      '/' +
+      session.id?.compte?.id +
+      '/' +
+      idBatAtt +
+      '/' +
+      idTarget +
+      '/' +
+      idBatTar,
+    { headers: this.headers });
+  }
 }
