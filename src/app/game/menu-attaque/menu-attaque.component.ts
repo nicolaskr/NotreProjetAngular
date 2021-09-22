@@ -37,7 +37,6 @@ export class MenuAttaqueComponent implements OnInit {
       .getBatimentsAttaque(this.sessionActive!)
       .subscribe((res) => {
         this.batimentsAttaque = res;
-        console.log(this.batimentsAttaque);
       });
   }
 
