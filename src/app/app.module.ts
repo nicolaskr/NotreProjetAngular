@@ -23,7 +23,6 @@ import { AuthentificationComponent } from './authentification/authentification/a
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { HomeComponent } from './home/home.component';
-import { PageSpectateurComponent } from './page-spectateur/page-spectateur.component';
 import { InscriptionComponent } from './authentification/inscription/inscription.component';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
@@ -51,13 +50,12 @@ import { CoutBatimentComponent } from './gestion/batiment/cout-batiment/cout-bat
     EditRessourceComponent,
     AuthentificationComponent,
     HomeComponent,
-    PageSpectateurComponent,
     InscriptionComponent,
     EditAttaqueComponent,
     EditDefenseComponent,
     EditProductionComponent,
     EditTransformationComponent,
-    CoutBatimentComponent
+    CoutBatimentComponent,
   ],
   imports: [
     BrowserModule,
