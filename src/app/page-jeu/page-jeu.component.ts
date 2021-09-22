@@ -1,4 +1,3 @@
-import { PageSpectateurComponent } from './../page-spectateur/page-spectateur.component';
 import { Compte } from './../model/compte';
 import { Partie } from './../model/partie';
 
