@@ -60,8 +60,7 @@ import { ChargerPartieComponent } from './gestion/charger-partie/charger-partie.
     CoutBatimentComponent,
     ListCoutBatimentComponent,
     TransformationRessourceComponent,
-    ListTransformationRessourceComponent
-    CoutBatimentComponent,
+    ListTransformationRessourceComponent,
     ChargerPartieComponent,
   ],
   imports: [
