@@ -162,26 +162,28 @@
             </button>
           </div>
 
-      <app-menu-construction
-        *ngIf="afficherMenuConstruction"
-        [session]="player"
-        (constructionEvent)="list()"
-      ></app-menu-construction>
-      <app-menu-amelioration
-        *ngIf="afficherMenuAmelioration"
-        [session]="player"
-        (ameliorationEvent)="list()"
-      ></app-menu-amelioration>
-      <app-menu-transformation
-        *ngIf="afficherMenuTransformation"
-        [session]="player"
-        (transformationEvent)="list()"
-      ></app-menu-transformation>
-      <app-menu-attaque
-        *ngIf="afficherMenuAttaque"
-        [session]="player"
-        (attaqueEvent)="list()"
-      ></app-menu-attaque>
+          <app-menu-construction
+            *ngIf="afficherMenuConstruction"
+            [session]="player"
+            (constructionEvent)="list()"
+          ></app-menu-construction>
+          <app-menu-amelioration
+            *ngIf="afficherMenuAmelioration"
+            [session]="player"
+            (ameliorationEvent)="list()"
+          ></app-menu-amelioration>
+          <app-menu-transformation
+            *ngIf="afficherMenuTransformation"
+            [session]="player"
+            (transformationEvent)="list()"
+          ></app-menu-transformation>
+          <app-menu-attaque
+            *ngIf="afficherMenuAttaque"
+            [session]="player"
+            (attaqueEvent)="list()"
+          ></app-menu-attaque>
+        </div>
+      </div>
     </div>
 
     <div class="col" style="display: flex; flex-direction: column">
@@ -211,7 +213,9 @@
                   src="assets/images/logos/imagesJeu/buche.jpg"
                   alt=" bois"
                 />
-                <div *ngIf="ressourceBool('bois', sr)">{{ sr.quantite }}</div>
+                <div *ngIf="ressourceBool('bois', sr)">
+                  {{ sr.quantite }}
+                </div>
 
                 <img
                   *ngIf="ressourceBool('pierre', sr)"
@@ -253,7 +257,9 @@
                   src="assets/images/logos/imagesJeu/fer.jpg"
                   alt="fer"
                 />
-                <div *ngIf="ressourceBool('fer', sr)">{{ sr.quantite }}</div>
+                <div *ngIf="ressourceBool('fer', sr)">
+                  {{ sr.quantite }}
+                </div>
 
                 <img
                   *ngIf="ressourceBool('cuivre', sr)"

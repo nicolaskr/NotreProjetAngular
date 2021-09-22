@@ -51,28 +51,32 @@ export class PageJeuComponent implements OnInit {
   list() {
     console.log('list');
     this.sessions = this.sessionService.getByIdPartie(this.idPartie);
-    this.sessionService.getByIdPartie(this.idPartie).subscribe((res) => {
-      for (var session of res) {
-        let sommeAtt: number = 0;
-        let sommeDef: number = 0;
-        for (var sessionBat of session.sessionBatiment) {
-          sommeAtt = sommeAtt + sessionBat.pointsDAttaque;
-          sommeDef = sommeDef + sessionBat.pointsDeVie;
-        }
-        console.log('def  ' + sommeDef);
-        console.log('att' + sommeAtt);
-        this.sessions.subscribe((ses) => {
-          for (var index in ses) {
-            if (ses[index].id.compte.nom === session.id.compte.nom) {
-              ses[index].att = sommeAtt;
-              ses[index].def = sommeDef;
-              console.log(ses[index].def + 'def');
-              console.log(ses);
-            }
-          }
-        });
-      }
-    });
+    this.sessionService
+      .getByIdPartie(this.idPartie)
+      .subscribe((res) => console.log(res));
+
+    // this.sessionService.getByIdPartie(this.idPartie).subscribe((res) => {
+    //   for (var session of res) {
+    //     let sommeAtt: number = 0;
+    //     let sommeDef: number = 0;
+    //     for (var sessionBat of session.sessionBatiment) {
+    //       sommeAtt = sommeAtt + sessionBat.pointsDAttaque;
+    //       sommeDef = sommeDef + sessionBat.pointsDeVie;
+    //     }
+    //     console.log('def  ' + sommeDef);
+    //     console.log('att' + sommeAtt);
+    //     this.sessions.subscribe((ses) => {
+    //       for (var index in ses) {
+    //         if (ses[index].id.compte.nom === session.id.compte.nom) {
+    //           ses[index].att = sommeAtt;
+    //           ses[index].def = sommeDef;
+    //           console.log(ses[index].def + 'def');
+    //           console.log(ses);
+    //         }
+    //       }
+    //     });
+    //   }
+    // });
   }
 
   joueurs() {
