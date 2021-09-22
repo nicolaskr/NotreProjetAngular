@@ -1,0 +1,13 @@
+<label><b> Liste actuelle des couts du batiment : </b></label><br>
+<table class="table">
+<tbody>
+  <tr>
+    <th>Ressource</th>
+    <th>Quantité</th>
+  </tr>
+<tr *ngFor="let cb of batiment.coutBatiment">
+  <td>{{cb.id.ressource.nom}}</td>
+  <td>{{cb.cout}}</td>
+</tr><br>
+</tbody>
+</table>

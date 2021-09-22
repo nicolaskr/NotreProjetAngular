@@ -23,9 +23,13 @@
       <option>false</option>
     </select>
   </div>
-  <app-cout-batiment (outputEvent)="receptionListCout($event)"></app-cout-batiment>
 
-
+  <div class="form-group">
+  <app-list-cout-batiment [id]="id"></app-list-cout-batiment>
+  </div>
+  <div class="form-group">
+  <app-cout-batiment (outputEvent)="receptionListCout($event)" [coutBatiments]="coutBatiments"></app-cout-batiment>
+  </div>
   <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group me-2" role="group" aria-label="First group">
       <button (click)="save()" class="btn btn-success">enregistrer</button>

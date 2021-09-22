@@ -61,7 +61,7 @@ export class PageJeuComponent implements OnInit {
       for (var session of res) {
         if (session.def <= 0) {
           this.sessionService
-            .delete(session.id.partie.id, session.id.compte.id)
+            .delete(session.id.partie.id!, session.id.compte.id!)
             .subscribe();
         }
       }

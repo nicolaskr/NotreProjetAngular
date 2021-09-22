@@ -1,0 +1,26 @@
+<p-listbox
+  [options]="comptes"
+  [(ngModel)]="selectedComptes"
+  [metaKeySelection]="false"
+  [checkbox]="true"
+  [filter]="true"
+  [multiple]="true"
+  optionLabel="username"
+  [listStyle]="{ 'max-height': '350px' }"
+  [style]="{ width: '100%' }"
+  (onChange)="send()"
+>
+  <ng-template let-compte pTemplate="item">
+    <div class="compte-item p-d-inline">
+      <p-avatar
+        label="{{ compte.username.charAt(0) }}{{
+          compte.username.charAt(compte.username.length - 1)
+        }}"
+        shape="circle"
+        styleClass="p-mr-2"
+        size="small"
+      ></p-avatar>
+      <div>{{ compte.username }}</div>
+    </div>
+  </ng-template>
+</p-listbox>

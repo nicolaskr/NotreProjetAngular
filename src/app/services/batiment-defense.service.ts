@@ -1,4 +1,4 @@
-import { CoutBatiment } from './../model/cout-batiment';
+
 import { Batiment } from './../model/batiment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';

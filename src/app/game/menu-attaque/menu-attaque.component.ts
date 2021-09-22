@@ -10,7 +10,6 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
   styleUrls: ['./menu-attaque.component.css'],
 })
 export class MenuAttaqueComponent implements OnInit {
-
   @Input('session')
   sessionActive: Session | undefined;
 
@@ -26,7 +25,10 @@ export class MenuAttaqueComponent implements OnInit {
   batimentsCible: SessionBatiment[] = [];
   choixBatimentCible: number = 0;
 
-  constructor(private sessionBatimentService: SessionBatimentService, private sessionService: SessionService) { }
+  constructor(
+    private sessionBatimentService: SessionBatimentService,
+    private sessionService: SessionService
+  ) {}
 
   ngOnInit(): void {
     this.listBatimentsAttaque();
@@ -40,35 +42,57 @@ export class MenuAttaqueComponent implements OnInit {
       });
   }
 
-  listJoueur(){
-    this.sessionService.getByIdPartie(this.sessionActive!.id.partie.id).subscribe((res)=>{
-      this.listeJoueur=res;
-    })
+  listJoueur() {
+    this.sessionService
+      .getByIdPartie(this.sessionActive!.id.partie.id!)
+      .subscribe((res) => {
+        this.listeJoueur = res;
+      });
   }
 
-  listBatimentsCible(){
-    this.sessionService.get(this.sessionActive!.id.partie.id, this.choixCible).subscribe((session)=> {
-      this.sessionBatimentService.getBySession(session).subscribe((res)=>{
-        this.batimentsCible=res;
+  listBatimentsCible() {
+    this.sessionService
+      .get(this.sessionActive!.id.partie.id!, this.choixCible)
+      .subscribe((session) => {
+        this.sessionBatimentService.getBySession(session).subscribe((res) => {
+          this.batimentsCible = res;
+        });
       });
-    });
   }
 
   save() {
-    if(this.choixBatimentAttaque==-1){
-      if(this.choixBatimentCible==-1){
-        this.sessionBatimentService.attaqueAllWithAll(this.sessionActive!,this.choixCible).subscribe();
+    if (this.choixBatimentAttaque == -1) {
+      if (this.choixBatimentCible == -1) {
+        this.sessionBatimentService
+          .attaqueAllWithAll(this.sessionActive!, this.choixCible)
+          .subscribe();
+      } else {
+        this.sessionBatimentService
+          .attaqueOneWithAll(
+            this.sessionActive!,
+            this.choixCible,
+            this.choixBatimentCible
+          )
+          .subscribe();
       }
-      else{
-        this.sessionBatimentService.attaqueOneWithAll(this.sessionActive!,this.choixCible, this.choixBatimentCible).subscribe();
-      }
-    }
-    else{
-       if(this.choixBatimentCible==-1){
-         this.sessionBatimentService.attaqueAllWithOne(this.sessionActive!, this.choixBatimentAttaque, this.choixCible).subscribe();
-      }
-      else{
-        this.sessionBatimentService.attaqueOneWithOne(this.sessionActive!, this.choixBatimentAttaque, this.choixCible, this.choixBatimentCible).subscribe();
+    } else {
+      if (this.choixBatimentCible == -1) {
+        this.sessionBatimentService
+          .attaqueAllWithOne(
+            this.sessionActive!,
+            this.choixBatimentAttaque,
+            this.choixCible
+          )
+          .subscribe();
+      } else {
+        this.sessionBatimentService
+          .attaqueOneWithOne(
+            this.sessionActive!,
+            this.choixBatimentAttaque,
+            this.choixCible,
+            this.choixBatimentCible
+          )
+          .subscribe();
       }
     }
     this.attaqueEvent.emit();

@@ -1,6 +1,6 @@
 import { CoutBatiment } from './../../../model/cout-batiment';
 import { Ressource } from 'src/app/model/ressource';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { RessourceService } from 'src/app/services/ressource.service';
 import { IdBatiment } from 'src/app/model/id-batiment';
 
@@ -17,33 +17,42 @@ export class CoutBatimentComponent implements OnInit {
   coutBatiments:CoutBatiment[]=[];
   validation:Boolean=true;
 
+
+
   @Output()
   outputEvent: EventEmitter<CoutBatiment[]>= new EventEmitter();
 
+  @Input('coutBatiments')
+  CBsRecu:CoutBatiment[]=[];
   constructor(private ressourceService:RessourceService) { }
 
   ngOnInit(): void {
     this.ressourceService.getAll().subscribe(res=>{
       this.ressources=res;
+      this.coutBatiments=this.CBsRecu;
     })
   }
 
   ajoutCout(){
-    if(this.coutBatiment.$quantite && !(this.coutBatiment.$ressource.$ressource.nom ==="")){
+    if(this.coutBatiment.$quantite && !(this.coutBatiment.$id.$ressource.nom ==="")){
       if(this.coutBatiment.$quantite>0){
-        let idcb: IdBatiment=new IdBatiment(this.coutBatiment.$ressource.$ressource)
+        let idcb: IdBatiment=new IdBatiment(this.coutBatiment.$id.$ressource)
         let cb:CoutBatiment=new CoutBatiment(idcb, this.coutBatiment.$quantite);
         this.coutBatiments.push(cb);
-        this.coutBatiment.$ressource=new IdBatiment(new Ressource(""));
+        this.coutBatiment.$id=new IdBatiment(new Ressource(""));
         this.coutBatiment.$quantite=0;
         this.validation=true;
 
         this.outputEvent.emit(this.coutBatiments);
       }
+      else{
+        this.validation=false;
+      }
     }
     else{
       this.validation=false;
     }
+
   }
 
   restartListCout(){

@@ -15,9 +15,12 @@ export class EditDefenseComponent implements OnInit {
 
   coutBatiments:CoutBatiment[]=[];
 
+  id:number=0;
+
   constructor(private ar: ActivatedRoute, private batimentDefenseService:BatimentDefenseService, private router:Router) {
     this.ar.params.subscribe(params => {
       if(params.id){
+        this.id=params.id;
         this.batimentDefenseService.get(params.id).subscribe(res=>{
           this.batiment=res;
         });
@@ -29,7 +32,10 @@ export class EditDefenseComponent implements OnInit {
   }
 
   save(){
-    this.batiment.coutBatiment=this.coutBatiments;
+    console.log(this.coutBatiments)
+    if(this.coutBatiments!=[]){
+      console.log("in")
+    this.batiment.coutBatiment=this.coutBatiments;}
     if(this.batiment.id){
       this.batimentDefenseService.update(this.batiment).subscribe(res=>{
         this.goListBatiment();
@@ -56,4 +62,6 @@ export class EditDefenseComponent implements OnInit {
     console.log(receptioncoutBatiments);
     this.coutBatiments=receptioncoutBatiments;
   }
+
+
 }
