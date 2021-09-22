@@ -1,0 +1,54 @@
+<form
+  class="flex align-items-center justify-content-center"
+  (ngSubmit)="submit()"
+  [formGroup]="formGroupNouvellePartie"
+>
+  <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+    <div class="text-center mb-5">
+      <img
+        src="assets/images/logos/logo.png"
+        alt="Image"
+        height="50"
+        class="mb-3"
+      />
+
+
+    </div>
+
+    <div>
+      <label class="block text-900 font-medium mb-2"
+        >Quelle Partie souhaitez-vous lancer ?</label
+      >
+      <select class="w-full mb-3" [formControl]="formControlPartie">
+        <option></option>
+        <option *ngFor="let s of sessions">
+          {{ s.id.partie.id }} {{ s.id.partie.sessions }}
+        </option>
+      </select>
+
+      <button
+        pButton
+        pRipple
+        type="submit"
+        label="C'est parti"
+        class="w-full"
+        [disabled]="formGroupNouvellePartie.invalid"
+      >
+      <img
+      src="assets/images/logos/logo.png"
+      style="width: 1.5rem"
+    /></button><br><br>
+      <button
+        pButton
+        pRipple
+        type="submit"
+        label="Nouvelle partie"
+        class="p-button-warning w-full"
+      >
+      <img
+      src="assets/images/logos/logo.png"
+      style="width: 1.5rem"
+    /></button>
+    </div>
+  </div>
+</form>

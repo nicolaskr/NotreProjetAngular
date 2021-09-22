@@ -12,7 +12,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuAmeliorationComponent } from './game/menu-amelioration/menu-amelioration.component';
 import { MenuTransformationComponent } from './game/menu-transformation/menu-transformation.component';
 import { MenuAttaqueComponent } from './game/menu-attaque/menu-attaque.component';
-import { TransformerRessourceComponent } from './game/transformer-ressource/transformer-ressource.component';
 import { EditRessourceComponent } from './gestion/ressource/edit-ressource/edit-ressource.component';
 import { BatimentComponent } from './gestion/batiment/batiment/batiment.component';
 import { JoueurComponent } from './gestion/joueur/joueur/joueur.component';
@@ -23,7 +22,6 @@ import { AuthentificationComponent } from './authentification/authentification/a
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { HomeComponent } from './home/home.component';
-import { PageSpectateurComponent } from './page-spectateur/page-spectateur.component';
 import { InscriptionComponent } from './authentification/inscription/inscription.component';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
@@ -36,6 +34,7 @@ import { CoutBatimentComponent } from './gestion/batiment/cout-batiment/cout-bat
 import { ListCoutBatimentComponent } from './gestion/batiment/list-cout-batiment/list-cout-batiment.component';
 import { TransformationRessourceComponent } from './gestion/batiment/transformation-ressource/transformation-ressource.component';
 import { ListTransformationRessourceComponent } from './gestion/batiment/list-transformation-ressource/list-transformation-ressource.component';
+import { ChargerPartieComponent } from './gestion/charger-partie/charger-partie.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +44,6 @@ import { ListTransformationRessourceComponent } from './gestion/batiment/list-tr
     MenuAmeliorationComponent,
     MenuTransformationComponent,
     MenuAttaqueComponent,
-    TransformerRessourceComponent,
     EditRessourceComponent,
     BatimentComponent,
     JoueurComponent,
@@ -54,7 +52,6 @@ import { ListTransformationRessourceComponent } from './gestion/batiment/list-tr
     EditRessourceComponent,
     AuthentificationComponent,
     HomeComponent,
-    PageSpectateurComponent,
     InscriptionComponent,
     EditAttaqueComponent,
     EditDefenseComponent,
@@ -64,6 +61,8 @@ import { ListTransformationRessourceComponent } from './gestion/batiment/list-tr
     ListCoutBatimentComponent,
     TransformationRessourceComponent,
     ListTransformationRessourceComponent
+    CoutBatimentComponent,
+    ChargerPartieComponent,
   ],
   imports: [
     BrowserModule,

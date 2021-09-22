@@ -1,11 +1,10 @@
-import { PageSpectateurComponent } from './../page-spectateur/page-spectateur.component';
 import { Compte } from './../model/compte';
 import { Partie } from './../model/partie';
 
 import { SessionService } from './../services/session.service';
 import { SessionBatiment } from './../model/session-batiment';
 import { SessionRessource } from './../model/session-ressource';
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { Session } from '../model/session';
 import { SessionBatimentService } from '../services/session-batiment.service';
 import { SessionRessourceService } from '../services/session-ressource.service';
@@ -20,59 +19,54 @@ export class PageJeuComponent implements OnInit {
   sessions: Observable<Session[]>;
   waiters: Session[] = [];
 
+  idPartie: number = 1;
+
   finDeTourEvent: EventEmitter<string> = new EventEmitter();
 
   changementJoueur: boolean = false;
+  boolFinDePartie: boolean = false;
 
   afficherMenuConstruction: boolean = false;
   afficherMenuAmelioration: boolean = false;
   afficherMenuTransformation: boolean = false;
   afficherMenuAttaque: boolean = false;
 
-  j1: Session | undefined;
-  j2: Session | undefined;
-  j3: Session | undefined;
-  j4: Session | undefined;
-
   constructor(
     private sessionService: SessionService,
     private sessionBatService: SessionBatimentService,
     private sessionResService: SessionRessourceService
   ) {
-    this.sessions = this.sessionService.getAll();
+    this.sessions = this.sessionService.getByIdPartie(this.idPartie);
   }
 
   ngOnInit(): void {
-    this.joueurs();
+    this.list();
+    this.tirageRessource();
   }
 
   list() {
     console.log('list');
-    this.sessions = this.sessionService.getAll();
-  }
-
-  joueurs() {
-    this.sessionService.get(1, 2).subscribe((res) => {
-      this.j1 = res;
-      console.log(this.j1);
-    });
-    this.sessionService.get(1, 3).subscribe((res) => {
-      this.j2 = res;
-    });
-    this.sessionService.get(1, 4).subscribe((res) => {
-      this.j3 = res;
-    });
-    this.sessionService.get(1, 5).subscribe((res) => {
-      this.j4 = res;
-    });
+    this.sessions = this.sessionService.getByIdPartie(this.idPartie);
+    this.sessionService
+      .getByIdPartie(this.idPartie)
+      .subscribe((res) => console.log(res));
   }
 
   clickFinDeTour(session: Session) {
     this.finDeTour();
     this.tirageRessource();
-    this.list();
-
     this.finDeTourEvent.emit();
+    this.finDePartie();
+    this.sessions.subscribe((res) => {
+      for (var session of res) {
+        if (session.def <= 0) {
+          this.sessionService
+            .delete(session.id.partie.id, session.id.compte.id)
+            .subscribe();
+        }
+      }
+    });
+    this.list();
   }
 
   ressourceBool(nom: string, sr: SessionRessource): boolean {
@@ -81,6 +75,21 @@ export class PageJeuComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  finDePartie() {
+    this.sessions.subscribe((res) => {
+      for (var session of res) {
+        for (var sb of session.sessionBatiment) {
+          if (sb.batiment.nom === 'Merveille' && sb.level == 5) {
+            this.boolFinDePartie = true;
+          }
+        }
+      }
+      if (res.length == 1) {
+        this.boolFinDePartie = true;
+      }
+    });
   }
 
   finDeTour() {

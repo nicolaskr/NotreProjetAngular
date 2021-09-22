@@ -22,9 +22,22 @@ export class SessionService {
     return this.http.get<Session[]>(this.url, { headers: this.headers });
   }
 
-  public delete(id: number | undefined) {
+  public getByIdPartie(idPartie: number): Observable<Session[]> {
+    return this.http.get<Session[]>(this.url + '/' + idPartie, {
+      headers: this.headers,
+    });
+  }
+  public getByIdCompte(idCompte: number): Observable<Session[]> {
+    // this.initHeaders();
+    // return this.httpClient.get<Batiment[]>(this.URL,{headers:this.headers});
+    return this.http.get<Session[]>(this.url + '/compte/' + idCompte);
+  }
+
+  public delete(idPartie: number, idCompte: number) {
     this.initHeaders();
-    return this.http.delete(this.url + '/' + id, { headers: this.headers });
+    return this.http.delete(this.url + '/' + idPartie + '/' + idCompte, {
+      headers: this.headers,
+    });
   }
 
   public rotation(session: Session) {

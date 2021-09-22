@@ -1,3 +1,4 @@
+import { ChargerPartieComponent } from './gestion/charger-partie/charger-partie.component';
 import { EditDefenseComponent } from './gestion/batiment/edit-defense/edit-defense.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -27,6 +28,7 @@ const routes: Routes = [
     component: InscriptionComponent,
   },
   { path: 'pagejeu', component: PageJeuComponent },
+  { path: 'gestion/charge', component: ChargerPartieComponent },
   { path: 'gestion/parties', component: PartieComponent },
   { path: 'gestion/joueurs', component: JoueurComponent },
   { path: 'gestion/ressources', component: RessourceComponent },
@@ -34,13 +36,31 @@ const routes: Routes = [
   { path: 'gestion/ressources/edit/:id', component: EditRessourceComponent },
   { path: 'gestion/batiments', component: BatimentComponent },
   { path: 'gestion/batiments/attaque/edit', component: EditAttaqueComponent },
-  { path: 'gestion/batiments/attaque/edit/:id', component: EditAttaqueComponent },
+  {
+    path: 'gestion/batiments/attaque/edit/:id',
+    component: EditAttaqueComponent,
+  },
   { path: 'gestion/batiments/defense/edit', component: EditDefenseComponent },
-  { path: 'gestion/batiments/defense/edit/:id', component: EditDefenseComponent },
-  { path: 'gestion/batiments/production/edit', component: EditProductionComponent },
-  { path: 'gestion/batiments/production/edit/:id', component: EditProductionComponent },
-  { path: 'gestion/batiments/transformation/edit', component: EditTransformationComponent },
-  { path: 'gestion/batiments/transformation/edit/:id', component: EditTransformationComponent }
+  {
+    path: 'gestion/batiments/defense/edit/:id',
+    component: EditDefenseComponent,
+  },
+  {
+    path: 'gestion/batiments/production/edit',
+    component: EditProductionComponent,
+  },
+  {
+    path: 'gestion/batiments/production/edit/:id',
+    component: EditProductionComponent,
+  },
+  {
+    path: 'gestion/batiments/transformation/edit',
+    component: EditTransformationComponent,
+  },
+  {
+    path: 'gestion/batiments/transformation/edit/:id',
+    component: EditTransformationComponent,
+  },
 ];
 
 @NgModule({
