@@ -1,239 +1,313 @@
 <div class="container">
-  <div
-    *ngFor="let player of sessions | async"
-    class="row row-cols-2"
-    style="-bs-gutter-y: 20px"
-  >
-    <div
-      *ngIf="player.tourEnCours == true"
-      class="row"
-      style="
-        padding-top: calc(var(--bs-gutter-x) * 0.5);
-        padding-bottom: calc(var(--bs-gutter-x) * 0.5);
-        height: 50%;
-        padding-right: 5%;
-      "
-    >
-      <h2>{{ player.id?.compte?.nom }}</h2>
-      <table class="table table-striped">
-        <tr>
-          <th *ngFor="let sr of player.sessionRessource">
-            <img
-              *ngIf="ressourceBool('bois', sr)"
-              height="40px"
-              width="40px"
-              src="images/bois.jpg"
-              alt=" bois"
-            />
-            <div *ngIf="ressourceBool('bois', sr)">: {{ sr.quantite }}</div>
-
-            <img
-              *ngIf="ressourceBool('pierre', sr)"
-              height="40px"
-              width="40px"
-              src="http://produitsversailles.com/wp-content/uploads/2018/06/pierre-polie-semi-grise-_105643-red-copy-300x300.png"
-              alt="pierre"
-            />
-            <div *ngIf="ressourceBool('pierre', sr)">: {{ sr.quantite }}</div>
-
-            <img
-              *ngIf="ressourceBool('minerais', sr)"
-              height="40px"
-              width="40px"
-              src="http://www.a3m-asso.fr/wp-content/uploads/2016/07/ERAMET-Minerai-300x200.jpg"
-              alt="minerais"
-            />
-            <div *ngIf="ressourceBool('minerais', sr)">: {{ sr.quantite }}</div>
-
-            <img
-              *ngIf="ressourceBool('fer', sr)"
-              height="40px"
-              width="40px"
-              src="https://www.corse-epoxy.fr/wp-content/uploads/2016/09/profil-acier-720x340.jpg"
-              alt="fer"
-            />
-            <div *ngIf="ressourceBool('fer', sr)">: {{ sr.quantite }}</div>
-
-            <img
-              *ngIf="ressourceBool('cuivre', sr)"
-              height="40px"
-              width="40px"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/NatCopper.jpg/220px-NatCopper.jpg"
-              alt="cuivre"
-            />
-            <div *ngIf="ressourceBool('cuivre', sr)">: {{ sr.quantite }}</div>
-
-            <img
-              *ngIf="ressourceBool('or', sr)"
-              height="40px"
-              width="40px"
-              src="https://blog.arpp.org/wp-content/uploads/sites/5/2019/09/or-.jpg"
-              alt="or"
-            />
-            <div *ngIf="ressourceBool('or', sr)">: {{ sr.quantite }}</div>
-          </th>
-        </tr>
-      </table>
-      <table class="table table-striped">
-        <tr>
-          <th>Batiment</th>
-          <th>Attaque</th>
-          <th>Défense</th>
-          <th>Niveau</th>
-        </tr>
-        <tr *ngFor="let sb of player.sessionBatiment">
-          <td>{{ sb.batiment.nom }}</td>
-          <td>{{ sb.pointsDAttaque }}</td>
-          <td>{{ sb.pointsDeVie }}</td>
-          <td>{{ sb.level }}</td>
-        </tr>
-      </table>
-      <table class="table table-striped">
-        <tr>
-          <th>Total</th>
-          <th>Attaque: {{ player!.att }}</th>
-          <th>Défense: {{ player!.def }}</th>
-        </tr>
-      </table>
-
-      <div>
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="clickConstruction()"
+  <div class="row">
+    <div class="col">
+      <div *ngFor="let player of sessions | async" style="-bs-gutter-y: 20px">
+        <div
+          *ngIf="player.tourEnCours == true"
+          style="
+            padding-top: calc(var(--bs-gutter-x) * 0.5);
+            padding-bottom: calc(var(--bs-gutter-x) * 0.5);
+            height: 50%;
+            padding: 5%;
+          "
+          class="card bg-light mb-3"
         >
-          Construire
-        </button>
-        <button
-          type="submit"
-          class="btn btn-success"
-          (click)="clickAmelioration()"
-        >
-          Améliorer
-        </button>
-        <button
-          type="button"
-          class="btn btn-warning"
-          (click)="clickTransformation()"
-        >
-          Transformer
-        </button>
-        <button type="submit" class="btn btn-danger" (click)="clickAttaque()">
-          Attaquer
-        </button>
-        <button
-          type="button"
-          class="btn btn-dark"
-          (click)="clickFinDeTour(player)"
-        >
-          Fin du tour
-        </button>
+          <h2
+            class="card-header"
+            style="margin-bottom: 10 px; text-align: center"
+          >
+            {{ player.id?.compte?.nom }}
+          </h2>
+
+          <table style="margin-top: 10px" class="card-header">
+            <tr>
+              <th *ngFor="let sr of player.sessionRessource">
+                <img
+                  *ngIf="ressourceBool('bois', sr)"
+                  height="40px"
+                  width="40px"
+                  src="assets/images/logos/imagesJeu/buche.jpg"
+                  alt=" bois"
+                />
+                <div *ngIf="ressourceBool('bois', sr)">{{ sr.quantite }}</div>
+
+                <img
+                  *ngIf="ressourceBool('pierre', sr)"
+                  height="40px"
+                  width="40px"
+                  src="http://produitsversailles.com/wp-content/uploads/2018/06/pierre-polie-semi-grise-_105643-red-copy-300x300.png"
+                  alt="pierre"
+                />
+                <div *ngIf="ressourceBool('pierre', sr)">
+                  {{ sr.quantite }}
+                </div>
+                <img
+                  *ngIf="ressourceBool('charbon', sr)"
+                  height="40px"
+                  width="40px"
+                  src="assets/images/logos/imagesJeu/charbon.jpg"
+                  alt="charbon"
+                />
+                <div *ngIf="ressourceBool('charbon', sr)">
+                  {{ sr.quantite }}
+                </div>
+
+                <img
+                  *ngIf="ressourceBool('minerais', sr)"
+                  height="40px"
+                  width="40px"
+                  src="assets/images/logos/imagesJeu/minerais.jpg"
+                  alt="minerais"
+                />
+                <div *ngIf="ressourceBool('minerais', sr)">
+                  {{ sr.quantite }}
+                </div>
+
+                <img
+                  *ngIf="ressourceBool('fer', sr)"
+                  height="40px"
+                  width="40px"
+                  src="assets/images/logos/imagesJeu/fer.jpg"
+                  alt="fer"
+                />
+                <div *ngIf="ressourceBool('fer', sr)">{{ sr.quantite }}</div>
+
+                <img
+                  *ngIf="ressourceBool('cuivre', sr)"
+                  height="40px"
+                  width="40px"
+                  src="assets/images/logos/imagesJeu/cuivre.jpg"
+                  alt="cuivre"
+                />
+                <div *ngIf="ressourceBool('cuivre', sr)">
+                  {{ sr.quantite }}
+                </div>
+
+                <img
+                  *ngIf="ressourceBool('or', sr)"
+                  height="40px"
+                  width="40px"
+                  src="assets/images/logos/imagesJeu/or.jpg"
+                  alt="or"
+                />
+                <div *ngIf="ressourceBool('or', sr)">{{ sr.quantite }}</div>
+              </th>
+            </tr>
+          </table>
+          <table class="card-header" style="margin-top: 5px">
+            <tr>
+              <th>Batiment</th>
+              <th>Attaque</th>
+              <th>Défense</th>
+              <th>Niveau</th>
+            </tr>
+            <tr *ngFor="let sb of player.sessionBatiment">
+              <td>{{ sb.batiment.nom }}</td>
+              <td>{{ sb.pointsDAttaque }}</td>
+              <td>{{ sb.pointsDeVie }}</td>
+              <td>{{ sb.level }}</td>
+            </tr>
+          </table>
+          <table
+            class="card-header"
+            style="margin-top: 5px; margin-bottom: 10px"
+          >
+            <tr>
+              <th>Total</th>
+              <th>Attaque: {{ player!.att }}</th>
+              <th>Défense: {{ player!.def }}</th>
+            </tr>
+          </table>
+
+          <div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              style="margin: 2px"
+              (click)="clickConstruction()"
+            >
+              Construire
+            </button>
+            <button
+              type="submit"
+              class="btn btn-success"
+              style="margin: 2px"
+              (click)="clickAmelioration()"
+            >
+              Améliorer
+            </button>
+            <button
+              type="button"
+              class="btn btn-warning"
+              style="margin: 2px"
+              (click)="clickTransformation()"
+            >
+              Transformer
+            </button>
+            <button
+              type="submit"
+              class="btn btn-danger"
+              style="margin: 2px"
+              (click)="clickAttaque()"
+            >
+              Attaquer
+            </button>
+            <button
+              type="button"
+              class="btn btn-dark"
+              style="margin: 2px"
+              (click)="clickFinDeTour(player)"
+            >
+              Fin du tour
+            </button>
+          </div>
+
+          <app-menu-construction
+            *ngIf="afficherMenuConstruction"
+            [session]="player"
+            (constructionEvent)="list()"
+          ></app-menu-construction>
+          <app-menu-amelioration
+            *ngIf="afficherMenuAmelioration"
+            [session]="player"
+            (ameliorationEvent)="list()"
+          ></app-menu-amelioration>
+          <app-menu-transformation
+            *ngIf="afficherMenuTransformation"
+            [session]="player"
+            (transformationEvent)="list()"
+          ></app-menu-transformation>
+          <app-menu-attaque
+            *ngIf="afficherMenuAttaque"
+            (attaqueEvent)="list()"
+          ></app-menu-attaque>
+        </div>
       </div>
+    </div>
 
-      <app-menu-construction
-        *ngIf="afficherMenuConstruction"
-        [session]="player"
-        (constructionEvent)="list()"
-      ></app-menu-construction>
-      <app-menu-amelioration
-        *ngIf="afficherMenuAmelioration"
-        [session]="player"
-        (ameliorationEvent)="list()"
-      ></app-menu-amelioration>
-      <app-menu-transformation
-        *ngIf="afficherMenuTransformation"
-        [session]="player"
-        (transformationEvent)="list()"
-      ></app-menu-transformation>
-      <app-menu-attaque
-        *ngIf="afficherMenuAttaque"
-        (attaqueEvent)="list()"
-      ></app-menu-attaque>
+    <div class="col" style="display: flex; flex-direction: column">
+      <div *ngFor="let p of sessions | async">
+        <div
+          class="card bg-light mb-3"
+          style="padding: 2%; margin-top: 1%"
+          *ngIf="p.tourEnCours == false"
+        >
+          <h2
+            class="card-header"
+            style="margin-bottom: 5px; text-align: center"
+          >
+            {{ p.id?.compte?.nom }}
+          </h2>
+          <table
+            *ngIf="p.tourEnCours == false"
+            class="card-header"
+            style="margin-bottom: 5px"
+          >
+            <tr>
+              <th *ngFor="let sr of p.sessionRessource">
+                <img
+                  *ngIf="ressourceBool('bois', sr)"
+                  height="40px"
+                  width="40px"
+                  src="assets/images/logos/imagesJeu/buche.jpg"
+                  alt=" bois"
+                />
+                <div *ngIf="ressourceBool('bois', sr)">{{ sr.quantite }}</div>
+
+                <img
+                  *ngIf="ressourceBool('pierre', sr)"
+                  height="40px"
+                  width="40px"
+                  src="http://produitsversailles.com/wp-content/uploads/2018/06/pierre-polie-semi-grise-_105643-red-copy-300x300.png"
+                  alt="pierre"
+                />
+                <div *ngIf="ressourceBool('pierre', sr)">
+                  {{ sr.quantite }}
+                </div>
+
+                <img
+                  *ngIf="ressourceBool('charbon', sr)"
+                  height="40px"
+                  width="40px"
+                  src="assets/images/logos/imagesJeu/charbon.jpg"
+                  alt="charbon"
+                />
+                <div *ngIf="ressourceBool('charbon', sr)">
+                  {{ sr.quantite }}
+                </div>
+
+                <img
+                  *ngIf="ressourceBool('minerais', sr)"
+                  height="40px"
+                  width="40px"
+                  src="assets/images/logos/imagesJeu/minerais.jpg"
+                  alt="minerais"
+                />
+                <div *ngIf="ressourceBool('minerais', sr)">
+                  {{ sr.quantite }}
+                </div>
+
+                <img
+                  *ngIf="ressourceBool('fer', sr)"
+                  height="40px"
+                  width="40px"
+                  src="assets/images/logos/imagesJeu/fer.jpg"
+                  alt="fer"
+                />
+                <div *ngIf="ressourceBool('fer', sr)">{{ sr.quantite }}</div>
+
+                <img
+                  *ngIf="ressourceBool('cuivre', sr)"
+                  height="40px"
+                  width="40px"
+                  src="assets/images/logos/imagesJeu/cuivre.jpg"
+                  alt="cuivre"
+                />
+                <div *ngIf="ressourceBool('cuivre', sr)">
+                  {{ sr.quantite }}
+                </div>
+
+                <img
+                  *ngIf="ressourceBool('or', sr)"
+                  height="40px"
+                  width="40px"
+                  src="assets/images/logos/imagesJeu/or.jpg"
+                  alt="or"
+                />
+                <div *ngIf="ressourceBool('or', sr)">{{ sr.quantite }}</div>
+              </th>
+            </tr>
+          </table>
+          <table
+            *ngIf="p.tourEnCours == false"
+            class="table table-striped; card-header"
+          >
+            <tr>
+              <th scope="col">Batiment</th>
+              <th scope="col">Attaque</th>
+              <th scope="col">Défense</th>
+              <th scope="col">Niveau</th>
+            </tr>
+            <tr *ngFor="let sb of p.sessionBatiment">
+              <td>{{ sb.batiment.nom }}</td>
+              <td>{{ sb.pointsDAttaque }}</td>
+              <td>{{ sb.pointsDeVie }}</td>
+              <td>{{ sb.level }}</td>
+            </tr>
+          </table>
+          <table
+            *ngIf="p.tourEnCours == false"
+            class="card-header"
+            style="margin-top: 5px"
+          >
+            <tr>
+              <th>Total</th>
+              <th>Attaque: {{ p.att }}</th>
+              <th>Défense: {{ p.def }}</th>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="row" *ngFor="let p of sessions | async">
-    <h2 *ngIf="p.tourEnCours == false">{{ p.id?.compte?.nom }}</h2>
-    <table *ngIf="p.tourEnCours == false" class="table table-striped">
-      <tr>
-        <th *ngFor="let sr of p.sessionRessource">
-          <img
-            *ngIf="ressourceBool('bois', sr)"
-            height="40px"
-            width="40px"
-            src="images/bois.jpg"
-            alt=" bois"
-          />
-          <div *ngIf="ressourceBool('bois', sr)">: {{ sr.quantite }}</div>
-
-          <img
-            *ngIf="ressourceBool('pierre', sr)"
-            height="40px"
-            width="40px"
-            src="http://produitsversailles.com/wp-content/uploads/2018/06/pierre-polie-semi-grise-_105643-red-copy-300x300.png"
-            alt="pierre"
-          />
-          <div *ngIf="ressourceBool('pierre', sr)">: {{ sr.quantite }}</div>
-
-          <img
-            *ngIf="ressourceBool('minerais', sr)"
-            height="40px"
-            width="40px"
-            src="http://www.a3m-asso.fr/wp-content/uploads/2016/07/ERAMET-Minerai-300x200.jpg"
-            alt="minerais"
-          />
-          <div *ngIf="ressourceBool('minerais', sr)">: {{ sr.quantite }}</div>
-
-          <img
-            *ngIf="ressourceBool('fer', sr)"
-            height="40px"
-            width="40px"
-            src="https://www.corse-epoxy.fr/wp-content/uploads/2016/09/profil-acier-720x340.jpg"
-            alt="fer"
-          />
-          <div *ngIf="ressourceBool('fer', sr)">: {{ sr.quantite }}</div>
-
-          <img
-            *ngIf="ressourceBool('cuivre', sr)"
-            height="40px"
-            width="40px"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/NatCopper.jpg/220px-NatCopper.jpg"
-            alt="cuivre"
-          />
-          <div *ngIf="ressourceBool('cuivre', sr)">: {{ sr.quantite }}</div>
-
-          <img
-            *ngIf="ressourceBool('or', sr)"
-            height="40px"
-            width="40px"
-            src="https://blog.arpp.org/wp-content/uploads/sites/5/2019/09/or-.jpg"
-            alt="or"
-          />
-          <div *ngIf="ressourceBool('or', sr)">: {{ sr.quantite }}</div>
-        </th>
-      </tr>
-    </table>
-    <table *ngIf="p.tourEnCours == false" class="table table-striped">
-      <tr>
-        <th>Batiment</th>
-        <th>Attaque</th>
-        <th>Défense</th>
-        <th>Niveau</th>
-      </tr>
-      <tr *ngFor="let sb of p.sessionBatiment">
-        <td>{{ sb.batiment.nom }}</td>
-        <td>{{ sb.pointsDAttaque }}</td>
-        <td>{{ sb.pointsDeVie }}</td>
-        <td>{{ sb.level }}</td>
-      </tr>
-    </table>
-    <table *ngIf="p.tourEnCours == false" class="table table-striped">
-      <tr>
-        <th>Total</th>
-        <th>Attaque: {{ p.att }}</th>
-        <th>Défense: {{ p.def }}</th>
-      </tr>
-    </table>
-  </div>
-  <!-- <app-page-spectateur></app-page-spectateur> -->
 </div>
