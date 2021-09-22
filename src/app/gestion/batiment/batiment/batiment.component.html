@@ -37,7 +37,7 @@
       <td *ngIf="bproduction">{{b.ressource.nom}}</td>
       <td *ngIf="bproduction">{{b.quantiteProduite}}</td>
       <td *ngIf="!btotal"><a (click)="redirect(b.id)" class="btn btn-warning">modifier</a></td>
-      <!-- <td *ngIf="!btotal"><a [routerLink]="['/gestion/ressources/edit', b.id]" routerLinkActive="active" class="btn btn-warning">modifier</a></td> -->
+
     </tr>
   </tbody>
 </table>

@@ -2,14 +2,14 @@ import { IdBatiment } from './id-batiment';
 
 export class CoutBatiment {
   constructor(private id:IdBatiment,
-  private cout?:Number){}
+    private cout?:Number){}
 
 
     /**
      * Getter $ressource
      * @return {Ressource}
      */
-	public get $ressource(): IdBatiment {
+	public get $id(): IdBatiment {
 		return this.id;
 	}
 
@@ -17,10 +17,9 @@ export class CoutBatiment {
      * Setter $ressource
      * @param {Ressource} value
      */
-	public set $ressource(value: IdBatiment) {
+	public set $id(value: IdBatiment) {
 		this.id = value;
 	}
-
 
     /**
      * Getter $quantite

@@ -1,15 +1,14 @@
-
-import { Batiment } from './../model/batiment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Batiment } from '../model/batiment';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class BatimentDefenseService {
+export class BatimentProductionService {
   private headers: HttpHeaders | any = null;
-  private URL: string = 'http://localhost:8080/np/api/defense';
+  private URL: string = 'http://localhost:8080/np/api/production';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -34,6 +33,8 @@ export class BatimentDefenseService {
       pointsDefense: batiment.pointsDefense,
       ameliorable: batiment.ameliorable,
       coutBatiment: batiment.coutBatiment,
+      ressource: batiment.ressource,
+      quantiteProduite: batiment.quantiteProduite,
     };
     // return this.httpClient.post<Batiment>(this.URL, obj,{headers:this.headers});
     return this.httpClient.post<Batiment>(this.URL, obj);
@@ -49,6 +50,8 @@ export class BatimentDefenseService {
       pointsDefense: batiment.pointsDefense,
       ameliorable: batiment.ameliorable,
       coutBatiment: batiment.coutBatiment,
+      ressource: batiment.ressource,
+      quantiteProduite: batiment.quantiteProduite,
     };
 
     console.log(obj);

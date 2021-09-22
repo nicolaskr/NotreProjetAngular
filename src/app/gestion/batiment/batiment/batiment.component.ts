@@ -56,7 +56,9 @@ export class BatimentComponent implements OnInit {
     });
   }
   listProduction(){
+    console.log("ici")
     this.batimentService.getAllProduction().subscribe(res =>{
+      console.log(res);
       this.batiments=res;
       this.btotal=false;
       this.battaque=false;

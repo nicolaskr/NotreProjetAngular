@@ -33,6 +33,9 @@ import { EditDefenseComponent } from './gestion/batiment/edit-defense/edit-defen
 import { EditProductionComponent } from './gestion/batiment/edit-production/edit-production.component';
 import { EditTransformationComponent } from './gestion/batiment/edit-transformation/edit-transformation.component';
 import { CoutBatimentComponent } from './gestion/batiment/cout-batiment/cout-batiment.component';
+import { ListCoutBatimentComponent } from './gestion/batiment/list-cout-batiment/list-cout-batiment.component';
+import { TransformationRessourceComponent } from './gestion/batiment/transformation-ressource/transformation-ressource.component';
+import { ListTransformationRessourceComponent } from './gestion/batiment/list-transformation-ressource/list-transformation-ressource.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,10 @@ import { CoutBatimentComponent } from './gestion/batiment/cout-batiment/cout-bat
     EditDefenseComponent,
     EditProductionComponent,
     EditTransformationComponent,
-    CoutBatimentComponent
+    CoutBatimentComponent,
+    ListCoutBatimentComponent,
+    TransformationRessourceComponent,
+    ListTransformationRessourceComponent
   ],
   imports: [
     BrowserModule,
