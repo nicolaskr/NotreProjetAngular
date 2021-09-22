@@ -12,7 +12,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuAmeliorationComponent } from './game/menu-amelioration/menu-amelioration.component';
 import { MenuTransformationComponent } from './game/menu-transformation/menu-transformation.component';
 import { MenuAttaqueComponent } from './game/menu-attaque/menu-attaque.component';
-import { TransformerRessourceComponent } from './game/transformer-ressource/transformer-ressource.component';
 import { EditRessourceComponent } from './gestion/ressource/edit-ressource/edit-ressource.component';
 import { BatimentComponent } from './gestion/batiment/batiment/batiment.component';
 import { JoueurComponent } from './gestion/joueur/joueur/joueur.component';
@@ -41,7 +40,6 @@ import { CoutBatimentComponent } from './gestion/batiment/cout-batiment/cout-bat
     MenuAmeliorationComponent,
     MenuTransformationComponent,
     MenuAttaqueComponent,
-    TransformerRessourceComponent,
     EditRessourceComponent,
     BatimentComponent,
     JoueurComponent,

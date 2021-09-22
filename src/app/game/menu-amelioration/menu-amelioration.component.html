@@ -1,6 +1,11 @@
 <form (ngSubmit)="save()" *ngIf="sessionActive">
   <h3>Amélioration</h3>
+  <div *ngIf="batimentsAmeliorables.length==0">
+    <div class="alert alert-danger" >Vous n'avez pas de batiments améliorables, ou les ressources pour améliorer</div>
+  </div>
+  <h5 *ngIf="batimentsAmeliorables.length>0">Quel batiment souhaitez-vous améliorer ?</h5>
   <select
+    *ngIf="batimentsAmeliorables.length>0"
     class="form-select"
     [(ngModel)]="choixAmelioration"
     name="id"
@@ -12,6 +17,7 @@
     </option>
   </select>
   <button
+    *ngIf="choixAmelioration!=0"
     type="submit"
     class="btn btn-outline-success"
     [disabled]="choixAmelioration == 0"

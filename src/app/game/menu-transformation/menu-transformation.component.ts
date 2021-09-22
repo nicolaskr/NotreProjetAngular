@@ -1,3 +1,4 @@
+import { BatimentService } from './../../services/batiment.service';
 import { TransformationRessourceService } from './../../services/transformation-ressource.service';
 import { Compte } from './../../model/compte';
 import { Partie } from './../../model/partie';
@@ -34,6 +35,9 @@ export class MenuTransformationComponent implements OnInit {
   choixTransformation: number = 0;
   choixBatiment: number = 0;
 
+  transformationRessources: TransformationRessource[] = [];
+  choixTr: number = 0;
+
   @Output()
   transformationEvent: EventEmitter<string> = new EventEmitter();
 
@@ -41,7 +45,8 @@ export class MenuTransformationComponent implements OnInit {
     private fb: FormBuilder,
     private sessionBatimentService: SessionBatimentService,
     private sessionRessourceService: SessionRessourceService,
-    private transformationRessourceService: TransformationRessourceService
+    private transformationRessourceService: TransformationRessourceService,
+    private batimentService: BatimentService
   ) {}
 
   ngOnInit(): void {
@@ -56,6 +61,14 @@ export class MenuTransformationComponent implements OnInit {
       });
   }
 
+  listTransformationRessources() {
+    this.batimentService.get(this.choixBatiment).subscribe((res) => {
+      this.transformationRessourceService.getAll(this.choixBatiment).subscribe((res2) => {
+        this.transformationRessources = res2;
+      });
+    });
+  }
+
   listSessionRessources() {
     this.sessionRessourceService
       .getBySession(this.sessionActive!)
@@ -64,16 +77,16 @@ export class MenuTransformationComponent implements OnInit {
       });
   }
 
-  maximum(id: number) {
-    this.transformationRessourceService.get(id).subscribe((res) => {
-      console.log(res);
+  maximum() {
+    this.transformationRessourceService.get(this.choixTr).subscribe((res) => {
       this.choixTransformation = res.id;
-      let tr = res;
-      for (var sr of this.sessionRessources) {
-        if (sr.id.ressource.nom === tr.ressourceLost.nom) {
-          this.quantiteMax = sr.quantite;
+      this.sessionRessourceService.getBySession(this.sessionActive!).subscribe((srSession) => {
+        for (var sr of srSession) {
+          if (sr.id.ressource.nom === res.ressourceLost.nom) {
+            this.quantiteMax = sr.quantite;
+          }
         }
-      }
+      });
     });
   }
 
