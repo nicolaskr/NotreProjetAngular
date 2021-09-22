@@ -22,6 +22,12 @@ export class SessionService {
     return this.http.get<Session[]>(this.url, { headers: this.headers });
   }
 
+  public getByIdPartie(idPartie: number): Observable<Session[]> {
+    return this.http.get<Session[]>(this.url + '/' + idPartie, {
+      headers: this.headers,
+    });
+  }
+
   public delete(id: number | undefined) {
     this.initHeaders();
     return this.http.delete(this.url + '/' + id, { headers: this.headers });

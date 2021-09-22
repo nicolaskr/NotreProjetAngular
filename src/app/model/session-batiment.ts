@@ -1,18 +1,16 @@
 import { Batiment } from './batiment';
-import { Session } from "./session";
+import { Session } from './session';
 
 export class SessionBatiment {
-
   constructor(
-    private _pv: number,
-    private _ptAttaque: number,
+    private _pointsDeVie: number,
+    private _pointsDAttaque: number,
     private _session: Session,
     private _batiment: Batiment,
     private _level: number,
     private _used?: boolean,
-    private _id?: number) {
-  }
-
+    private _id?: number
+  ) {}
 
   public get id(): number | undefined {
     return this._id;
@@ -26,16 +24,16 @@ export class SessionBatiment {
    * Getter pv
    * @return {number}
    */
-  public get pv(): number {
-    return this._pv;
+  public get pointsDeVie(): number {
+    return this._pointsDeVie;
   }
 
   /**
    * Getter ptAttaque
    * @return {number}
    */
-  public get ptAttaque(): number {
-    return this._ptAttaque;
+  public get pointsDAttaque(): number {
+    return this._pointsDAttaque;
   }
 
   /**
@@ -74,16 +72,16 @@ export class SessionBatiment {
    * Setter pv
    * @param {number} value
    */
-  public set pv(value: number) {
-    this._pv = value;
+  public set pointsDeVie(value: number) {
+    this._pointsDeVie = value;
   }
 
   /**
    * Setter ptAttaque
    * @param {number} value
    */
-  public set ptAttaque(value: number) {
-    this._ptAttaque = value;
+  public set pointsDAttaque(value: number) {
+    this._pointsDAttaque = value;
   }
 
   /**
@@ -117,6 +115,4 @@ export class SessionBatiment {
   public set used(value: boolean | undefined) {
     this._used = value;
   }
-
-
 }

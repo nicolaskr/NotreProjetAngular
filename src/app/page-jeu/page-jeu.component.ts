@@ -5,7 +5,7 @@ import { Partie } from './../model/partie';
 import { SessionService } from './../services/session.service';
 import { SessionBatiment } from './../model/session-batiment';
 import { SessionRessource } from './../model/session-ressource';
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { Session } from '../model/session';
 import { SessionBatimentService } from '../services/session-batiment.service';
 import { SessionRessourceService } from '../services/session-ressource.service';
@@ -19,6 +19,8 @@ import { Observable } from 'rxjs';
 export class PageJeuComponent implements OnInit {
   sessions: Observable<Session[]>;
   waiters: Session[] = [];
+
+  idPartie: number = 1;
 
   finDeTourEvent: EventEmitter<string> = new EventEmitter();
 
@@ -39,7 +41,7 @@ export class PageJeuComponent implements OnInit {
     private sessionBatService: SessionBatimentService,
     private sessionResService: SessionRessourceService
   ) {
-    this.sessions = this.sessionService.getAll();
+    this.sessions = this.sessionService.getByIdPartie(this.idPartie);
   }
 
   ngOnInit(): void {
@@ -48,7 +50,7 @@ export class PageJeuComponent implements OnInit {
 
   list() {
     console.log('list');
-    this.sessions = this.sessionService.getAll();
+    this.sessions = this.sessionService.getByIdPartie(this.idPartie);
   }
 
   joueurs() {
