@@ -1,7 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Compte } from '../model/compte';
+import { Partie } from '../model/partie';
 import { Session } from '../model/session';
+import { SessionDto } from '../modelDto/session-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -49,6 +52,17 @@ export class SessionService {
   public get(idPartie: number, idCompte: number): Observable<Session> {
     this.initHeaders();
     return this.http.get<Session>(this.url + '/' + idPartie + '/' + idCompte, {
+      headers: this.headers,
+    });
+  }
+
+  public post(partie: Partie, compte: Compte): Observable<Session> {
+    this.initHeaders();
+    // console.log(partie);
+    // console.log(compte);
+    let sessionDto: SessionDto = new SessionDto(partie.id!, compte.id!);
+    console.log(sessionDto);
+    return this.http.post<Session>(`${this.url}`, sessionDto, {
       headers: this.headers,
     });
   }
