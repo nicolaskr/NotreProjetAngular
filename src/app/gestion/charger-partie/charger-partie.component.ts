@@ -50,7 +50,7 @@ export class ChargerPartieComponent implements OnInit {
   }
 
   partie() {
-    this.sessionService.getByIdCompte(2).subscribe((res) => {
+    this.sessionService.getByIdCompte(this.idCompte).subscribe((res) => {
       console.log(res);
       this.sessions = res;
     });
