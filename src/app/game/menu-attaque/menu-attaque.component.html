@@ -1,33 +1,9 @@
-<!-- <div id="fenetreAttaque">
-  <h3>Attaque</h3>
-  <select class="form-select" aria-label="Default select example" style="width: 48%;">
-    <option>Attaquer avec tous mes batiments</option>
-    <option>Batiments d'attaque</option>
-    <%-- <form:options items="${ressourcesTransformables}" itemValue="id" --%>
-      <%-- itemLabel="${batiment.nom}">
-        </form:options> --%>
-</select> <select class="form-select" aria-label="Default select example" style="width: 48%;">
-  <option>joueurs</option>
-  <%-- <form:options items="${ressourcesTransformables}" itemValue="id" --%>
-    <%-- itemLabel="${batiment.nom}">
-      </form:options> --%>
-</select> <select class="form-select" aria-label="Default select example" style="width: 48%;">
-  <option>Tous les batiments</option>
-  <option>Liste des batiments du joueur selectionné</option>
-  <%-- <form:options items="${ressourcesTransformables}" itemValue="id" --%>
-    <%-- itemLabel="${batiment.nom}">
-      </form:options> --%>
-</select>
-<button type="submit" class="btn btn-outline-success">Attaquer!</button>
-</div>
-</div> -->
-
 <form (ngSubmit)="save()" *ngIf="sessionActive">
   <h3>Attaque</h3>
   <div *ngIf="batimentsAttaque.length==0">
     <div class="alert alert-danger" >Vous n'avez pas de batiments d'attaque</div>
   </div>
-  <h5>Sélectionnez un batiment pour attaquer</h5>
+  <h5 *ngIf="batimentsAttaque.length>0">Sélectionnez un batiment pour attaquer</h5>
   <select
     *ngIf="batimentsAttaque.length>0"
     class="form-select"
@@ -39,7 +15,7 @@
   >
   <option value=-1>Tous mes batiments</option>
   <option *ngFor="let b of batimentsAttaque" [value]="b.id" required [disabled]="b.used">
-    {{ b.batiment.nom }}
+    {{ b.batiment.nom }} ({{b.batiment.pointsDAttaque}} de dégats)
   </option>
  </select>
  <h5 *ngIf="choixBatimentAttaque!=0">Quel joueur souhaitez-vous attaquer</h5>
@@ -49,9 +25,9 @@
     [(ngModel)]="choixCible"
     name="choixCible"
     (click)="listBatimentsCible()"
-    aria-label="Default select example"
     style="width: 48%"
   >
+  <option></option>
   <option *ngFor="let p of listeJoueur" [value]="p.id.compte.id" required>
     {{ p.id.compte.nom }} ({{p.id.compte.username}})
   </option>
@@ -62,7 +38,6 @@
     class="form-select"
     [(ngModel)]="choixBatimentCible"
     name="choixBatimentCible"
-    aria-label="Default select example"
     style="width: 48%"
   >
   <option value=-1>Tous ses batiments</option>
