@@ -1,8 +1,12 @@
 <form (ngSubmit)="save()" *ngIf="sessionActive">
   <h3>Construction</h3>
-  <select class="form-select" [(ngModel)]="choixBatiment" name="id" aria-label="Default select example"
+  <div *ngIf="batimentsConstructibles.length==0">
+    <div class="alert alert-danger" >Vous n'avez pas les ressources nécessaires pour construire</div>
+  </div>
+  <h5 *ngIf="batimentsConstructibles.length>0">Quel batiment souhaitez-vous construire ?</h5>
+  <select *ngIf="batimentsConstructibles.length>0" class="form-select" [(ngModel)]="choixBatiment" name="id" aria-label="Default select example"
   style="width: 48%;">
     <option *ngFor="let b of batimentsConstructibles" required [value]="b.id"> {{b.id}} - {{ b.nom }} </option>
   </select>
-  <button type="submit" class="btn btn-outline-success" [disabled]="choixBatiment==0">Valider</button>
+  <button *ngIf="choixBatiment!=0" type="submit" class="btn btn-outline-success" [disabled]="choixBatiment==0">Valider</button>
 </form>

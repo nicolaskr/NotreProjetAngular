@@ -162,27 +162,26 @@
             </button>
           </div>
 
-          <app-menu-construction
-            *ngIf="afficherMenuConstruction"
-            [session]="player"
-            (constructionEvent)="list()"
-          ></app-menu-construction>
-          <app-menu-amelioration
-            *ngIf="afficherMenuAmelioration"
-            [session]="player"
-            (ameliorationEvent)="list()"
-          ></app-menu-amelioration>
-          <app-menu-transformation
-            *ngIf="afficherMenuTransformation"
-            [session]="player"
-            (transformationEvent)="list()"
-          ></app-menu-transformation>
-          <app-menu-attaque
-            *ngIf="afficherMenuAttaque"
-            (attaqueEvent)="list()"
-          ></app-menu-attaque>
-        </div>
-      </div>
+      <app-menu-construction
+        *ngIf="afficherMenuConstruction"
+        [session]="player"
+        (constructionEvent)="list()"
+      ></app-menu-construction>
+      <app-menu-amelioration
+        *ngIf="afficherMenuAmelioration"
+        [session]="player"
+        (ameliorationEvent)="list()"
+      ></app-menu-amelioration>
+      <app-menu-transformation
+        *ngIf="afficherMenuTransformation"
+        [session]="player"
+        (transformationEvent)="list()"
+      ></app-menu-transformation>
+      <app-menu-attaque
+        *ngIf="afficherMenuAttaque"
+        [session]="player"
+        (attaqueEvent)="list()"
+      ></app-menu-attaque>
     </div>
 
     <div class="col" style="display: flex; flex-direction: column">
