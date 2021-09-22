@@ -24,16 +24,12 @@ export class PageJeuComponent implements OnInit {
   finDeTourEvent: EventEmitter<string> = new EventEmitter();
 
   changementJoueur: boolean = false;
+  boolFinDePartie: boolean = false;
 
   afficherMenuConstruction: boolean = false;
   afficherMenuAmelioration: boolean = false;
   afficherMenuTransformation: boolean = false;
   afficherMenuAttaque: boolean = false;
-
-  j1: Session | undefined;
-  j2: Session | undefined;
-  j3: Session | undefined;
-  j4: Session | undefined;
 
   constructor(
     private sessionService: SessionService,
@@ -44,7 +40,6 @@ export class PageJeuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.joueurs();
     this.list();
     this.tirageRessource();
   }
@@ -55,53 +50,23 @@ export class PageJeuComponent implements OnInit {
     this.sessionService
       .getByIdPartie(this.idPartie)
       .subscribe((res) => console.log(res));
-
-    // this.sessionService.getByIdPartie(this.idPartie).subscribe((res) => {
-    //   for (var session of res) {
-    //     let sommeAtt: number = 0;
-    //     let sommeDef: number = 0;
-    //     for (var sessionBat of session.sessionBatiment) {
-    //       sommeAtt = sommeAtt + sessionBat.pointsDAttaque;
-    //       sommeDef = sommeDef + sessionBat.pointsDeVie;
-    //     }
-    //     console.log('def  ' + sommeDef);
-    //     console.log('att' + sommeAtt);
-    //     this.sessions.subscribe((ses) => {
-    //       for (var index in ses) {
-    //         if (ses[index].id.compte.nom === session.id.compte.nom) {
-    //           ses[index].att = sommeAtt;
-    //           ses[index].def = sommeDef;
-    //           console.log(ses[index].def + 'def');
-    //           console.log(ses);
-    //         }
-    //       }
-    //     });
-    //   }
-    // });
-  }
-
-  joueurs() {
-    this.sessionService.get(1, 2).subscribe((res) => {
-      this.j1 = res;
-      console.log(this.j1);
-    });
-    this.sessionService.get(1, 3).subscribe((res) => {
-      this.j2 = res;
-    });
-    this.sessionService.get(1, 4).subscribe((res) => {
-      this.j3 = res;
-    });
-    this.sessionService.get(1, 5).subscribe((res) => {
-      this.j4 = res;
-    });
   }
 
   clickFinDeTour(session: Session) {
     this.finDeTour();
     this.tirageRessource();
-    this.list();
-
     this.finDeTourEvent.emit();
+    this.finDePartie();
+    this.sessions.subscribe((res) => {
+      for (var session of res) {
+        if (session.def <= 0) {
+          this.sessionService
+            .delete(session.id.partie.id, session.id.compte.id)
+            .subscribe();
+        }
+      }
+    });
+    this.list();
   }
 
   ressourceBool(nom: string, sr: SessionRessource): boolean {
@@ -110,6 +75,21 @@ export class PageJeuComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  finDePartie() {
+    this.sessions.subscribe((res) => {
+      for (var session of res) {
+        for (var sb of session.sessionBatiment) {
+          if (sb.batiment.nom === 'Merveille' && sb.level == 5) {
+            this.boolFinDePartie = true;
+          }
+        }
+      }
+      if (res.length == 1) {
+        this.boolFinDePartie = true;
+      }
+    });
   }
 
   finDeTour() {

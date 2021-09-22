@@ -33,9 +33,11 @@ export class SessionService {
     return this.http.get<Session[]>(this.url + '/compte/' + idCompte);
   }
 
-  public delete(id: number | undefined) {
+  public delete(idPartie: number, idCompte: number) {
     this.initHeaders();
-    return this.http.delete(this.url + '/' + id, { headers: this.headers });
+    return this.http.delete(this.url + '/' + idPartie + '/' + idCompte, {
+      headers: this.headers,
+    });
   }
 
   public rotation(session: Session) {
