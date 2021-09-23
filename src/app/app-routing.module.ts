@@ -15,6 +15,7 @@ import { EditAttaqueComponent } from './gestion/batiment/edit-attaque/edit-attaq
 import { EditProductionComponent } from './gestion/batiment/edit-production/edit-production.component';
 import { EditTransformationComponent } from './gestion/batiment/edit-transformation/edit-transformation.component';
 import { InscriptionComponent } from './authentification/inscription/inscription.component';
+import { RulesComponent } from './game/rules/rules.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
     component: InscriptionComponent,
   },
   { path: 'pagejeu', component: PageJeuComponent },
+  { path: 'rules', component: RulesComponent},
   { path: 'gestion/charge', component: ChargerPartieComponent },
   { path: 'gestion/parties', component: PartieComponent },
   { path: 'gestion/joueurs', component: JoueurComponent },
