@@ -37,23 +37,28 @@ export class EditTransformationComponent implements OnInit {
   }
 
   save(){
-    console.log(this.coutBatiments)
     if(this.coutBatiments!=[]){
       this.batiment.coutBatiment=this.coutBatiments;
     }
+
     if(this.listTransformationRessource!=[]){
+      console.log(this.listTransformationRessource)
       this.batiment.transformationRessouce=this.listTransformationRessource;
       console.log("ok")
       console.log(this.batiment)
       console.log("good")
     }
+
     if(this.batiment.id){
+      console.log(this.batiment)
         this.batimentTransformationService.update(this.batiment).subscribe(res=>{
           this.goListBatiment();
         }
         );
-      }else{
-        this.batimentTransformationService.create(this.batiment).subscribe(res=>{
+    }else{
+        console.log(this.batiment)
+        console.log(this.batiment.transformationRessouce)
+        this.batimentTransformationService.create(this.batiment, this.listTransformationRessource).subscribe(res=>{
           this.goListBatiment();
         });
     }

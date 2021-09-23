@@ -1,9 +1,9 @@
+import { TransformationRessource } from 'src/app/model/transformation-ressource';
 import { TransformationRessourceDto } from './../modelDto/transformation-ressource-dto';
 import { Batiment } from './../model/batiment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TransformationRessource } from '../model/transformation-ressource';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +11,8 @@ import { TransformationRessource } from '../model/transformation-ressource';
 export class BatimentTransformationService {
   private headers: HttpHeaders | any = null;
   private URL: string = 'http://localhost:8080/np/api/transformation';
+
+  private transformationList:TransformationRessourceDto[]=[];
 
   constructor(private httpClient: HttpClient) {}
 
@@ -33,29 +35,39 @@ export class BatimentTransformationService {
     return this.httpClient.get<Batiment>(`${this.URL}/${id}`);
   }
 
-  public create(batiment: Batiment): Observable<Batiment> {
+  public create(batiment: Batiment, listeTransformationRessource: TransformationRessource[]): Observable<Batiment> {
     // this.initHeaders();
+    this.transformationList=[]
+
+
+    listeTransformationRessource.forEach(e => {
+      let transformationRessource:TransformationRessourceDto=new TransformationRessourceDto(e.ressourceLost,e.ressourceWin)
+      this.transformationList.push(transformationRessource)
+    });
+
     const obj = {
       nom: batiment.nom,
       pointsDefense: batiment.pointsDefense,
       ameliorable: batiment.ameliorable,
       coutBatiment: batiment.coutBatiment,
+      transformationRessouce:this.transformationList,
     };
     // return this.httpClient.post<Batiment>(this.URL, obj,{headers:this.headers});
     return this.httpClient.post<Batiment>(this.URL, obj);
   }
 
-  private transformationList: TransformationRessourceDto[] = [];
+
   public update(batiment: Batiment): Observable<Batiment> {
     // this.initHeaders();
     // return this.httpClient.put<Batiment>(this.URL + '/' + batiment.id, Batiment,{headers:this.headers});
 
     this.transformationList = [];
 
-    batiment.transformationRessouce!.forEach((e) => {
-      let transformationRessource: TransformationRessourceDto =
-        new TransformationRessourceDto(e.ressourceLost, e.ressourceWin);
-      this.transformationList.push(transformationRessource);
+    console.log(batiment);
+    console.log(batiment.transformationRessouce);
+    batiment.transformationRessouce!.forEach(e => {
+      let transformationRessource:TransformationRessourceDto=new TransformationRessourceDto(e.ressourceLost,e.ressourceWin)
+      this.transformationList.push(transformationRessource)
     });
 
     const obj = {
