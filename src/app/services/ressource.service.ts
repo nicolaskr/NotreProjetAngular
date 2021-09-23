@@ -53,6 +53,7 @@ export class RessourceService {
     return this.httpClient.post<Ressource>(this.URL, obj);
   }
 
+
   public update(ressource: Ressource): Observable<Ressource> {
     // this.initHeaders();
     // return this.httpClient.put<Ressource>(this.URL + '/' + ressource.id, ressource,{headers:this.headers});
