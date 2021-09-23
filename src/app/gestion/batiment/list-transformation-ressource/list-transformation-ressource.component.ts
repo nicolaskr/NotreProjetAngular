@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { BatimentTransformationService } from './../../../services/batiment-transformation.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Batiment } from 'src/app/model/batiment';
+import { Ressource } from 'src/app/model/ressource';
 
 @Component({
   selector: 'app-list-transformation-ressource',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListTransformationRessourceComponent implements OnInit {
 
-  constructor() { }
+  batiment:Batiment=new Batiment("",new Ressource(""));
+
+  @Input('id')
+  id:number=0;
+
+  constructor(private batimentTransformationService:BatimentTransformationService) { }
 
   ngOnInit(): void {
+    this.batimentTransformationService.get(this.id).subscribe(res=>{
+      this.batiment=res;
+      console.log(this.batiment)
+    });
   }
 
 }
