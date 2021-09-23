@@ -1,4 +1,4 @@
-<div>
+<div id="formulaireComplet">
   <div class="form-group">
     <label>id:</label>
     <input
@@ -10,11 +10,11 @@
   </div>
   <div class="form-group">
     <label>nom:</label>
-    <input class="form-control" [(ngModel)]="batiment.nom" />
+    <input class="form-control" [(ngModel)]="batiment.nom" placeholder="attribuer un nom"/>
   </div>
   <div class="form-group">
     <label>points de defense:</label>
-    <input class="form-control" [(ngModel)]="batiment.pointsDefense" />
+    <input class="form-control" [(ngModel)]="batiment.pointsDefense" placeholder="attribuer des points de defense"/>
   </div>
   <div class="form-group">
     <label>ameliorable:</label>
@@ -23,13 +23,15 @@
       <option>false</option>
     </select>
   </div>
-
-  <div class="form-group">
+  <br>
+  <div class="form-group"  id="listCout">
   <app-list-cout-batiment [id]="id"></app-list-cout-batiment>
   </div>
-  <div class="form-group">
+  <br>
+  <div class="form-group" id="coutBatiment">
   <app-cout-batiment (outputEvent)="receptionListCout($event)" [coutBatiments]="coutBatiments"></app-cout-batiment>
   </div>
+  <br>
   <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group me-2" role="group" aria-label="First group">
       <button (click)="save()" class="btn btn-success">enregistrer</button>

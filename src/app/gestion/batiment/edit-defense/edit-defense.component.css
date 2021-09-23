@@ -1,0 +1,11 @@
+#listCout{
+  border: solid 1px black;
+  background-color: rgba(200, 228, 198, 0.170);
+}
+#coutBatiment{
+  border: solid 1px black;
+  background-color: rgba(198, 198, 228, 0.170);
+}
+#formulaireComplet{
+  padding: 30px;
+}
