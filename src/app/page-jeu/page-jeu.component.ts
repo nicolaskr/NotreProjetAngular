@@ -1,3 +1,9 @@
+import { Router, ActivatedRoute } from '@angular/router';
+import { BatimentTransformationService } from './../services/batiment-transformation.service';
+import { BatimentDefenseService } from './../services/batiment-defense.service';
+import { BatimentAttaqueService } from './../services/batiment-attaque.service';
+import { Batiment } from 'src/app/model/batiment';
+import { BatimentProductionService } from './../services/batiment-production.service';
 import { Compte } from './../model/compte';
 import { Partie } from './../model/partie';
 
@@ -17,7 +23,10 @@ import { Observable } from 'rxjs';
 })
 export class PageJeuComponent implements OnInit {
   sessions: Observable<Session[]>;
-  waiters: Session[] = [];
+  batAttaque: Batiment[] = [];
+  batDef: Batiment[] = [];
+  batProd: Batiment[] = [];
+  batTrans: Batiment[] = [];
 
   idPartie: number = 1;
 
@@ -34,21 +43,62 @@ export class PageJeuComponent implements OnInit {
   constructor(
     private sessionService: SessionService,
     private sessionBatService: SessionBatimentService,
-    private sessionResService: SessionRessourceService
+    private sessionResService: SessionRessourceService,
+    private attService: BatimentAttaqueService,
+    private defService: BatimentDefenseService,
+    private prodService: BatimentProductionService,
+    private transService: BatimentTransformationService,
+    private router: Router,
+    private activRoute: ActivatedRoute
   ) {
-    this.sessions = this.sessionService.getByIdPartie(this.idPartie);
+    this.activRoute.paramMap.subscribe((params) => {
+      this.idPartie = Number(params.get('id'));
+      this.sessions = this.sessionService.getByIdPartie(this.idPartie!);
+    });
+    this.sessions = this.sessionService.getByIdPartie(this.idPartie!);
   }
 
   ngOnInit(): void {
     this.list();
+
+    this.catBatiments();
+    this.sessions.subscribe((res) => {
+      let nvlPartie: boolean = true;
+      for (var session of res) {
+        if (session.tourEnCours == true) {
+          nvlPartie = false;
+        }
+      }
+      if (nvlPartie == true) {
+        let rdm = Math.floor(Math.random() * res.length);
+        console.log(res[rdm]);
+        this.sessionService.rotation(res[rdm]).subscribe();
+        //this.sessionResService.create();
+      }
+    });
     this.tirageRessource();
+  }
+
+  catBatiments(): void {
+    this.attService.getAll().subscribe((res) => {
+      this.batAttaque = res;
+    });
+    this.defService.getAll().subscribe((res) => {
+      this.batDef = res;
+    });
+    this.prodService.getAll().subscribe((res) => {
+      this.batProd = res;
+    });
+    this.transService.getAll().subscribe((res) => {
+      this.batTrans = res;
+    });
   }
 
   list() {
     console.log('list');
-    this.sessions = this.sessionService.getByIdPartie(this.idPartie);
+    this.sessions = this.sessionService.getByIdPartie(this.idPartie!);
     this.sessionService
-      .getByIdPartie(this.idPartie)
+      .getByIdPartie(this.idPartie!)
       .subscribe((res) => console.log(res));
   }
 
@@ -150,5 +200,46 @@ export class PageJeuComponent implements OnInit {
     this.afficherMenuAmelioration = false;
     this.afficherMenuTransformation = false;
     this.afficherMenuAttaque = true;
+  }
+
+  attaque(sb: SessionBatiment): boolean {
+    for (var bat of this.batAttaque) {
+      if (bat.nom === sb.batiment.nom) {
+        console.log('true');
+        return true;
+      }
+    }
+    console.log('false');
+    return false;
+  }
+  production(sb: SessionBatiment): boolean {
+    for (var bat of this.batProd) {
+      if (bat.nom === sb.batiment.nom) {
+        console.log('true');
+        return true;
+      }
+    }
+    console.log('false');
+    return false;
+  }
+  defense(sb: SessionBatiment): boolean {
+    for (var bat of this.batDef) {
+      if (bat.nom === sb.batiment.nom) {
+        console.log('true');
+        return true;
+      }
+    }
+    console.log('false');
+    return false;
+  }
+  transformation(sb: SessionBatiment): boolean {
+    for (var bat of this.batTrans) {
+      if (bat.nom === sb.batiment.nom) {
+        console.log('true');
+        return true;
+      }
+    }
+    console.log('false');
+    return false;
   }
 }

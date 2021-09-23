@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BatimentAttaqueService {
   private headers: HttpHeaders | any = null;
@@ -60,5 +60,10 @@ export class BatimentAttaqueService {
     // this.initHeaders();
     // return this.httpClient.delete(this.URL+"/"+id,{headers:this.headers})
     return this.httpClient.delete(this.URL + '/' + id);
+  }
+  public getAll(): Observable<Batiment[]> {
+    // this.initHeaders();
+    // return this.httpClient.get<Batiment>(`${this.URL}/${id}`,{headers:this.headers});
+    return this.httpClient.get<Batiment[]>(this.URL);
   }
 }

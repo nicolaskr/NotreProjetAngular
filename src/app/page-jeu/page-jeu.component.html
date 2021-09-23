@@ -102,7 +102,37 @@
               <th>Niveau</th>
             </tr>
             <tr *ngFor="let sb of player.sessionBatiment">
-              <td>{{ sb.batiment.nom }}</td>
+              <td>
+                {{ sb.batiment.nom }}
+                <img
+                  *ngIf="production(sb)"
+                  src="assets/images/logos/imagesJeu/outils.png"
+                  height="20px"
+                  width="20px"
+                  alt="prod"
+                />
+                <img
+                  *ngIf="defense(sb)"
+                  src="assets/images/logos/imagesJeu/defense.png"
+                  height="20px"
+                  width="30px"
+                  alt="def"
+                />
+                <img
+                  *ngIf="transformation(sb)"
+                  src="assets/images/logos/imagesJeu/transformation.png"
+                  height="20px"
+                  width="20px"
+                  alt="trans"
+                />
+                <img
+                  *ngIf="attaque(sb)"
+                  src="assets/images/logos/imagesJeu/attaque.png"
+                  height="20px"
+                  width="35px"
+                  alt="attaque"
+                />
+              </td>
               <td>{{ sb.pointsDAttaque }}</td>
               <td>{{ sb.pointsDeVie }}</td>
               <td>{{ sb.level }}</td>
@@ -283,10 +313,7 @@
               </th>
             </tr>
           </table>
-          <table
-            *ngIf="p.tourEnCours == false"
-            class="table table-striped; card-header"
-          >
+          <table *ngIf="p.tourEnCours == false" class="card-header">
             <tr>
               <th scope="col">Batiment</th>
               <th scope="col">Attaque</th>
@@ -294,7 +321,36 @@
               <th scope="col">Niveau</th>
             </tr>
             <tr *ngFor="let sb of p.sessionBatiment">
-              <td>{{ sb.batiment.nom }}</td>
+              <td>
+                <img
+                  *ngIf="production(sb)"
+                  src="assets/images/logos/imagesJeu/outils.png"
+                  height="30px"
+                  width="30px"
+                  alt="prod"
+                />
+                <img
+                  *ngIf="defense(sb)"
+                  src="assets/images/logos/imagesJeu/defense.png"
+                  height="20x"
+                  width="30px"
+                  alt="def"
+                />
+                <img
+                  *ngIf="transformation(sb)"
+                  src="assets/images/logos/imagesJeu/transformation.png"
+                  height="30px"
+                  width="30px"
+                  alt="trans"
+                />
+                <img
+                  *ngIf="attaque(sb)"
+                  src="assets/images/logos/imagesJeu/attaque.png"
+                  height="18px"
+                  width="30px"
+                  alt="attaque"
+                />{{ sb.batiment.nom }}
+              </td>
               <td>{{ sb.pointsDAttaque }}</td>
               <td>{{ sb.pointsDeVie }}</td>
               <td>{{ sb.level }}</td>
