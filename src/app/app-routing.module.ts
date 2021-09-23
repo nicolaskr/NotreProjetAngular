@@ -16,6 +16,8 @@ import { EditProductionComponent } from './gestion/batiment/edit-production/edit
 import { EditTransformationComponent } from './gestion/batiment/edit-transformation/edit-transformation.component';
 import { InscriptionComponent } from './authentification/inscription/inscription.component';
 import { RulesComponent } from './game/rules/rules.component';
+import { AdminCanActivateService } from './services/can-activate/admin-can-activate.service';
+import { AllCanActivateService } from './services/can-activate/all-can-activate.service';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -28,40 +30,86 @@ const routes: Routes = [
     path: 'inscription',
     component: InscriptionComponent,
   },
-  { path: 'pagejeu/:id', component: PageJeuComponent },
-  { path: 'rules', component: RulesComponent},
-  { path: 'gestion/charge', component: ChargerPartieComponent },
-  { path: 'gestion/parties', component: PartieComponent },
-  { path: 'gestion/joueurs', component: JoueurComponent },
-  { path: 'gestion/ressources', component: RessourceComponent },
-  { path: 'gestion/ressources/edit', component: EditRessourceComponent },
-  { path: 'gestion/ressources/edit/:id', component: EditRessourceComponent },
-  { path: 'gestion/batiments', component: BatimentComponent },
-  { path: 'gestion/batiments/attaque/edit', component: EditAttaqueComponent },
+  {
+    path: 'pagejeu/:id',
+    component: PageJeuComponent,
+    canActivate: [AllCanActivateService],
+  },
+  { path: 'rules', component: RulesComponent },
+  {
+    path: 'gestion/charge',
+    component: ChargerPartieComponent,
+    canActivate: [AllCanActivateService],
+  },
+  {
+    path: 'gestion/parties',
+    component: PartieComponent,
+    canActivate: [AdminCanActivateService],
+  },
+  {
+    path: 'gestion/joueurs',
+    component: JoueurComponent,
+    canActivate: [AdminCanActivateService],
+  },
+  {
+    path: 'gestion/ressources',
+    component: RessourceComponent,
+    canActivate: [AdminCanActivateService],
+  },
+  {
+    path: 'gestion/ressources/edit',
+    component: EditRessourceComponent,
+    canActivate: [AdminCanActivateService],
+  },
+  {
+    path: 'gestion/ressources/edit/:id',
+    component: EditRessourceComponent,
+    canActivate: [AdminCanActivateService],
+  },
+  {
+    path: 'gestion/batiments',
+    component: BatimentComponent,
+    canActivate: [AdminCanActivateService],
+  },
+  {
+    path: 'gestion/batiments/attaque/edit',
+    component: EditAttaqueComponent,
+    canActivate: [AdminCanActivateService],
+  },
   {
     path: 'gestion/batiments/attaque/edit/:id',
     component: EditAttaqueComponent,
+    canActivate: [AdminCanActivateService],
   },
-  { path: 'gestion/batiments/defense/edit', component: EditDefenseComponent },
+  {
+    path: 'gestion/batiments/defense/edit',
+    component: EditDefenseComponent,
+    canActivate: [AdminCanActivateService],
+  },
   {
     path: 'gestion/batiments/defense/edit/:id',
     component: EditDefenseComponent,
+    canActivate: [AdminCanActivateService],
   },
   {
     path: 'gestion/batiments/production/edit',
     component: EditProductionComponent,
+    canActivate: [AdminCanActivateService],
   },
   {
     path: 'gestion/batiments/production/edit/:id',
     component: EditProductionComponent,
+    canActivate: [AdminCanActivateService],
   },
   {
     path: 'gestion/batiments/transformation/edit',
     component: EditTransformationComponent,
+    canActivate: [AdminCanActivateService],
   },
   {
     path: 'gestion/batiments/transformation/edit/:id',
     component: EditTransformationComponent,
+    canActivate: [AdminCanActivateService],
   },
 ];
 
