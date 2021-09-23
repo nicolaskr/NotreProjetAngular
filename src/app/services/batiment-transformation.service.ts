@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { TransformationRessource } from '../model/transformation-ressource';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BatimentTransformationService {
   private headers: HttpHeaders | any = null;
@@ -20,6 +20,11 @@ export class BatimentTransformationService {
       // Authorization: 'Basic ' + localStorage.getItem('token'),
       Authorization: 'Basic ' + btoa('joueur1:joueur1'),
     });
+  }
+  public getAll(): Observable<Batiment[]> {
+    // this.initHeaders();
+    // return this.httpClient.get<Batiment>(`${this.URL}`,{headers:this.headers});
+    return this.httpClient.get<Batiment[]>(`${this.URL}`);
   }
 
   public get(id: number): Observable<Batiment> {
@@ -40,18 +45,18 @@ export class BatimentTransformationService {
     return this.httpClient.post<Batiment>(this.URL, obj);
   }
 
-  private transformationList:TransformationRessourceDto[]=[];
+  private transformationList: TransformationRessourceDto[] = [];
   public update(batiment: Batiment): Observable<Batiment> {
     // this.initHeaders();
     // return this.httpClient.put<Batiment>(this.URL + '/' + batiment.id, Batiment,{headers:this.headers});
 
-    this.transformationList=[]
+    this.transformationList = [];
 
-    batiment.transformationRessouce!.forEach(e => {
-      let transformationRessource:TransformationRessourceDto=new TransformationRessourceDto(e.ressourceLost,e.ressourceWin)
-      this.transformationList.push(transformationRessource)
+    batiment.transformationRessouce!.forEach((e) => {
+      let transformationRessource: TransformationRessourceDto =
+        new TransformationRessourceDto(e.ressourceLost, e.ressourceWin);
+      this.transformationList.push(transformationRessource);
     });
-
 
     const obj = {
       id: batiment.id,
@@ -59,7 +64,7 @@ export class BatimentTransformationService {
       pointsDefense: batiment.pointsDefense,
       ameliorable: batiment.ameliorable,
       coutBatiment: batiment.coutBatiment,
-      transformationRessouce:this.transformationList,
+      transformationRessouce: this.transformationList,
     };
 
     console.log(obj);
@@ -71,6 +76,4 @@ export class BatimentTransformationService {
     // return this.httpClient.delete(this.URL+"/"+id,{headers:this.headers})
     return this.httpClient.delete(this.URL + '/' + id);
   }
-
-
 }

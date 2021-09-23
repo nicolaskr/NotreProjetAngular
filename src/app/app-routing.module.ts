@@ -27,7 +27,7 @@ const routes: Routes = [
     path: 'inscription',
     component: InscriptionComponent,
   },
-  { path: 'pagejeu', component: PageJeuComponent },
+  { path: 'pagejeu/:id', component: PageJeuComponent },
   { path: 'gestion/charge', component: ChargerPartieComponent },
   { path: 'gestion/parties', component: PartieComponent },
   { path: 'gestion/joueurs', component: JoueurComponent },

@@ -11,12 +11,19 @@ export class Batiment {
     private _coutBatiment?: CoutBatiment[] | undefined,
     private _pointsDAttaque?: number | undefined,
     private _quantiteProduite?: number | undefined,
-    private _transformationRessouce?: TransformationRessource[] | undefined ,
-    private _id?: number | undefined
+    private _transformationRessource?: TransformationRessource[] | undefined,
+    private _id?: number | undefined,
+    private _type_batiment?: string | undefined
   ) {}
 
   public get id(): number | undefined {
     return this._id;
+  }
+  public get type_batiment(): string | undefined {
+    return this._type_batiment;
+  }
+  public set type_batiment(value: string | undefined) {
+    this._type_batiment = value;
   }
   public set id(value: number | undefined) {
     this._id = value;
@@ -33,7 +40,7 @@ export class Batiment {
    * Getter nom
    * @return {string}
    */
-  public get nom(): string{
+  public get nom(): string {
     return this._nom;
   }
 
@@ -41,7 +48,7 @@ export class Batiment {
    * Getter def
    * @return {number}
    */
-  public get pointsDefense(): number | undefined{
+  public get pointsDefense(): number | undefined {
     return this._pointsDefense;
   }
 
@@ -74,24 +81,24 @@ export class Batiment {
    * @return {TransformationRessource[]}
    */
   public get transformationRessource(): TransformationRessource[] | undefined {
-    return this._transformationRessouce;
+    return this._transformationRessource;
   }
 
-   /**
+  /**
    * Getter def
    * @return {TransformationRessource[]}
    */
-    public get coutBatiment(): CoutBatiment[] | undefined {
-      return this._coutBatiment;
-    }
+  public get coutBatiment(): CoutBatiment[] | undefined {
+    return this._coutBatiment;
+  }
 
-    /**
+  /**
    * Getter def
    * @return {number}
    */
-     public get pointsDAttaque(): number | undefined {
-      return this._pointsDAttaque;
-    }
+  public get pointsDAttaque(): number | undefined {
+    return this._pointsDAttaque;
+  }
 
   /**
    * Setter nom
@@ -141,19 +148,21 @@ export class Batiment {
     this._quantiteProduite = value;
   }
 
-    /**
+  /**
    * Setter def
    * @param {TransformationRessource[]} value
    */
-     public set transformationRessouce(value: TransformationRessource[] | undefined) {
-      this._transformationRessouce = value;
-    }
+  public set transformationRessouce(
+    value: TransformationRessource[] | undefined
+  ) {
+    this._transformationRessource = value;
+  }
 
-     /**
+  /**
    * Setter def
    * @param {TransformationRessource[]} value
    */
-      public set coutBatiment(value: CoutBatiment[] | undefined) {
-        this._coutBatiment = value;
-      }
+  public set coutBatiment(value: CoutBatiment[] | undefined) {
+    this._coutBatiment = value;
+  }
 }
