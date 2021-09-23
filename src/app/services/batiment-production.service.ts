@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Batiment } from '../model/batiment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BatimentProductionService {
   private headers: HttpHeaders | any = null;
@@ -20,6 +20,11 @@ export class BatimentProductionService {
     });
   }
 
+  public getAll(): Observable<Batiment[]> {
+    // this.initHeaders();
+    // return this.httpClient.get<Batiment>(`${this.URL}`,{headers:this.headers});
+    return this.httpClient.get<Batiment[]>(`${this.URL}`);
+  }
   public get(id: number): Observable<Batiment> {
     // this.initHeaders();
     // return this.httpClient.get<Batiment>(`${this.URL}/${id}`,{headers:this.headers});

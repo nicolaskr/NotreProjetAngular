@@ -11,8 +11,6 @@
         height="50"
         class="mb-3"
       />
-
-
     </div>
 
     <div>
@@ -21,7 +19,7 @@
       >
       <select class="w-full mb-3" [formControl]="formControlPartie">
         <option></option>
-        <option *ngFor="let s of sessions">
+        <option *ngFor="let s of sessions" value="{{ s.id.partie.id }}">
           {{ s.id.partie.id }} {{ s.id.partie.sessions }}
         </option>
       </select>
@@ -34,10 +32,8 @@
         class="w-full"
         [disabled]="formGroupNouvellePartie.invalid"
       >
-      <img
-      src="assets/images/logos/logo.png"
-      style="width: 1.5rem"
-    /></button><br><br>
+        <img src="assets/images/logos/logo.png" style="width: 1.5rem" /></button
+      ><br /><br />
       <button
         pButton
         pRipple
@@ -45,10 +41,8 @@
         label="Nouvelle partie"
         class="p-button-warning w-full"
       >
-      <img
-      src="assets/images/logos/logo.png"
-      style="width: 1.5rem"
-    /></button>
+        <img src="assets/images/logos/logo.png" style="width: 1.5rem" />
+      </button>
     </div>
   </div>
 </form>

@@ -57,6 +57,7 @@ export class ChargerPartieComponent implements OnInit {
   }
 
   submit() {
-    this.router.navigate(['/pagejeu']);
+    console.log(this.formControlPartie.value);
+    this.router.navigate(['/pagejeu/' + this.formControlPartie.value]);
   }
 }

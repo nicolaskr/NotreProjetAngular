@@ -1,4 +1,3 @@
-
 import { Batiment } from './../model/batiment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -19,6 +18,11 @@ export class BatimentDefenseService {
       // Authorization: 'Basic ' + localStorage.getItem('token'),
       Authorization: 'Basic ' + btoa('joueur1:joueur1'),
     });
+  }
+  public getAll(): Observable<Batiment[]> {
+    // this.initHeaders();
+    // return this.httpClient.get<Batiment>(`${this.URL}/${id}`,{headers:this.headers});
+    return this.httpClient.get<Batiment[]>(`${this.URL}`);
   }
 
   public get(id: number): Observable<Batiment> {
