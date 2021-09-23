@@ -1,21 +1,58 @@
+<div id="demo">
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <a [class]="tous()" (click)="list()">Tous les batiments</a>
   </li>
   <li class="nav-item">
+    <img
+                    src="assets/images/logos/imagesJeu/attaque.png"
+                    height="15px"
+                    width="25px"
+                    alt="attaque"
+                    class="marge"
+                  />
+  </li>
+  <li class="nav-item">
     <a [class]="attaque()" (click)="listAttaque()">Batiments d'attaque</a>
+  </li>
+  <li class="nav-item">
+    <img
+                    src="assets/images/logos/imagesJeu/defense.png"
+                    height="15px"
+                    width="25px"
+                    alt="def"
+                    class="marge"
+                  />
   </li>
   <li class="nav-item">
     <a [class]="defense()" (click)="listDefense()">Batiments de defense</a>
   </li>
   <li class="nav-item">
+  <img
+                  src="assets/images/logos/imagesJeu/outils.png"
+                  height="20px"
+                  width="20px"
+                  alt="prod"
+                  class="marge"
+                />
+  </li>
+  <li class="nav-item">
     <a [class]="production()" (click)="listProduction()">Batiments de production</a>
+  </li>
+  <li class="nav-item">
+    <img
+                    src="assets/images/logos/imagesJeu/transformation.png"
+                    height="23px"
+                    width="28px"
+                    alt="trans"
+                    class="marge"
+                  />
   </li>
   <li class="nav-item">
     <a [class]="transformation()" (click)="listTransformation()">Batiments de transformation</a>
   </li>
 </ul>
-
+</div>
 <table class="table">
   <tbody>
     <tr>

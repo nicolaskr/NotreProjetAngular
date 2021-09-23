@@ -1,6 +1,7 @@
 <div class="form-group">
   <label><b>Nouvelle liste des Tranformations Ressources :</b></label>
   <table class="table">
+    <tbody>
     <tr>
       <th>Ressource Lost</th>
       <th>Ressource Win</th>
@@ -15,12 +16,15 @@
           <option *ngFor="let r of ressources" [ngValue]="r">{{r.nom}}</option>
         </select>
       </td>
+      <td>
       <select class="form-control" [(ngModel)]="TransformationRessource.ressourceWin">
         <option *ngFor="let r of ressources" [ngValue]="r">{{r.nom}}</option>
       </select>
+      </td>
     </tr>
     <button type="button" class="btn btn-link" (click)="ajoutTransformationRessource()">ajouter</button>
     <button type="button" class="btn btn-link" (click)="restartTransformationRessource()">recommencer la liste des transformation possible</button>
+  </tbody>
   </table>
   <div class="alert alert-danger" *ngIf="!validation">Une ressource lost et une ressource win doivent être selectionné</div>
   <div class="alert alert-danger" *ngIf="!validation2">les resosurces doivent être différentes</div>

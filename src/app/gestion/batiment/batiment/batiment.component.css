@@ -5,3 +5,10 @@ th{
 table{
   border-bottom:  rgba(84, 33, 131, 0.233);
 }
+.marge {
+  margin-top:10px;
+  margin-left:15px;
+}
+#demo{
+  background-color: rgb(245, 245, 245);
+}

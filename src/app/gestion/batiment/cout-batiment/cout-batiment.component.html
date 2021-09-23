@@ -1,6 +1,7 @@
 <div class="form-group">
   <label><b>Nouvelle liste des Couts du batiment :</b></label>
   <table class="table">
+    <tbody>
     <tr>
       <th>Ressource</th>
       <th>Quantité</th>
@@ -16,11 +17,12 @@
         </select>
       </td>
       <td>
-        <input type="number" [(ngModel)]="coutBatiment.$quantite"/>
+        <input class="form-control" type="number" [(ngModel)]="coutBatiment.$quantite"/>
       </td>
     </tr>
     <button type="button" class="btn btn-link" (click)="ajoutCout()">ajouter</button>
     <button type="button" class="btn btn-link" (click)="restartListCout()">recommencer la liste des couts</button>
+  </tbody>
   </table>
   <div class="alert alert-danger" *ngIf="!validation">une ressource doit être selectionné et la quantité doit être supérieure à 0</div>
 </div>
