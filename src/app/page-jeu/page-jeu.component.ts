@@ -59,9 +59,8 @@ export class PageJeuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.list();
-
     this.catBatiments();
+
     this.sessions.subscribe((res) => {
       let nvlPartie: boolean = true;
       for (var session of res) {
@@ -71,12 +70,13 @@ export class PageJeuComponent implements OnInit {
       }
       if (nvlPartie == true) {
         let rdm = Math.floor(Math.random() * res.length);
-        console.log(res[rdm]);
+        console.log('initialisation des ressources et de la bastide');
         this.sessionService.rotation(res[rdm]).subscribe();
-        //this.sessionResService.create();
+        this.sessionResService.init(this.idPartie).subscribe();
       }
+      this.tirageRessource();
+      this.list();
     });
-    this.tirageRessource();
   }
 
   catBatiments(): void {
@@ -109,7 +109,7 @@ export class PageJeuComponent implements OnInit {
     this.finDePartie();
     this.sessions.subscribe((res) => {
       for (var session of res) {
-        if (session.def <= 0) {
+        if (session.sessionBatiment.length <= 0) {
           this.sessionService
             .delete(session.id.partie.id!, session.id.compte.id!)
             .subscribe();
@@ -166,7 +166,7 @@ export class PageJeuComponent implements OnInit {
       for (var s of res) {
         if (s.tourEnCours) {
           this.sessionResService.piocher(s).subscribe((obs) => {
-            console.log('pioche' + obs);
+            console.log('pioche');
             this.changementJoueur = true;
           });
         }
@@ -205,41 +205,33 @@ export class PageJeuComponent implements OnInit {
   attaque(sb: SessionBatiment): boolean {
     for (var bat of this.batAttaque) {
       if (bat.nom === sb.batiment.nom) {
-        console.log('true');
         return true;
       }
     }
-    console.log('false');
     return false;
   }
   production(sb: SessionBatiment): boolean {
     for (var bat of this.batProd) {
       if (bat.nom === sb.batiment.nom) {
-        console.log('true');
         return true;
       }
     }
-    console.log('false');
     return false;
   }
   defense(sb: SessionBatiment): boolean {
     for (var bat of this.batDef) {
       if (bat.nom === sb.batiment.nom) {
-        console.log('true');
         return true;
       }
     }
-    console.log('false');
     return false;
   }
   transformation(sb: SessionBatiment): boolean {
     for (var bat of this.batTrans) {
       if (bat.nom === sb.batiment.nom) {
-        console.log('true');
         return true;
       }
     }
-    console.log('false');
     return false;
   }
 }

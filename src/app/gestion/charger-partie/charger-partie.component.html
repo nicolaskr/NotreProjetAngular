@@ -20,7 +20,7 @@
       <select class="w-full mb-3" [formControl]="formControlPartie">
         <option></option>
         <option *ngFor="let s of sessions" value="{{ s.id.partie.id }}">
-          {{ s.id.partie.id }} {{ s.id.partie.sessions }}
+          {{ s.id.partie.id }} {{ s.id.partie.description }}
         </option>
       </select>
 

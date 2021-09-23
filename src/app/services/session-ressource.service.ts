@@ -40,13 +40,6 @@ export class SessionRessourceService {
 
   public piocher(session: Session): Observable<SessionRessource[]> {
     this.initHeaders();
-    console.log(
-      this.url +
-        '/piocher/' +
-        session.id?.partie?.id +
-        '/' +
-        session.id?.compte?.id
-    );
     return this.http.get<SessionRessource[]>(
       this.url +
         '/piocher/' +
@@ -65,6 +58,13 @@ export class SessionRessourceService {
   public get(id: number): Observable<SessionRessource> {
     this.initHeaders();
     return this.http.get<SessionRessource>(this.url + '/' + id, {
+      headers: this.headers,
+    });
+  }
+
+  public init(idPartie: number) {
+    this.initHeaders();
+    return this.http.post(this.url + '/initPartie/' + idPartie, {
       headers: this.headers,
     });
   }
