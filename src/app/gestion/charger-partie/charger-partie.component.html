@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <form
   class="flex align-items-center justify-content-center"
   (ngSubmit)="submit()"
@@ -34,6 +35,7 @@
       >
         <img src="assets/images/logos/logo.png" style="width: 1.5rem" /></button
       ><br /><br />
+<<<<<<< Updated upstream
       <button
         pButton
         pRipple
@@ -43,6 +45,67 @@
       >
         <img src="assets/images/logos/logo.png" style="width: 1.5rem" />
       </button>
+=======
+>>>>>>> Stashed changes
     </div>
   </div>
 </form>
+<div class="flex align-items-center justify-content-center">
+  <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+    <button
+      pButton
+      pRipple
+      label="Nouvelle partie"
+      class="p-button-warning w-full"
+      (click)="openNew()"
+    >
+      <img src="assets/images/logos/logo.png" style="width: 1.5rem" />
+    </button>
+  </div>
+</div>
+<p-dialog
+  [(visible)]="partieCreationDialog"
+  [style]="{ width: '450px' }"
+  header="Partie Details"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        pInputTextarea
+        [(ngModel)]="partieInstance.description"
+        rows="3"
+        cols="20"
+      ></textarea>
+    </div>
+
+    <div class="p-field">
+      <label for="joueurs">Joueurs</label>
+      <app-select-joueur
+        (selectedComptesReady)="getSelectedComptes($event)"
+      ></app-select-joueur>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Save"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="savePartie()"
+    ></button>
+  </ng-template>
+</p-dialog>
