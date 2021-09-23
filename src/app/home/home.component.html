@@ -1,11 +1,13 @@
 <div class="flex align-items-center justify-content-center spacer layer1">
   <section>
-    <span *ngIf="!logged" class="block text-6xl font-bold mb-1"
+    <span *ngIf="!logged" class="block text-6xl text-secondary font-bold mb-1"
       >Bienvenue cher inconnu</span
     >
-    <span *ngIf="logged" class="block text-6xl font-bold mb-1"
-      >Hey {{ username }}</span
-    >
+    <span
+      *ngIf="logged"
+      class="block text-6xl text-secondary font-bold alert mb-1"
+      >Hey {{ username }}
+    </span>
     <div class="text-6xl text-primary font-bold mb-3">
       Prêt pour la bataille ?
     </div>
@@ -18,7 +20,7 @@
       type="button"
       class="mr-3 p-button-raised"
     ></a> -->
-  <!-- <a id="a"
+    <!-- <a id="a"
       [routerLink]="['/gestion/charge']"
       routerLinkActive="active"
       pButton
@@ -27,11 +29,22 @@
       type="button"
       class="btn btn-info"
     ></a> -->
-    <a id="a"
-    [routerLink]="['/gestion/charge']"
-    routerLinkActive="active"
-    class="link"
-    ><span class="contentLink">Let's Go!</span></a>
+    <a
+      *ngIf="!logged"
+      id="a"
+      [routerLink]="['/authentification']"
+      routerLinkActive="active"
+      class="link"
+      ><span class="contentLink">Let's Go!</span></a
+    >
+    <a
+      *ngIf="logged"
+      id="a"
+      [routerLink]="['/gestion/charge']"
+      routerLinkActive="active"
+      class="link"
+      ><span class="contentLink">Let's Go!</span></a
+    >
   </section>
 </div>
 <div class="spacer layer1_mirror"></div>

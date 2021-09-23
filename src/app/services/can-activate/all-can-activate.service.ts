@@ -10,10 +10,15 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class NoAuthCanActivateService implements CanActivate {
+export class AllCanActivateService implements CanActivate {
   constructor() {}
-
-  canActivate(): boolean {
-    return localStorage.getItem('token') ? false : true;
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
+    if (localStorage.getItem('compte')) {
+      return true;
+    }
+    return false;
   }
 }

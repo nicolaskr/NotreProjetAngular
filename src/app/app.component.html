@@ -19,7 +19,14 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
-        <li class="nav-item"><a class="nav-link" [routerLink]="['/rules']" routerLinkActive="active">Règles</a></li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/rules']"
+            routerLinkActive="active"
+            >Règles</a
+          >
+        </li>
         <!-- <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -47,6 +54,54 @@
             >Disabled</a
           >
         </li> -->
+
+        <li class="nav-item dropdown">
+          <a
+            *ngIf="admin"
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Gestion
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a
+                [routerLink]="['/gestion/parties']"
+                routerLinkActive="active"
+                class="dropdown-item"
+                >Gestion Parties</a
+              >
+            </li>
+            <!-- <li>
+      <a
+        [routerLink]="['/gestion/joueurs']"
+        routerLinkActive="active"
+        class="btn btn-link"
+        >Gestion Joueurs</a
+      >
+    </li> -->
+            <li>
+              <a
+                [routerLink]="['/gestion/ressources']"
+                routerLinkActive="active"
+                class="dropdown-item"
+                >Gestion Ressources</a
+              >
+            </li>
+            <li>
+              <a
+                [routerLink]="['/gestion/batiments']"
+                routerLinkActive="active"
+                class="dropdown-item"
+                >Gestion Batiments</a
+              >
+            </li>
+          </ul>
+        </li>
       </ul>
       <!-- <form class="d-flex">
         <input
@@ -57,75 +112,36 @@
         />
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form> -->
+      <p-button
+        class="d-flex"
+        *ngIf="!logged"
+        label="Authentification"
+        icon="pi pi-user"
+        [routerLink]="['/authentification']"
+        routerLinkActive="active"
+      ></p-button>
+      <p-button
+        class="d-flex"
+        pRipple
+        *ngIf="logged"
+        type="button"
+        label="Déconnexion"
+        icon="pi pi-user"
+        styleClass="p-button-danger"
+        [routerLink]="['/home']"
+        routerLinkActive="active"
+        (click)="logout()"
+      ></p-button>
     </div>
   </div>
   <!-- les lien de gestion sont à conditionner pour les Role_Admin -->
   <!-- <a [routerLink]="['/toCreate']" routerLinkActive="active" class="btn btn-link"
     >toCreate</a
   > -->
-  <a
-    *ngIf="admin"
-    class="nav-link dropdown-toggle"
-    href="#"
-    id="navbarDropdown"
-    role="button"
-    data-bs-toggle="dropdown"
-    aria-expanded="false"
-  >
-    Gestion
-  </a>
-  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <li>
-      <a
-        [routerLink]="['/gestion/parties']"
-        routerLinkActive="active"
-        class="btn btn-link"
-        >Gestion Parties</a
-      >
-    </li>
-    <!-- <li>
-      <a
-        [routerLink]="['/gestion/joueurs']"
-        routerLinkActive="active"
-        class="btn btn-link"
-        >Gestion Joueurs</a
-      >
-    </li> -->
-    <li>
-      <a
-        [routerLink]="['/gestion/ressources']"
-        routerLinkActive="active"
-        class="btn btn-link"
-        >Gestion Ressources</a
-      >
-    </li>
-    <li>
-      <a
-        [routerLink]="['/gestion/batiments']"
-        routerLinkActive="active"
-        class="btn btn-link"
-        >Gestion Batiments</a
-      >
-    </li>
-  </ul>
-<!--
+  <!--
   <a [routerLink]="['/toCreate']" routerLinkActive="active" class="btn btn-link"
     >toCreate</a
   > -->
-  <p-button *ngIf="!logged" label="Authentification" icon="pi pi-user" [routerLink]="['/authentification']"
-  routerLinkActive="active"></p-button>
-  <p-button
-    pRipple
-    *ngIf="logged"
-    type="button"
-    label="Déconnexion"
-    icon="pi pi-user"
-    styleClass="p-button-danger"
-    [routerLink]="['/home']"
-    routerLinkActive="active"
-    (click)="logout()"
-    ></p-button
-  >
 </nav>
 
 <!-- <app-page-jeu></app-page-jeu> -->
