@@ -1,0 +1,27 @@
+#overflow {
+  width: 30%;
+  height: auto;
+  background-image: linear-gradient(
+    to bottom right,
+    #33475b,
+    #0033cc,
+    #ff77cc,
+    rgb(255, 122, 89)
+  );
+}
+
+.spacer {
+  aspect-ratio: 650/400;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.layer1 {
+  background-image: url(/assets/images/layered-waves-haikei.svg);
+}
+
+.layer1_mirror {
+  background-image: url(/assets/images/layered-waves-haikei_mirror.svg);
+}
