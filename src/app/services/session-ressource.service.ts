@@ -50,6 +50,11 @@ export class SessionRessourceService {
     );
   }
 
+  public batProduction(session: Session){
+    this.initHeaders();
+    return this.http.get(this.url +'/productionRessource/'+session.id.partie.id +'&'+session.id.compte.id, { headers: this.headers });
+  }
+
   public delete(id: number | undefined) {
     this.initHeaders();
     return this.http.delete(this.url + '/' + id, { headers: this.headers });

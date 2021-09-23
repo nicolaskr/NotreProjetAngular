@@ -20,7 +20,7 @@
             class="card-header"
             style="margin-bottom: 10 px; text-align: center"
           >
-            {{ player.id?.compte?.nom }}
+            {{ player.id?.compte?.username }}
           </h2>
 
           <table style="margin-top: 10px" class="card-header">
@@ -231,7 +231,7 @@
             class="card-header"
             style="margin-bottom: 5px; text-align: center"
           >
-            {{ p.id?.compte?.nom }}
+            {{ p.id?.compte?.username }}
           </h2>
           <table
             *ngIf="p.tourEnCours == false"

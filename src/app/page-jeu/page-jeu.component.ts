@@ -15,6 +15,7 @@ import { Session } from '../model/session';
 import { SessionBatimentService } from '../services/session-batiment.service';
 import { SessionRessourceService } from '../services/session-ressource.service';
 import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'page-jeu',
@@ -95,6 +96,7 @@ export class PageJeuComponent implements OnInit {
   }
 
   list() {
+    delay(1000);
     console.log('list');
     this.sessions = this.sessionService.getByIdPartie(this.idPartie!);
     this.sessionService
@@ -169,6 +171,7 @@ export class PageJeuComponent implements OnInit {
             console.log('pioche');
             this.changementJoueur = true;
           });
+          this.sessionResService.batProduction(s).subscribe();
         }
       }
     });
