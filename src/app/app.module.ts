@@ -49,7 +49,9 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { ListboxModule } from 'primeng/listbox';
 
-import {AccordionModule} from 'primeng/accordion';
+import {FieldsetModule} from 'primeng/fieldset';
+import {PanelModule} from 'primeng/panel';
+import {DividerModule} from 'primeng/divider';
 
 import { EditAttaqueComponent } from './gestion/batiment/edit-attaque/edit-attaque.component';
 import { EditDefenseComponent } from './gestion/batiment/edit-defense/edit-defense.component';
@@ -124,7 +126,9 @@ import { RulesComponent } from './game/rules/rules.component';
     AvatarModule,
     AvatarGroupModule,
     ListboxModule,
-    AccordionModule
+    FieldsetModule,
+    PanelModule,
+    DividerModule
   ],
   providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent],
