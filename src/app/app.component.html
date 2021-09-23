@@ -19,8 +19,8 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
-        <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-        <li class="nav-item dropdown">
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/rules']" routerLinkActive="active">Règles</a></li>
+        <!-- <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
             href="#"
@@ -37,8 +37,8 @@
             <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
           <a
             class="nav-link disabled"
             href="#"
@@ -46,9 +46,9 @@
             aria-disabled="true"
             >Disabled</a
           >
-        </li>
+        </li> -->
       </ul>
-      <form class="d-flex">
+      <!-- <form class="d-flex">
         <input
           class="form-control me-2"
           type="search"
@@ -56,14 +56,15 @@
           aria-label="Search"
         />
         <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      </form> -->
     </div>
   </div>
   <!-- les lien de gestion sont à conditionner pour les Role_Admin -->
-  <a [routerLink]="['/toCreate']" routerLinkActive="active" class="btn btn-link"
+  <!-- <a [routerLink]="['/toCreate']" routerLinkActive="active" class="btn btn-link"
     >toCreate</a
-  >
+  > -->
   <a
+    *ngIf="admin"
     class="nav-link dropdown-toggle"
     href="#"
     id="navbarDropdown"
@@ -82,14 +83,14 @@
         >Gestion Parties</a
       >
     </li>
-    <li>
+    <!-- <li>
       <a
         [routerLink]="['/gestion/joueurs']"
         routerLinkActive="active"
         class="btn btn-link"
         >Gestion Joueurs</a
       >
-    </li>
+    </li> -->
     <li>
       <a
         [routerLink]="['/gestion/ressources']"
@@ -107,15 +108,23 @@
       >
     </li>
   </ul>
-
+<!--
   <a [routerLink]="['/toCreate']" routerLinkActive="active" class="btn btn-link"
     >toCreate</a
-  >
-  <a
-    [routerLink]="['/authentification']"
+  > -->
+  <p-button *ngIf="!logged" label="Authentification" icon="pi pi-user" [routerLink]="['/authentification']"
+  routerLinkActive="active"></p-button>
+  <p-button
+    pRipple
+    *ngIf="logged"
+    type="button"
+    label="Déconnexion"
+    icon="pi pi-user"
+    styleClass="p-button-danger"
+    [routerLink]="['/home']"
     routerLinkActive="active"
-    class="btn btn-link"
-    >Authentification</a
+    (click)="logout()"
+    ></p-button
   >
 </nav>
 
