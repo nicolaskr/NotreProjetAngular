@@ -10,7 +10,18 @@
       Prêt pour la bataille ?
     </div>
     <a
+      *ngIf="logged"
       [routerLink]="['/gestion/charge']"
+      routerLinkActive="active"
+      pButton
+      pRipple
+      label="PLAY ! (page jeu)"
+      type="button"
+      class="mr-3 p-button-raised"
+    ></a>
+    <a
+      *ngIf="!logged"
+      [routerLink]="['/authentification']"
       routerLinkActive="active"
       pButton
       pRipple

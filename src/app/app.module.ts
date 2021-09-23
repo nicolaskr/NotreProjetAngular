@@ -49,6 +49,8 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { ListboxModule } from 'primeng/listbox';
 
+import {AccordionModule} from 'primeng/accordion';
+
 import { EditAttaqueComponent } from './gestion/batiment/edit-attaque/edit-attaque.component';
 import { EditDefenseComponent } from './gestion/batiment/edit-defense/edit-defense.component';
 import { EditProductionComponent } from './gestion/batiment/edit-production/edit-production.component';
@@ -59,6 +61,7 @@ import { TransformationRessourceComponent } from './gestion/batiment/transformat
 import { ListTransformationRessourceComponent } from './gestion/batiment/list-transformation-ressource/list-transformation-ressource.component';
 import { ChargerPartieComponent } from './gestion/charger-partie/charger-partie.component';
 import { SelectJoueurComponent } from './gestion/joueur/select-joueur/select-joueur.component';
+import { RulesComponent } from './game/rules/rules.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +90,7 @@ import { SelectJoueurComponent } from './gestion/joueur/select-joueur/select-jou
     ListTransformationRessourceComponent,
     ChargerPartieComponent,
     SelectJoueurComponent,
+    RulesComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,6 +124,7 @@ import { SelectJoueurComponent } from './gestion/joueur/select-joueur/select-jou
     AvatarModule,
     AvatarGroupModule,
     ListboxModule,
+    AccordionModule
   ],
   providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent],

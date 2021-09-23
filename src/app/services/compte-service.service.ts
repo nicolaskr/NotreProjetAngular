@@ -23,4 +23,8 @@ export class CompteServiceService {
   public getAllJoueurs(): Observable<Compte[]> {
     return this.httpClient.get<Compte[]>(`${this.joueurUrl}`);
   }
+
+  public getJoueurById(id: number): Observable<Compte> {
+    return this.httpClient.get<Compte>(`${this.joueurUrl}/${id}`);
+  }
 }

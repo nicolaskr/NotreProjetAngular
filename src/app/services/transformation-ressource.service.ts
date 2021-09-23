@@ -17,7 +17,7 @@ export class TransformationRessourceService {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
       // Authorization: 'Basic ' + localStorage.getItem('token'),
-      Authorization: 'Basic ' + btoa("joueur1:joueur1")
+      Authorization: 'Basic ' + localStorage.getItem('token')
     });
   }
 
