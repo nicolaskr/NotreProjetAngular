@@ -1,1 +1,13 @@
-<p>list-transformation-ressource works!</p>
+<label><b> Liste actuelle des transformation Ressources: </b></label><br>
+<table class="table">
+<tbody>
+  <tr>
+    <th>Ressource Lost</th>
+    <th>Ressource Win</th>
+  </tr>
+<tr *ngFor="let tr of batiment.transformationRessouce">
+  <td>{{tr.ressourceLost.nom}}</td>
+  <td>{{tr.ressourceWin.nom}}</td>
+</tr><br>
+</tbody>
+</table>

@@ -26,7 +26,6 @@ export class ListCoutBatimentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.id)
     this.batimentDefenseService.get(this.id).subscribe(res=>{
       this.batiment=res;
     });
